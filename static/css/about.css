@@ -1,0 +1,188 @@
+
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.page-header {
+    border: none;
+    text-align:center;
+    padding-bottom:100px;
+    padding-top: 100px;
+    display: block;
+    background-color: white;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.3);
+     /*box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05) , 0px 2px 3px 0px rgba(0, 0, 0, 0.1) ;*/
+ }
+
+ .kePublic{
+     background-color:#333;
+     margin-top:-30px;
+     padding-top:30px;
+     padding-bottom:100px;
+     box-shadow: rgba(255, 255, 255, 0.4) 0 0 15px, rgba(76, 190, 255, 0.95) 0 0 10px;
+     margin-bottom: 50px;
+ }
+ #t-ov{
+     float:left;
+}
+
+.navbar{
+    height:50px;
+    }
+h2{
+    color:white;
+    text-align:center;
+}
+#about_me{
+    width: 66%;
+    float:right;
+    position:relative;
+    z-index:1000;
+    top:-20px;
+    margin-top:-230px;
+    padding-right: 100px;
+    color:white;
+    }
+
+
+.site p{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size: 20px;
+}
+
+/*.btn{*/
+    /*display:block;*/
+    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;*/
+    /*border-color: #204d74;*/
+    /*color:#204d74;*/
+    /*font-size: 25px;*/
+    /*margin-top: 20px;*/
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+    /*margin-bottom: 500px;*/
+    /*padding: 15px 30px;*/
+    /*outline:none;*/
+/*}*/
+
+/*.btn:hover{*/
+    /*background-color: #286090;*/
+    /*border-color: #204d74;*/
+    /*color:white;*/
+/*}*/
+
+
+/*.btn:focus{*/
+    /*background-color: white;*/
+    /*border-color: #204d74;*/
+    /*color:#204d74;*/
+/*}*/
+
+#id_usernm{
+    height:40px;
+}
+#id_passwd{
+    height:40px;
+}
+
+.cut{
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+.main-footer {
+    /*padding: 20px 14px;*/
+    /*text-align: center;*/
+    font-size: 17px;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-weight: 200;
+    padding-left: 2em;
+}
+
+
+
+
+
+
+.site{
+    margin-top: 20px;
+}
+
+h1 {
+    margin-top: 60px;
+    font-family: "Monotype Corsiva","华文楷体","Microsoft Yahei",arial,sans-serif !important;
+    color: #0F0;
+    text-align: center;
+}
+hr{
+    border:0 !important;
+    height: 1px !important;
+    background-color: #0F0;
+}
+body{
+    background-color: #000000 !important;
+}
+
+.container{
+    color: #0F0;
+}
+
+.btn{
+    display:block;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    border-color: #0F0;
+    color:#0F0;
+    background-color: #000000;
+    font-size: 25px;
+    margin-top: 60px;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 15px 30px;
+    outline:none;
+}
+
+
+.btn:hover{
+    background-color: #0F0;
+    border-color:#0F0;
+    color:#000000;
+}
+
+
+.navbar-inverse .navbar-brand{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    color:#0F0;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    color:#0F0;
+    font-size:17px;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    color:#0F0;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+    background-color: #000000;
+}
+
+.navbar-brand:hover{
+
+}
+
+.navbar-nav>li>.dropdown-menu {
+    background-color: #000000;
+}
+.dropdown-menu>li>a{
+    color:#0F0;
+}
+
+.navbar-inverse .navbar-brand:hover{
+    color: #0F0;
+    background-color: #000000;
+}
+
+.main-footer a:hover{
+    text-decoration:none;
+    color:#337ab7;
+}

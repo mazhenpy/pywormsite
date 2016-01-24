@@ -1,0 +1,194 @@
+﻿a:focus{
+    outline:0;
+}
+.container{
+    padding-left:0;
+    padding-right: 0;
+}
+
+.col-sm-6{
+    padding :50px 0px 0px 50px;
+}
+.row{
+    margin-left: -50px;
+    margin-right: 0px;
+    /*width:1250px;*/
+}
+.page-header h1{
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "华文行楷","Microsoft Yahei",arial,sans-serif;
+    font-weight: 100;
+    padding: 30px 0 20px;
+}
+
+.yusi-mono {
+    font-size: 54px;
+}
+.yusi-bloger {
+    font-size: 24px;
+}
+.page-header h1:hover .yusi-mono {
+    letter-spacing: 5px;
+}
+.page-header h1:hover .yusi-bloger {
+    left: 26px;
+    opacity: 0.2;
+}
+.page-header {
+    border: none;
+    text-align:center;
+    margin-bottom: 0;
+    margin-top: 0 !important;
+    padding:0px 0 20px 0;
+    display: block;
+    background-color: white;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.3);
+     /*box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05) , 0px 2px 3px 0px rgba(0, 0, 0, 0.1) ;*/
+ }
+h1 {
+    font-size: 3.25em;
+    letter-spacing: -0.025em;
+}
+body {
+    /*background-color: white;*/
+    /*background-color: #f4f4f4;*/
+    background-image: url(../image/bg.png);
+    /*background-color:#E8E8E8;*/
+}
+
+.dropdown-menu li a{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    color:#080808;
+    font-weight: 500;
+    font-size:17px;
+}
+.framework h2{
+    font-family: "华文行楷","Microsoft Yahei",arial,sans-serif;
+    line-height:192px;
+    font-weight: 100;
+    font-size:100px;
+
+}
+.framework{
+    text-align:center;
+    /*border-bottom-style: dotted;*/
+}
+
+.framework .caption h3{
+    font-weight: 600;
+    font-size:30px;
+    margin-bottom: 10px;
+}
+.header{
+    text-align:center;
+    padding-top:120px;
+    font-weight: 500;
+
+}
+#header2{
+    margin-bottom: 50px;
+}
+#header1{
+    padding-top:70px;
+    position: relative;
+    top:50px;
+}
+.header p{
+    font-size: 35px;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    color: #3e3e3e;
+}
+.thumbnail{
+    /*box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.05) , 0px 2px 3px 0px rgba(0, 0, 0, 0.1) ;*/
+    border-radius: 0;
+    text-align:center;
+    padding:0 0 30px 0;
+    background: url("bg.png");
+}
+.thumbnail .caption{
+    padding:0;
+}
+.thumbnail h3{
+    font-weight: 700;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+}
+.thumbnail .caption a{
+    display:block ;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 27px;
+    color:#3E3E3E;
+    text-decoration: none;
+    outline: medium none;
+    font-weight: 700;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+}
+.thumbnail p{
+    color: #888;
+}
+.thumbnail img{
+    width: 100%;
+}
+.thumbnail .caption p{
+    margin-left: 10px;
+    margin-right: 10px;
+    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;*/
+}
+.main-footer {
+    padding-bottom: 14px;
+    /*padding: 20px 14px;*/
+    margin-top: 150px;
+    /*height: 80px;*/
+    text-align: center;
+    font-size: 14px;
+    /*font-family: '华文楷体';*/
+    font-weight: 100;
+    /*background: #1B1B1B none repeat scroll 0% 0%;*/
+    /*background-color: white;*/
+    background-color: #F4F4F4;
+}
+.main-footer a{
+    outline: medium none;
+    color: #888;
+    text-decoration: none;
+    /*line-height: 80px;*/
+    margin:0 auto;
+}
+.thumbnail a img{
+    height:257px;
+}
+
+.background_up .thumbnail{
+
+    border:0;
+    /*box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.05) inset, 0px 2px 3px 0px rgba(0, 0, 0, 0.1) inset;*/
+    /*background-color: #f4f4f4;*/
+
+    /*background: url("bg.png");*/
+    /*box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.4) inset;*/
+}
+.background_up{
+    /*padding-bottom: 80px;*/
+    padding-top: 50px;
+    /*box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05) inset, 0px 2px 3px 0px rgba(0, 0, 0, 0.1) inset;*/
+}
+.background_down {
+    border: none;
+}
+.half-rule{
+    width: 200px;
+}
+
+#hr1{
+    position: relative;
+    top:90px;
+}
+.thumbnail .caption a:hover{
+    color: #286090;
+}
+.background_down .thumbnail{
+    background-color: white;
+}

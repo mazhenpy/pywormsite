@@ -1,0 +1,61 @@
+/*body{*/
+    /*background-color: #2f3238;*/
+    /*color:white;*/
+/*}*/
+
+h2{
+    line-height:269px;
+    margin-left:50px;
+    font-size:50px;
+}
+.video-js {
+    width:500px;
+    height:301px;
+    /*box-shadow: 0 2px 10px black;*/
+}
+
+.media{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/*.media img{*/
+    /*width:500px;*/
+    /*height:301px;*/
+/*}*/
+
+#num1{
+    margin-top: 100px;
+}
+video{
+    width:500px;
+}
+
+.video-js .vjs-big-play-button{
+    border-radius:0 !important;
+    height:41px !important;
+    position: absolute !important;
+    top:260px !important;
+    left:0 !important;
+    border: none !important;
+    z-index:2 !important;
+}
+.media-left, .media>.pull-left {
+    padding-right: 30px;
+}
+.media-body p{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size:18px;
+}
+
+.cut{
+    margin-top: 70px;
+}
+.main-footer {
+    text-align: center;
+    font-size: 17px;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-weight: 200;
+}

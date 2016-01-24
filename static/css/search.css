@@ -1,0 +1,41 @@
+﻿.cont-search{
+    max-width: 800px;
+    margin:0 auto;
+}
+.navbar-form {
+    margin-top:150px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.navbar-form .form-control{
+    width:600px;
+    height:45px;
+}
+.navbar-form .btn{
+    height:45px;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    width:140px;
+}
+.lab{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.lab a{
+    color:white;
+    text-decoration:none;
+}
+
+.list-unstyled li{
+    text-align: left;
+}
+
+.navbar-form .form-control {
+    width: 800px;
+}
+
+.form-control{
+    border-radius:0;
+}
+.navbar-form {
+    margin-left: -15px;
+}

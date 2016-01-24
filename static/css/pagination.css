@@ -1,0 +1,29 @@
+.next{
+    float:right;
+    width:auto;
+    display:inline;
+}
+
+.previous{
+    float:right;
+    width:auto;
+    display:inline;
+}
+
+.previous-off{
+    float:right;
+    width:auto;
+    display:inline;
+}
+
+.next-off{
+    float:right;
+    width:auto;
+    display:inline;
+}
+
+.active{
+    float:right;
+    width:auto;
+    display:inline;
+}

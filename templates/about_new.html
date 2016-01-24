@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <title>关于这里</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/about.css" type="text/css"/>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="/index/">首页</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+ <!--{#                <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}-->
+                <li  id="search_blog"><a href="http://127.0.0.1:8000/search_blog">站内搜索</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的博客 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/web/">Web开发</a></li>
+                        <li><a href="/python/">Python</a></li>
+                        <li><a href="/essay/">Tornado</a></li>
+                        <li><a href="/spider/">网络爬虫</a></li>
+                    </ul>
+                </li>
+                <li id="about"><a href="/about/">关于这里</a></li>
+            </ul>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Welcome to my website</h1>
+    <hr/>
+    <div class="site">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站前端界面设计，后端代码编写由本人独自开发完成。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站后端是由Django和Tornado融合而成的一个超级框架开发而成，Django部分架构整个博客系统，Tornado部分用于扩展各种接口，前端使用Bootstrap框架。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站后端使用Django 实现了一套完整的博客标准API（MetaWeblog API），可以和Windows Live Writer客户端完美对接。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站使用Windows Live Writer进行博客的编辑与发布，发布之后会将博客存储到数据库，同时会将博客写入到静态HTML文件中，最终会以静态文件展示。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站代码部署在阿里云。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站高清原声视频、音频资源存放在七牛云存储，前端使用由HTML5实现的播放器。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站代码放在GitHub上更新维护。</p>
+    </div>
+    <button type="button" class="btn btn-default btn-lg" id="div1" onFocus="this.blur()" onclick="window.location='http://www.baidu.com'">GITHUB 项目主页</button>
+    <div class="cut">
+        <hr/>
+        <div class="main-footer">
+            <span>联系邮箱:1053556056@qq.com</span>
+            <p>Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</p>
+            <p>最近访客：</p>
+            {% for ip_attribution,ip_access_time in ips_info.items %}
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/><small>-{{ ip_access_time }}</small></a>
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/><small>-{{ ip_access_time }}</small></a>
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/><small>-{{ ip_access_time }}</small></a>
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/><small>-{{ ip_access_time }}</small></a>
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/><small>-{{ ip_access_time }}</small></a>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

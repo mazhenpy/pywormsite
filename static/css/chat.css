@@ -1,0 +1,60 @@
+body{
+
+    background-color:#000000;
+}
+#responseText{
+    color:#0F0;
+    background-color:#000000;
+    width:100%;
+    height:80%;
+    border-radius: 0;
+    overflow:auto;
+    padding:30px 30px;
+    border-color:#0F0;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size: 17px;
+}
+
+
+
+#top{
+    color:#0F0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size: 17px;
+}
+
+label{
+    position:absolute;
+    bottom:45px;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size: 17px;
+    color: #0F0;
+}
+.msg{
+    padding: 5px;
+    /*margin-bottom: 20px;*/
+}
+
+#msg{
+    color:#0F0;
+    background-color:#000000;
+    width:100%;
+    height:40px;
+    position:absolute;
+    bottom:0;
+    border-radius: 0;
+    border-color:#0F0;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-size: 17px;
+}
+
+input:focus{
+    box-shadow:none !important;
+}
+.alert-info {
+    color:#0F0;
+    background-color: #000000;
+    border-color: #000000;
+    /*box-shadow: rgba(255, 255, 255, 0.4) 0 0 15px, rgba(76, 190, 255, 0.95) 0 0 10px;*/
+}

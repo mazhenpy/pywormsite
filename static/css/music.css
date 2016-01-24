@@ -1,0 +1,13 @@
+
+#playlist {
+    height: 400px;
+    overflow: auto;
+    overflow-y: hidden;
+}
+/*.ps-scrollbar-y{*/
+    /*height:350px !important;*/
+/*}*/
+
+#playlist li.playing {
+     font-weight: 200;
+}

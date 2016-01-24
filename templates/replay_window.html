@@ -1,0 +1,22 @@
+<div class="theme-popover-replay theme-popover-replay0{{ replay.id }}">
+    <div class="theme-poptit-replay theme-poptit-replay0{{ replay.id }}">
+        <a href="javascript:" title="关闭" class="close">×</a>
+        <h3>发表评论</h3>
+    </div>
+
+    <form class="form-horizontal" id="user_content00{{ replay.id }}">
+      {% csrf_token %}
+      <div class="form-group">
+        <textarea class="form-control text_area" id="id_content00{{ replay.id }}" rows="6"></textarea>
+      </div>
+
+      <div class="form-group">
+        <div class="button col-sm-12">
+          <button type="submit" class="btn btn-primary" id="put1" onclick="a('{{ blog_id }},{{ replay.id }}')">submit</button>
+        </div>
+      </div>
+    </form>
+
+</div>
+<div class="theme-popover-mask-replay theme-popover-mask-replay0{{ replay.id }}"></div>
+

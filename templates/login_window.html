@@ -1,0 +1,78 @@
+<div class="theme-popover-regist">
+    <div class="theme-poptit-regist">
+        <a href="javascript:" title="关闭" class="close">×</a>
+        <h3>注 册</h3>
+    </div>
+    <form class="form-horizontal">
+        {% csrf_token %}
+      <div class="form-group">
+
+        <div class="col-sm-12">
+          <input type="email" class="form-control" id="id_usernm" placeholder="Username">
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-sm-12">
+          <input type="password" class="form-control" id="id_passwd" placeholder="Password">
+        </div>
+      </div>
+
+       <div class="form-group">
+
+        <div class="col-sm-12">
+          <input type="password" class="form-control" id="id_passwd2" placeholder="Password">
+        </div>
+       </div>
+
+      <div class="form-group">
+        <div class="button col-sm-12">
+          <button type="button" class="btn btn-primary" id="put2">submit</button>
+        </div>
+      </div>
+    </form>
+</div>
+<div class="theme-popover-mask-regist"></div>
+
+
+<div class="theme-popover-login">
+    <div class="theme-poptit-login">
+        <a href="javascript:" title="关闭" class="close">×</a>
+        <h3>登 录</h3>
+    </div>
+
+    <form class="form-horizontal">
+        {% csrf_token %}
+      <div class="form-group">
+
+        <div class="col-sm-12">
+          <input type="email" class="form-control" id="id_usernm_login" placeholder="Username">
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-sm-12">
+          <input type="password" class="form-control" id="id_passwd_login" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="button col-sm-12">
+          <button type="button" class="btn btn-primary" id="put1">submit</button>
+        </div>
+      </div>
+    </form>
+
+</div>
+<div class="theme-popover-mask-login"></div>
+
+
+
+<div class="theme-popover-alert">
+
+          <button type="button" class="btn btn-primary btn-lg" id="button-alert">注册成功</button>
+
+</div>
+<div class="theme-popover-mask-alert"></div>

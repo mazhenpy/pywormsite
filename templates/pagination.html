@@ -1,0 +1,22 @@
+<div class="page" id="previous_page">
+    <nav>
+    <ul class="pagination">
+        {% if blogs.has_previous %}
+        <li><a href="?page={{ blogs.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        {% else %}
+        <li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        {% endif %}
+
+        <!--<li><a>{{ blogs.number }}/{{ blogs.paginator.num_pages }}</a></li>-->
+        {% for page in page_num_list %}
+        <li id = '{{page}}' onclick="a('{{page}}')"><a href="?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+
+        {% if blogs.has_next %}
+        <li><a href="?page={{ blogs.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        {% else %}
+        <li><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        {% endif %}
+    </ul>
+    </nav>
+</div>

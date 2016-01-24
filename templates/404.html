@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<head>
+<meta charset="utf-8" />
+<title>404-页面未找到</title>
+<style type="text/css">
+/*basic reset*/
+* {margin: 0; padding: 0;}
+/*adding a black bg to the body to make things clearer*/
+body {background: black;}
+canvas {display: block;}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="text/javascript">
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
+c.height = window.innerHeight;
+c.width = window.innerWidth;
+var chinese = "10010101001010100101001010";
+chinese = chinese.split("");
+
+var font_size = 14;
+var columns = c.width/font_size;
+//an array of drops - one per column
+var drops = [];
+for(var x = 0; x < columns; x++)
+	drops[x] = 1; 
+//drawing the characters
+function draw()
+{
+	ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+	ctx.fillRect(0, 0, c.width, c.height);
+	
+	ctx.fillStyle = "#0F0"; //green text
+	ctx.font = font_size + "px arial";
+	//looping over drops
+	for(var i = 0; i < drops.length; i++)
+	{
+		var text = chinese[Math.floor(Math.random()*chinese.length)];
+		ctx.fillText(text, i*font_size, drops[i]*font_size);
+		
+		if(drops[i]*font_size > c.height && Math.random() > 0.975)
+			drops[i] = 0;
+		
+	drops[i]++;
+	}
+}
+setInterval(draw, 33);
+</script>
+</body>
+</html>

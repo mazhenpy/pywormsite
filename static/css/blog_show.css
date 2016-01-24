@@ -1,0 +1,63 @@
+h2{
+    text-align: center;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+}
+.con{
+    padding: 0 2.75%
+}
+.con a{
+    font-family: '微软雅黑';
+    cursor:pointer;
+}
+#blog_post_time{
+    float:right;
+}
+#btn1{
+    float:right;
+    font-family: "Microsoft Yahei",arial,sans-serif;
+    font-size: 11px;
+    margin-right: 2.75%;
+}
+#comment{
+    height:40px;
+    margin-bottom: 10px;
+}
+.replay{
+
+    font-family: "Microsoft Yahei",arial,sans-serif;
+}
+.replay .replay_user span{
+    margin-top: 0 !important;
+    color: #337AB7;
+}
+hr{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+blockquote{
+    font-size: 14px;
+}
+
+.cut{
+    margin-top: 60px;
+}
+.main-footer {
+    padding: 20px 14px;
+    text-align: center;
+    font-size: 17px;
+    font-family: '华文楷体';
+    font-weight: 200;
+}
+
+
+.blog_replay{
+    display:block;
+    float:right;
+    position:relative;
+    top:-20px;
+    left:-50px;
+}
+
+.to_replay_user{
+    margin-left:50px;
+}

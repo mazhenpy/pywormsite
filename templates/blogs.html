@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/pagination.js"></script>
+    <title>我的博客</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/blogs.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
+</head>
+<body>
+{% include 'nav_header.html' %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>{{ categorie }}</h1>
+    </div>
+
+    {% for blog in blogs %}
+    <section class="content-wrap">
+        <h3 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h3>
+        <div class="post-meta">
+            <time class="data">2015-10-10</time>
+        </div>
+        <div class="post-content">
+            <p>{{ blog.summary }}</p>
+        </div>
+    </section>
+    {% endfor %}
+
+    <div class="main-footer">
+        {% include 'pagination.html' %}
+    </div>
+</div>
+</body>
+</html>

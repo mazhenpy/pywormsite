@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Shortcut Icon" href="{{STATIC_URL}}image/bth2.png" type="image/x-icon">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/nav_header.js"></script>
+    <title>关于这里</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap2.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/BTH.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/about.css" type="text/css"/>
+</head>
+<body>
+{% include 'nav_header.html' %}
+
+
+<div class="kePublic row">
+    <!--效果html开始-->
+    <div id="t-ov">
+        <div class="motime">
+            <div id="head-body"></div>
+            <div id="head-topcover"></div>
+            <div id="head-toplogo-bg"></div>
+            <div id="head-toplogo"></div>
+            <div id="head-toplogo-2"></div>
+            <div id="head-bottom"></div>
+            <div id="head-bottom-2"></div>
+            <div id="head-sw"></div>
+            <div id="head-sw-2"></div>
+            <div id="head-eye"></div>
+            <div id="head-eye-2"></div>
+        </div>
+    </div>
+    <div  id="about_me"><h2>
+                    I am a man who was the faithful fans of python
+                    <br/>
+                    <br/>
+                    No python, no programming
+                    <br/>
+                    <br/>
+                    And this website was written by python
+                </h2></div>
+    </div>
+<div class="container">
+    <div class="site">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站前端界面设计，后端代码编写均由本人独自开发完成。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站后端是由Django和Tornado融合而成的一个超级框架开发而成，Django部分架构整个博客系统，Tornado部分用于扩展各种接口，前端使用Bootstrap框架。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站后端使用Django 实现了一套完整的博客标准API（MetaWeblog API），可以和Windows Live Writer客户端完美对接。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站使用Windows Live Writer进行博客的编辑与发布，发布之后会将博客存储到数据库，同时会将博客写入到静态HTML文件中，最终会以静态文件展示。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站代码部署在新浪云。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站视频、音频资源存放在七牛云存储，前端使用由HTML5实现的播放器。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本站代码放在GitHub上更新维护。</p>
+    </div>
+    <button type="button" class="btn btn-default btn-lg">GITHUB 项目主页</button>
+    <div class="cut">
+        <hr/>
+        <div class="main-footer">
+            <span>联系邮箱:1053556056@qq.com</span>
+            <p>Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</p>
+            <p>最近访客：</p>
+            {% for ip in ips_attribution %}
+                <a style="display:block;float: left;margin-right: 40px;">{{ ip }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

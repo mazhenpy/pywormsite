@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" media="all" href="{{STATIC_URL}}css/reset.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="{{STATIC_URL}}css/catalog.css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/base.css" type="text/css"/>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/index.js"></script>
+    <title>Python | 目录</title>
+</head>
+<body>
+
+{% for blog in blogs %}
+<div class='tit'>
+    <h2><a href="/blog/{{blog.blog_id}}/" target="_blank">{{blog.title}}</a></h2></div>
+{% endfor %}
+
+</body>
+
+</html>

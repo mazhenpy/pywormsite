@@ -1,0 +1,36 @@
+a:focus{
+    outline:0;
+}
+.navbar {
+    background-color:#286090 ;
+    border-color: #204d74;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #204d74;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    color:white;
+    font-size:17px;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    background-color: #204d74;
+}
+
+.navbar-inverse .navbar-brand{
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    color:white;
+}
+
+.navbar-brand:hover{
+    background-color: #080808;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #204d74;
+}
+

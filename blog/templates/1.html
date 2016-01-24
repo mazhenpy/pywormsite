@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/nav_header.js"></script>
+    <script type="text/javascript" src="/static/js/pagination.js"></script>
+    <script type="text/javascript" src="/static/js/blog_replay.js"></script>
+    <script type="text/javascript" src="/static/js/replay_window.js"></script>
+    <script type="text/javascript" src="/static/js/shCore.js"></script>
+    <script type="text/javascript" src="/static/js/shBrushPython.js"></script>
+    <title>Python编程</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/nav_header.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/login_window.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/blog_show.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/replay_window.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/shCoreMidnight.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/shThemeMidnight.css" type="text/css"/>
+
+    <script type="text/javascript">SyntaxHighlighter.defaults['toolbar'] = false;</script>
+    <script type="text/javascript">
+         SyntaxHighlighter.all();
+    </script>
+</head>
+<body>
+
+{% include 'nav_header.html' %}
+
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h2 id="blog_title">Python、Redis实现分布式网络爬虫</h2>
+    <div id="blog_post_time">posted on 2016-01-10 by <a href="http://www.pyworm.com">Pyworm</a></div>
+    <div class="clearfix"></div>
+    <hr/>
+    <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">写爬虫关键是思路，思路明确代码实现起来不是问题。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">关于用Python实现一个分布式爬虫，我曾折腾了很长一段时间，翻遍了Google十几页，和 Python 分布式 爬虫 等关键字相关的博客也就那么几篇，后来在学习Redis的时候，终于找到了实现分布式的方法。看来当现有的技术解决不了实际问题的时候，是需要学习新的技术了。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">具体实现思路：利用Redis的主从数据同步，所有爬虫获取到的url都放到一个redis queue中，并且Master和Slave的爬虫都从这个redis queue中获取url。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">需要用到的工具redis-py。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">我有两台机器，笔记本Windows，树莓派Linux，笔记本做Master，树莓派做Slave。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">爬取网站<a href="http://jandan.net/">http://jandan.net/</a>（经常写爬虫的应该不会不知道这个网站。）</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">以前写爬虫的时候我会把需要下载的URL放在Queue里面，而现在需要把URL放在 redis queue 中，借鉴了网上一篇博客的代码</p><pre class="brush: python;">import redis  
+
+  
+
+class RedisQueue(object):  
+
+    """Simple Queue with Redis Backend"""  
+
+    def __init__(self, name, namespace='queue', **redis_kwargs):  
+
+        """The default connection parameters are: host='localhost', port=6379, db=0"""  
+
+        self.__db= redis.Redis(host='192.168.1.105', port=6379, db=0)  
+
+        self.key = '%s:%s' %(namespace, name)  
+
+  
+
+    def qsize(self):  
+
+        """Return the approximate size of the queue."""  
+
+        return self.__db.llen(self.key)  
+
+  
+
+    def empty(self):  
+
+        """Return True if the queue is empty, False otherwise."""  
+
+        return self.qsize() == 0  
+
+  
+
+    def put(self, item):  
+
+        """Put item into the queue."""  
+
+        self.__db.rpush(self.key, item)  
+
+  
+
+    def get(self, block=True, timeout=None):  
+
+        """Remove and return an item from the queue.  
+
+ 
+
+        If optional args block is true and timeout is None (the default), block 
+
+        if necessary until an item is available."""  
+
+        if block:  
+
+            item = self.__db.blpop(self.key, timeout=timeout)  
+
+        else:  
+
+            item = self.__db.lpop(self.key)  
+
+  
+
+        if item:  
+
+            item = item[1]  
+
+        return item  
+
+  
+
+    def get_nowait(self):  
+
+        """Equivalent to get(False)."""  
+
+        return self.get(False)  </pre>
+<p style="font-size: 12pt; margin-bottom: 0px; font-family: 微软雅黑; margin-top: 0px; padding-bottom: 0px; padding-top: 0px; line-height: 160%; text-indent: 2em">这段代码作为一个模块的形式，文件命名为RedisQueue.py，和爬虫文件放在同一个文件夹里面，具体操作和Queue差不多</p><pre class="brush: python;">&gt;&gt;&gt; from RedisQueue import RedisQueue  
+
+&gt;&gt;&gt; q = RedisQueue('test')  
+
+&gt;&gt;&gt; q.put('hello world')  
+
+ 
+
+redis 127.0.0.1:6379&gt; keys *  
+
+1) "queue:test"  
+
+redis 127.0.0.1:6379&gt; type queue:test  
+
+list  
+
+redis 127.0.0.1:6379&gt; llen queue:test  
+
+(integer) 1  
+
+redis 127.0.0.1:6379&gt; lrange queue:test 0 1  
+
+1) "hello world"  
+
+ 
+
+&gt;&gt;&gt; from RedisQueue import RedisQueue  
+
+&gt;&gt;&gt; q = RedisQueue('test')  
+
+&gt;&gt;&gt; q.get()  
+
+'hello world' </pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">先用一段代码将URL放进redis queue中</p><pre class="brush: python;">#coding=utf-8
+
+from bs4 import BeautifulSoup
+
+import urllib2
+
+from Queue import Queue
+
+from RedisQueue import RedisQueue
+
+queue = Queue()
+
+redis = RedisQueue('jandan3')
+
+ 
+
+def user_agent(url):
+
+    req_header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0'}
+
+    req_timeout = 20
+
+    req = urllib2.Request(url,None,req_header)
+
+    page = urllib2.urlopen(req,None,req_timeout)
+
+    html = page
+
+    return html
+
+ 
+
+def next_page():
+
+    base_url = 'http://jandan.net/ooxx/page-1006#comments'
+
+    for i in range(3):
+
+        html = user_agent(base_url).read()
+
+        soup = BeautifulSoup(html)         
+
+        next_url = soup.find('a',{'class':'next-comment-page','title':'Newer Comments'}).get('href')
+
+        yield base_url
+
+        base_url = next_url        
+
+for page in next_page():
+
+    queue.put(page)
+
+print 'There are %d pages'%queue.qsize()
+
+        
+
+while not queue.empty():
+
+    page_url = queue.get()
+
+    html = user_agent(page_url).read()
+
+    soup = BeautifulSoup(html)
+
+    img_urls = soup.find_all(['img'])
+
+    for myimg in img_urls:
+
+        Jpgurl = myimg.get('src')
+
+        redis.put(Jpgurl)
+
+print 'There are %d pictures'%redis.qsize()</pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">然后在Master端可以看到：</p><pre class="brush: python;">redis 192.168.1.105:6379&gt; keys *
+
+1) "queue:jandan3"
+
+redis 192.168.1.105:6379&gt;</pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">Slave端：</p><pre class="brush: python;">192.168.1.106:6379&gt; keys *
+
+1) "queue:jandan3"
+
+192.168.1.106:6379&gt;</pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">现在Master和Slave都可以读取redis queue中的数据，下面的工作就是Master和Slave分别运行自己的爬虫对redis queue中的数据下载就行了。</p>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">Windows爬虫代码</p><pre class="brush: python;">import urllib2
+
+from RedisQueue import RedisQueue
+
+redis = RedisQueue('jandan3')
+
+ 
+
+def user_agent(url):
+
+    req_header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0'}
+
+    req_timeout = 20
+
+    req = urllib2.Request(url,None,req_header)
+
+    page = urllib2.urlopen(req,None,req_timeout)
+
+    html = page
+
+    return html
+
+ 
+
+while not redis.empty():
+
+    down_url = redis.get()
+
+    data = user_agent(down_url).read()
+
+    with open('D:/Python/picture'+'/'+down_url[-11:],'wb')as code:
+
+        code.write(data)
+
+    print down_url</pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">Linux爬虫代码：</p><pre class="brush: python;">import urllib2
+
+from RedisQueue import RedisQueue
+
+redis = RedisQueue('jandan3')
+
+ 
+
+def user_agent(url):
+
+    req_header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0
+
+'}
+
+    req_timeout = 20
+
+    req = urllib2.Request(url,None,req_header)
+
+    page = urllib2.urlopen(req,None,req_timeout)
+
+    html = page
+
+    return html
+
+ 
+
+while not redis.empty():
+
+    down_url = redis.get()
+
+    data = user_agent(down_url).read()
+
+    with open('/mz/picture'+'/'+down_url[-11:],'wb')as code:
+
+        code.write(data)
+
+    print down_url</pre>
+<p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">将这两段代码同时运行，即可对redis queue 中的URL同时下载，直到把redis queue取空为止。</p>
+
+
+
+
+    <div id="comment"><input type="button" class="btn btn-primary" id="btn1" value="发表评论" onclick="b('{{ replay.id }}')"></div>
+    
+    <div class="con">
+        {% for replay in replays %}
+            <hr/>
+            <div class="replay replay_user"><small>#{{ replay.replay_id }}</small><span style="color:#337AB7"><a>{{replay.replay_user}}</a>：</span></div>
+            <blockquote><div class="replay replay_content"><p>{{ replay.content }}</p></div></blockquote>
+            <div class="replay replay_time"><small>{{replay.replay_time|date:"Y-m-d"}}</small></div>
+            <a onclick="b('{{ replay.id }}')" class="blog_replay">回复</a>
+            {% include 'replay_window.html' %}
+            {% for k,to_replays in to_replays_dict.items %}
+                {% if k == replay %}
+                    {% for to_replay in to_replays %}
+                            <hr/>
+                        <div class="to_replay_user">
+                            <div class="replay replay_user"><a style="color:#337AB7">{{to_replay.replay_user}}</a> 回复 <a style="color:#337AB7">{{replay.replay_user}}</a>：</div>
+                            <blockquote><div class="replay replay_content"><p>{{ to_replay.content }}</p></div></blockquote>
+                            <div class="replay replay_time"><small>{{to_replay.replay_time|date:"Y-m-d"}}</small></div>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="cut">
+        <hr/>
+        <div class="main-footer">
+            <p>若非特别声明，文章均为本人的个人笔记，转载请注明出处。文章如有侵权内容，请联系我，我会及时删除。 </p>
+            <p>Copyright ©2011-2016 All rights reserved. Powered by Pyworm.</p>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'login_window.html' %}
+{% include 'replay_window.html' %}
+<h1 style="display:none" id="categorie">Python编程</h1>
+</body>
+</html>

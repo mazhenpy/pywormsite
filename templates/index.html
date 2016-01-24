@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/nav_header.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/tc_regist.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/tc_login.js"></script>
+    <title>博客首页 | Pyworm的博客</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/login_window.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="/index/">首页</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+ <!--{#                <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}-->
+                <li  id="search_blog"><a href="http://127.0.0.1:8000/search_blog">站内搜索</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的博客 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/web/">Web开发</a></li>
+                        <li><a href="/python/">Python</a></li>
+                        <li><a href="/essay/">Tornado</a></li>
+                        <li><a href="/spider/">网络爬虫</a></li>
+                    </ul>
+                </li>
+                <li id="about"><a href="/about/">关于这里</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="theme-regist" href="javascript:">注册</a></li>
+                <li><a class="theme-login" href="javascript:">登录</a></li>
+            </ul>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="page-header clearfix">
+    <h1>
+        <span class="yusi-mono">Pyworm的博客</span>
+            <span class="yusi-bloger">
+                life is shot,i use python
+        </span>
+    </h1>
+</div>
+
+<div class='background_up'>
+
+    <div class="container">
+        <div class="container">
+            <div class="header" id="header1">
+                <p>The framework i use</p>
+            </div>
+        </div>
+
+
+        <hr class="half-rule" id="hr1">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="framework"><h2>django</h2></div>
+                    <div class="caption">
+                        <h3>Django</h3>
+                        <p>我参考过一些其他人的个人网站，很多都是用Django开发的，用Django开发网站确实很方便。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+
+                    <div class="framework"><h2>tornado</h2></div>
+                    <div class="caption">
+                        <h3>Tornado</h3>
+                        <p>出身名门，性能强大，轻便灵活，非常优秀的框架，就是文档少了点。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="framework"><h2>scrapy</h2></div>
+                    <div class="caption">
+                        <h3>Scrapy</h3>
+
+                        <p>网络爬虫框架，小名：小刮刮，网络爬虫必备框架</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class='background_down'>
+
+    <div class="container">
+        <hr class="half-rule" id="hr2">
+        <div class="header" id="header2">
+            <p>Work with python</p>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/web/"><img src="{{STATIC_URL}}image/web.jpg" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="/web/">Web 开发</a>
+
+                        <p>web相关的一些东西</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/spider/"><img src="{{STATIC_URL}}image/portfolio02.jpg" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="/spider/">网络爬虫</a>
+
+                        <p>Python网络爬虫技术探索</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/python/"><img src="{{STATIC_URL}}image/portfolio01.jpg" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="/python/">Python编程</a>
+
+                        <p>研究Python的各种奇门遁甲、黑科技</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/tornado/"><img src="{{STATIC_URL}}image/tornado.gif" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="/tornado/">Tornado</a>
+
+                        <p>我常用的一些wheel，还有我对tornado的理解</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="http://127.0.0.1:8000/chat" target="_blank"><img src="{{STATIC_URL}}image/portfolio06.jpg" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="http://127.0.0.1:8000/chat" target="_blank">聊天室</a>
+
+                        <p>使用tornado长轮询做出的网络聊天室</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="/collection/" target="_blank"><img src="{{STATIC_URL}}image/portfolio04.jpg" alt="..."></a>
+
+                    <div class="caption">
+                        <a href="/collection/" target="_blank">网站收藏</a>
+
+                        <p>我的收藏</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="main-footer">
+    <hr/>
+    <div class="container">
+        <a>Pyworm 版权所有 | 基于Python开发 | Copyright © 2015-2016 | 托管于 阿里云主机&七牛云存储 | 鲁ICP备14030596号
+            <br>
+            网站统计 | 今日IP[{{ access_day_ip }}] | 今日PV[{{ access_day_pv }}] | 昨日IP[{{ access_yesterday_ip }}] | 昨日PV[{{ access_yesterday_pv }}] | 当前在线[{{ online_num }}]</a>
+    </div>
+</footer>
+
+{% include 'login_window.html' %}
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/nav_header.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/search.css" type="text/css"/>
+    <title>Pyworm</title>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top ">
+    <div class="container-fluid">
+        <div class="container">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/index/">首页</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li id="search_blog"><a href="http://127.0.0.1:8000/search_blog">站内搜索</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">我的博客 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/web/">Web开发</a></li>
+                            <li><a href="/python/">Python</a></li>
+                            <li><a href="/tornado/">Tornado</a></li>
+                            <li><a href="/spider/">网络爬虫</a></li>
+                        </ul>
+                    </li>
+                    <li id="about"><a href="/about/">关于这里</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="theme-login" href="javascript:">注册</a></li>
+                    <li><a class="theme-login" href="javascript:">登录</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="cont-search">
+        <form name=form1 class="navbar-form" role="search" id="user_content" method='post'>
+            {% raw xsrf_form_html() %}
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" id="id_content" maxlength="30"
+                       name="content">
+            </div>
+{#            <button type="submit" class="btn btn-primary btn-lg">搜 索</button>#}
+        </form>
+
+        <div class="lab">
+            <span class="label label-default"><a
+                    href="http://127.0.0.1:8000/search_blog?content=Django">Django</a></span>
+            <span class="label label-primary"><a
+                    href="http://127.0.0.1:8000/search_blog?content=Python">Python</a></span>
+            <span class="label label-success"><a
+                    href="http://127.0.0.1:8000/search_blog?content=Tornado">Tornado</a></span>
+            <span class="label label-info"><a href="http://127.0.0.1:8000/search_blog?content=网络爬虫">网络爬虫</a></span>
+            <span class="label label-warning"><a
+                    href="http://127.0.0.1:8000/search_blog?content=Scrapy">Scrapy</a></span>
+            <span class="label label-danger"><a href="">Danger</a></span>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <ul class="list-unstyled">
+                        {% for key in url_list %}
+                        <li>
+                            <h4><a href="{{ key }}">
+                                &nbsp;&nbsp;{{ title_list[url_list.index(key)] }}</a></h4>
+                        </li>
+                        {% end %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

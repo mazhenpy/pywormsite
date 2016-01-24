@@ -19,6 +19,7 @@ access_log = logging.getLogger('access')
 
 # 网站首页
 @csrf_exempt
+@cache_page(60 * 15) #缓存页面15分钟
 def index(req):
     if req.is_ajax():
         username = req.POST.get("username", None)
@@ -76,16 +77,19 @@ def admin(req):
 
 
 #网站收藏
+@cache_page(60 * 15) #缓存页面15分钟
 def collection(req):
     return render_to_response('my_collection.html', context_instance=RequestContext(req))
 
 
 #movie
+@cache_page(60 * 15) #缓存页面15分钟
 def warcraft(req):
     return render_to_response('warcraft.html', context_instance=RequestContext(req))
 
 
 #music
+@cache_page(60 * 15) #缓存页面15分钟
 def music(req):
     return render_to_response('music_rain.html', context_instance=RequestContext(req))
 

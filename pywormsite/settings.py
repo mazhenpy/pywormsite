@@ -55,7 +55,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pywormsite',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': '1234',
         'HOST': '',
         'PORT': '3306',
     }

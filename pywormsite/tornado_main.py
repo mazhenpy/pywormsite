@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 
 import django.core.handlers.wsgi
 import tornado.httpserver
@@ -9,7 +10,7 @@ import tornado.wsgi
 import tornado.gen
 from tornado.web import url
 import yaml
-
+sys.path.append("..")
 from handlers.chatroom.chat import ChatHandler, ChatSocketHandler
 from handlers.search_blog import SearchHandler
 from handlers.task.task_access_count_day import Day_Ip_Task
@@ -49,8 +50,12 @@ class Application(tornado.web.Application):
     def __init__(self):
         wsgi_app = tornado.wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
 
+        # self.config = yaml.load(
+        #     open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+
         self.config = yaml.load(
-            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+            open(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '/config.yaml', 'r', encoding='utf8'))
+
         self.ip = self.config["pyworm_blog"]["ip"]
         self.port = self.config["pyworm_blog"]["port"]
         self.url = self.config["pyworm_blog"]["url"]

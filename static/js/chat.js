@@ -4,7 +4,7 @@ var socket;
     }
     // Javascript Websocket Client
     if (window.WebSocket) {
-        socket = new WebSocket("ws://127.0.0.1:8000/websocket");
+        socket = new WebSocket("ws://www.pyworm.com:8000/websocket");
         socket.onmessage = function (event) {
             if(event.data){
                 var attr = $("#attr").html();

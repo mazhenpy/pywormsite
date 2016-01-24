@@ -4,3 +4,4 @@ __pycache__
 test.py
 test.html
 config.yaml
+blog/templates/

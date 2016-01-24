@@ -84,7 +84,6 @@ if __name__ == '__main__':
     application = Application()
     show_logo()
     show_index(application.ip, application.port)
-    print("music,movie,meta优化")
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(application.port)
     Day_Ip_Task(application, 1000 * 60 * 60 * 24).start()

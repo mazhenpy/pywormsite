@@ -79,6 +79,7 @@ figure.effect-sadie h2 {
 .navbar-inverse {
     /*background-color: #040404 !important;*/
     border-color: #2f3238;
+    box-shadow: 0 2px 10px black;
 }
 
 .navbar-inverse .navbar-nav>li>a{

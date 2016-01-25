@@ -50,3 +50,11 @@ $(document).ready(function () {
         }
     });
 });
+
+//聊天室链接
+$(document).ready(function(){
+    var host = window.location.host;
+    document.getElementById('chat_link').href = "http://" + host + "/chat";
+    document.getElementById('link_chat').href = "http://" + host + "/chat";
+    document.getElementById('search_blog').href = "http://" + host + "/search_blog";
+})

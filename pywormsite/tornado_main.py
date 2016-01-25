@@ -56,7 +56,7 @@ class Application(tornado.web.Application):
         self.config = yaml.load(
             open(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '/config.yaml', 'r', encoding='utf8'))
 
-        self.ip = self.config["pyworm_blog"]["ip"]
+        self.host = self.config["pyworm_blog"]["host"]
         self.port = self.config["pyworm_blog"]["port"]
         self.url = self.config["pyworm_blog"]["url"]
 
@@ -88,7 +88,7 @@ class Application(tornado.web.Application):
 if __name__ == '__main__':
     application = Application()
     show_logo()
-    show_index(application.ip, application.port)
+    show_index(application.host, application.port)
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(application.port)
     Day_Ip_Task(application, 1000 * 60 * 60 * 24).start()

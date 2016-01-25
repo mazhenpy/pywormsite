@@ -7,6 +7,7 @@ import os
 from xmlrpc.server import SimpleXMLRPCDispatcher
 
 from bs4 import BeautifulSoup
+from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -17,6 +18,7 @@ from tornado.httpclient import HTTPClient
 import yaml
 
 from blog.models import Blog, Replay, IP_access
+from pywormsite import RedisDriver
 
 
 request_log = logging.getLogger('request')
@@ -33,6 +35,22 @@ def blog(req, blog_id):
         ip = req.META['REMOTE_ADDR']
 
     ip_attribution = sina_ip(ip)
+
+    ips_access = cache.get("ips_access_{0}".format(blog_id), [])
+    if ip not in ips_access:
+        ips_access.append(ip)
+        if len(ips_access) > 5:
+            ips_access.pop(0)
+        cache.set("ips_access_{0}".format(blog_id), ips_access, 60 * 60 * 24 * 30)
+
+
+    master_14 = RedisDriver().master_14
+    ips_info = {}
+    ips_access = cache.get("ips_access_{0}".format(blog_id), [])
+    if ips_access:
+        for ip in ips_access:
+            ip_access_time = master_14.get(ip)
+            ips_info[ip_attribution] = ip_access_time
 
     ip_obj = IP_access.objects.filter(ip=ip)
     blog_obj = Blog.objects.filter(blog_id=blog_id)
@@ -56,7 +74,7 @@ def blog(req, blog_id):
             blog.PV_num += 1
             blog.save()
 
-    print(len(ip_num))
+    #print(len(ip_num))
 
     if req.method == "POST":
         content = req.POST.get('content', None)
@@ -111,6 +129,7 @@ def blog(req, blog_id):
         'ip_num': ip_num,
         'replays': replays,
         'to_replays_dict': to_replays_dict,
+        'ips_info':ips_info
     }, context_instance=RequestContext(req))
 
 
@@ -143,7 +162,6 @@ def sina_ip(ip):
     ip_piece[2] = '*'
     ip_attribution = '网友' + '.'.join(ip_piece) + '[' + attribution + ']'
 
-    request_log.info(ip_attribution)
     return ip_attribution
 
 

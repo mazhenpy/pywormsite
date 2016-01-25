@@ -24,7 +24,7 @@ class SearchHandler(tornado.web.RequestHandler):
         try:
             content = self.get_argument('content')
         except Exception as e:
-            error_log.error(e)
+            pass
         if content:
             data = yield self.get_search(content)
             url_list = data["url_list"]

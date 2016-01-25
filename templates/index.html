@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="{{STATIC_URL}}css/index.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/login_window.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var host = window.location.host;
+            document.getElementById('chat_link').href = "http://" + host + "/chat";
+            document.getElementById('link_chat').href = "http://" + host + "/chat";
+            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+        });
+    </script>
 </head>
 
 <body>
@@ -31,7 +38,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
  <!--{#                <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}-->
-                <li  id="search_blog"><a href="">站内搜索</a></li>
+                <li  id="search_blog"><a href="" id="blog_search">站内搜索</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的博客 <span class="caret"></span></a>
@@ -200,7 +207,7 @@
     <div class="container">
         <a>Pyworm 版权所有 | 基于Python开发 | Copyright © 2015-2016 | 托管于 阿里云主机&七牛云存储 | 鲁ICP备14030596号
             <br>
-            网站统计 | 今日IP[{{ access_day_ip }}] | 今日PV[{{ access_day_pv }}] | 昨日IP[{{ access_yesterday_ip }}] | 昨日PV[{{ access_yesterday_pv }}] | 当前在线[{{ online_num }}]</a>
+            网站统计 | 今日IP[{{ access_day_ip }}] | 今日PV[{{ access_day_pv }}] | 昨日IP[{{ access_yesterday_ip }}] | 昨日PV[{{ access_yesterday_pv }}] | 当前在线[{{ online_ips }}]</a>
     </div>
 </footer>
 

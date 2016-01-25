@@ -9,7 +9,10 @@ import tornado.web
 import tornado.wsgi
 import tornado.gen
 from tornado.web import url
-import yaml
+
+from pywormsite import config
+
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from handlers.chatroom.chat import ChatHandler, ChatSocketHandler
 from handlers.search_blog import SearchHandler
@@ -45,16 +48,11 @@ if django.VERSION[1] > 5:
     django.setup()
 
 
-
 class Application(tornado.web.Application):
     def __init__(self):
         wsgi_app = tornado.wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
 
-        # self.config = yaml.load(
-        #     open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
-
-        self.config = yaml.load(
-            open(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '/config.yaml', 'r', encoding='utf8'))
+        self.config = config()
 
         self.host = self.config["pyworm_blog"]["host"]
         self.port = self.config["pyworm_blog"]["port"]

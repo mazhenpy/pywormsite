@@ -1,17 +1,25 @@
+import os
+
 import redis
-import tornado
-import tornado.web
+import yaml
 
-class RedisDriver(tornado.web.RequestHandler):
-    def __init__(self, application, request, **kwargs):
-        super(RedisDriver, self).__init__(application, request)
 
-        self.host = self.application.host
+def config():
+    return yaml.load(
+        open(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '/config.yaml', 'r',
+             encoding='utf8'))
+
+
+class RedisDriver:
+    def __init__(self):
+
+        self.config = config()
+        self.host = self.config["pyworm_blog"]["host"]
         self.port = 6379
 
-        self._master_13 = None
-        self._master_14 = None
-        self._master_15 = None
+        self._master_13 = None  #其他
+        self._master_14 = None  #存储所有IP
+        self._master_15 = None  #统计在线人数
 
     @property
     def master_13(self):
@@ -30,3 +38,9 @@ class RedisDriver(tornado.web.RequestHandler):
         if self._master_15 is None:
             self._master_15 = redis.StrictRedis(host=self.host, port=self.port, db=15)
         return self._master_15
+
+
+# master_13 = RedisDriver().master_13
+# master_13.set("hello","world")
+# a = master_13.get("hello")
+# print(a)

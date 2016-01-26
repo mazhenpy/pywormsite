@@ -160,3 +160,5 @@
 2016-01-17 01:33:20,676-ERROR: HTTP 400: Bad Request (Missing argument content)
 2016-01-17 16:33:51,559-ERROR: HTTP 400: Bad Request (Missing argument content)
 2016-01-19 20:19:03,756-ERROR: HTTP 400: Bad Request (Missing argument content)
+2016-01-26 11:07:51,078-ERROR: (1146, "Table 'pywormsite.blog_blog' doesn't exist")
+2016-01-26 11:09:58,431-ERROR: (1146, "Table 'pywormsite.blog_blog' doesn't exist")

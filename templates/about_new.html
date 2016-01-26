@@ -77,9 +77,8 @@
 
             <p>最近访客：</p>
             {% for ip_attribution,ip_access_time in ips_info.items %}
-                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}<br/>
+                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}</a><br/>
                     <small>--{{ ip_access_time }}</small>
-                </a>
             {% endfor %}
         </div>
     </div>

@@ -39,13 +39,24 @@
     <h2 id="blog_title">{{ title }}</h2>
     <div id="blog_post_time">posted on {{ post_time|date:"Y-m-d" }} by <a href="http://www.pyworm.com">Pyworm</a></div>
     <div class="clearfix"></div>
-    <hr/>
+    <hr style="margin-bottom:10px;"/>
     {{ win_content|safe }}
 
 
     <hr/>
     <div id="comment"><input type="button" class="btn btn-primary" id="btn1" value="发表评论" onclick="b('{{ replay.id }}')"></div>
     {% verbatim %}
+    <hr/>
+    <div class="lately_access">
+        <p>本文最近访客：</p>
+        {% for ip_attribution,ip_access_time in ips_info.items %}
+            <div style="float:left;width:20%;padding-left:1em;">
+                <a>{{ ip_attribution }}</a><br/>
+                <small>--{{ ip_access_time }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="con">
         {% for replay in replays %}
             <hr/>

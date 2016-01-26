@@ -28,30 +28,32 @@ error_log = logging.getLogger('error')
 # 博客展示
 @csrf_exempt
 def blog(req, blog_id):
+    master_14 = RedisDriver().master_14
+
     ip = ''
     if 'HTTP_X_FORWARDED_FOR' in req.META:
         ip = req.META['HTTP_X_FORWARDED_FOR']
     else:
         ip = req.META['REMOTE_ADDR']
 
+    ip = "183.206.160.96"
+
     ip_attribution = sina_ip(ip)
 
     ips_access = cache.get("ips_access_{0}".format(blog_id), [])
     if ip not in ips_access:
         ips_access.append(ip)
+        print(len(ips_access))
         if len(ips_access) > 5:
             ips_access.pop(0)
         cache.set("ips_access_{0}".format(blog_id), ips_access, 60 * 60 * 24 * 30)
 
-
-    master_14 = RedisDriver().master_14
     ips_info = {}
-    ips_access = cache.get("ips_access_{0}".format(blog_id), [])
     if ips_access:
         for ip in ips_access:
+            ip_attribution = sina_ip(ip)
             ip_access_time = master_14.get(ip)
             ips_info[ip_attribution] = ip_access_time
-
     ip_obj = IP_access.objects.filter(ip=ip)
     blog_obj = Blog.objects.filter(blog_id=blog_id)
 

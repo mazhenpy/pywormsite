@@ -40,7 +40,7 @@
     <h2 id="blog_title">Python、Redis实现分布式网络爬虫</h2>
     <div id="blog_post_time">posted on 2016-01-10 by <a href="http://www.pyworm.com">Pyworm</a></div>
     <div class="clearfix"></div>
-    <hr/>
+    <hr style="margin-bottom:10px;"/>
     <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">写爬虫关键是思路，思路明确代码实现起来不是问题。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">关于用Python实现一个分布式爬虫，我曾折腾了很长一段时间，翻遍了Google十几页，和 Python 分布式 爬虫 等关键字相关的博客也就那么几篇，后来在学习Redis的时候，终于找到了实现分布式的方法。看来当现有的技术解决不了实际问题的时候，是需要学习新的技术了。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">具体实现思路：利用Redis的主从数据同步，所有爬虫获取到的url都放到一个redis queue中，并且Master和Slave的爬虫都从这个redis queue中获取url。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">需要用到的工具redis-py。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">我有两台机器，笔记本Windows，树莓派Linux，笔记本做Master，树莓派做Slave。</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">爬取网站<a href="http://jandan.net/">http://jandan.net/</a>（经常写爬虫的应该不会不知道这个网站。）</p> <p style="font-size: 12pt; font-family: 微软雅黑; line-height: 160%; text-indent: 2em">以前写爬虫的时候我会把需要下载的URL放在Queue里面，而现在需要把URL放在 redis queue 中，借鉴了网上一篇博客的代码</p><pre class="brush: python;">import redis  
 
   
@@ -311,7 +311,17 @@ while not redis.empty():
 
 
     <div id="comment"><input type="button" class="btn btn-primary" id="btn1" value="发表评论" onclick="b('{{ replay.id }}')"></div>
-    
+
+    <hr/>
+    <div class="lately_access">
+        <p>本文最近访客：</p>
+        {% for ip_attribution,ip_access_time in ips_info.items %}
+            <div style="float:left;width:20%;padding-left:1em;">
+                <a>{{ ip_attribution }}</a><br/>
+                <small>--{{ ip_access_time }}</small>
+            </div>
+        {% endfor %}
+    </div>
     <div class="con">
         {% for replay in replays %}
             <hr/>

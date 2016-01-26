@@ -1,6 +1,7 @@
 $(function(){
 
      $("#put2").click(function(){
+
         username=$("#id_usernm").val();
 		password=$("#id_passwd").val();
         password2=$("#id_passwd2").val();
@@ -11,7 +12,7 @@ $(function(){
         dataType:"text",
         success: function(data) {
 		if(data){
-			$("#err2").html(data)
+			$("#regist_error").html(data)
 }
 		else{
 			$.ajax({

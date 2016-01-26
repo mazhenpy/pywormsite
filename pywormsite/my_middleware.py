@@ -25,7 +25,7 @@ class IPMiddleware(object):
         else:
             ip = request.META['REMOTE_ADDR']
 
-        ip = "183.206.160.99"
+        # ip = "183.206.160.95"
 
         #ip:给每个ip存储过期时间
         #“online_ips_str”:当前在线人数

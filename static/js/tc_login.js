@@ -9,7 +9,7 @@ $(function(){
         dataType:"text",
         success: function(data) {
 		if(data){
-			$("#err1").html(data)
+			$("#login_error").html(data)
         }
 		else{
 			$.ajax({

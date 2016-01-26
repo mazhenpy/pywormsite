@@ -6,7 +6,7 @@ h2{
     padding: 0 2.75%
 }
 .con a{
-    font-family: '微软雅黑';
+    font-family: "Microsoft Yahei",arial,sans-serif;
     cursor:pointer;
 }
 #blog_post_time{
@@ -45,7 +45,7 @@ blockquote{
     padding: 20px 14px;
     text-align: center;
     font-size: 17px;
-    font-family: '华文楷体';
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
 }
 

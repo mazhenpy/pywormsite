@@ -36,14 +36,14 @@ def blog(req, blog_id):
     else:
         ip = req.META['REMOTE_ADDR']
 
-    ip = "183.206.160.96"
+    # ip = "183.206.160.86"
 
     ip_attribution = sina_ip(ip)
 
     ips_access = cache.get("ips_access_{0}".format(blog_id), [])
     if ip not in ips_access:
         ips_access.append(ip)
-        print(len(ips_access))
+        #print(len(ips_access))
         if len(ips_access) > 5:
             ips_access.pop(0)
         cache.set("ips_access_{0}".format(blog_id), ips_access, 60 * 60 * 24 * 30)
@@ -54,6 +54,9 @@ def blog(req, blog_id):
             ip_attribution = sina_ip(ip)
             ip_access_time = master_14.get(ip)
             ips_info[ip_attribution] = ip_access_time
+
+    ips_info = sorted(ips_info.items(), key=lambda d: d[1], reverse=True)
+
     ip_obj = IP_access.objects.filter(ip=ip)
     blog_obj = Blog.objects.filter(blog_id=blog_id)
 
@@ -101,7 +104,8 @@ def blog(req, blog_id):
             except Exception as e:
                 error_log.error(e)
 
-            Replay.objects.create(content=content, blog=item, replay_time=datetime.datetime.today(), replay_user=ip_attribution,
+            Replay.objects.create(content=content, blog=item, replay_time=datetime.datetime.today(),
+                                  replay_user=ip_attribution,
                                   replay_id=num + 1, parent_id=0)
             return HttpResponse(json.dumps({"content": content}))
 
@@ -131,7 +135,7 @@ def blog(req, blog_id):
         'ip_num': ip_num,
         'replays': replays,
         'to_replays_dict': to_replays_dict,
-        'ips_info':ips_info
+        'ips_info': ips_info
     }, context_instance=RequestContext(req))
 
 
@@ -155,7 +159,7 @@ def sina_ip(ip):
         try:
             province = response_body['province']
             city = response_body['city']
-            attribution = city  #+province
+            attribution = city  # +province
         except Exception as e:
             error_log.error(e)
 
@@ -167,7 +171,7 @@ def sina_ip(ip):
     return ip_attribution
 
 
-#web开发
+# web开发
 def web(req):
     blogs = None
     num = None
@@ -395,7 +399,6 @@ class Api(object):
         except Exception as e:
             error_log.error(e)
 
-
         tmp = []
         tmp.append(struct)
         return tmp
@@ -421,7 +424,6 @@ class Api(object):
     #返回最近基于字典的文章对应
     def getRecentPosts(self, blogid, username, password, numberOfPosts=5):
         self.__isUser(username, password)
-        print("ffffffffffff")
         blogs = Blog.objects.all()
         tmp = []
         for blog in blogs:
@@ -522,7 +524,7 @@ class Api(object):
         bits = data['bits']
 
         (basename, filename) = os.path.split(name)
-        print(basename,filename)
+        print(basename, filename)
         img_path = os.path.pardir + os.path.join('/static/image/blog', filename)
         print("img_path:", img_path)
 
@@ -546,8 +548,8 @@ class Api(object):
 
     #验证用户名密码
     def __isUser(self, username, password):
-        username=None
-        password=None
+        username = None
+        password = None
         try:
             config = yaml.load(open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
                                     encoding='utf8'))
@@ -558,7 +560,6 @@ class Api(object):
         if not (username == username and password == password):
             #raise xmlrpclib.Fault(401, '用户名或密码错误！')
             return HttpResponse(401, '用户名或密码错误！')
-
 
 
 #使用windows live writer发布博客

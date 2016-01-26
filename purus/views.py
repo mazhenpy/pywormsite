@@ -2,6 +2,7 @@
 import logging
 import time
 import datetime
+import collections
 from django.core.cache import cache
 from django.shortcuts import render_to_response, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
@@ -22,6 +23,7 @@ access_log = logging.getLogger('access')
 @csrf_exempt
 # @cache_page(60 * 15) #缓存页面15分钟
 def index(req):
+    # 登录
     if req.is_ajax():
         username = req.POST.get("username", None)
         password = req.POST.get("password", None)
@@ -69,7 +71,62 @@ def about(req):
             ip_access_time = master_14.get(ip)
             ips_info[ip_attribution] = ip_access_time
 
+    ips_info = sorted(ips_info.items(),key=lambda d:d[1],reverse=True)
+
     return render_to_response('about_new.html', {"ips_info": ips_info}, RequestContext(req))
+
+
+# ajax验证账号密码
+@csrf_exempt
+def ajax_login(request):
+    errors = ""
+    username = request.POST.get("username", None)
+    password = request.POST.get("password", None)
+    if not password:
+        errors = '<span style="color:red">请输入密码</span>'
+    elif not login_validate(request, username, password):
+        errors = '<span style="color:red">账号或密码错误</span>'
+    return HttpResponse(errors, RequestContext(request))
+
+
+#检查账号信息
+@csrf_exempt
+def ajax_regist(request):
+    errors = ""
+    username = request.POST.get("username", None)
+    password = request.POST.get("password", None)
+    password2 = request.POST.get("password2", None)
+    if User.objects.all().filter(username=username):
+        errors = '<span style="color:red">用户名已存在</span>'
+    elif not password:
+        errors = '<span style="color:red">请输入密码</span>'
+    elif not password2:
+        errors = '<span style="color:red">请输入密码</span>'
+    elif password != password2:
+        errors = '<span style="color:red">两次密码不一致</span>'
+    else:
+        errors = ''
+    return HttpResponse(errors, RequestContext(request))
+
+
+#注册账号
+@csrf_exempt
+def regist(request):
+    if request.is_ajax():
+        username = request.POST.get("username", None)
+        password = request.POST.get("password", None)
+        user = User.objects.create_user(username=username, password=password)
+        user.is_staff = True
+        user.save()
+        return HttpResponse()
+
+
+#注销账号
+def logout(req):
+    auth_logout(req)
+    response = HttpResponseRedirect('/index/')
+    response.delete_cookie('username')
+    return response
 
 
 # 后台管理
@@ -77,7 +134,7 @@ def admin(req):
     return HttpResponseRedirect('/admin/', RequestContext(req))
 
 
-#网站收藏
+# 网站收藏
 # @cache_page(60 * 15) #缓存页面15分钟
 def collection(req):
     return render_to_response('my_collection.html', context_instance=RequestContext(req))
@@ -171,121 +228,16 @@ def online_ips(req):
     return HttpResponse(online_ips)
 
 
-#ajax验证账号密码
-@csrf_exempt
-def ajax_login(request):
-    errors = ""
-    username = request.POST.get("username", None)
-    password = request.POST.get("password", None)
-    if not password:
-        errors = '<a>请输入密码</a>'
-    elif not login_validate(request, username, password):
-        errors = '<a>账号或密码错误</a>'
-    return HttpResponse(errors, RequestContext(request))
-
-
-#注册账号
-@csrf_exempt
-def regist(request):
-    if request.is_ajax():
-        username = request.POST.get("username", None)
-        password = request.POST.get("password", None)
-        user = User.objects.create_user(username=username, password=password)
-        user.is_staff = True
-        user.save()
-        return HttpResponse()
-
-
-#检查账号信息
-@csrf_exempt
-def ajax_regist(request):
-    errors = ""
-    username = request.POST.get("username", None)
-    password = request.POST.get("password", None)
-    password2 = request.POST.get("password2", None)
-    if User.objects.all().filter(username=username):
-        errors = '<a>用户名已存在</a>'
-    elif not password:
-        errors = '<a>请输入密码</a>'
-    elif not password2:
-        errors = '<a>请输入密码</a>'
-    else:
-        errors = ''
-    return HttpResponse(errors, RequestContext(request))
-
-
-#注销账号
-def logout(req):
-    auth_logout(req)
-    response = HttpResponseRedirect('/index/')
-    response.delete_cookie('username')
-    return response
-
-
-#ajax验证登录
-@csrf_exempt
-def ajax_login_username(req):
-    rtxt = ""
-    username = req.POST.get("username", None)
-    #if username:
-    #        if User.objects.filter(username=username):
-    #                 rtxt='<img src="../static/image/ok.gif">'
-    #        else:
-    #                 rtxt='<img src="../static/image/nook.gif">'
-    return HttpResponse(rtxt)
-
-    #  返回json模式
-    #  return  HttpResponse(json.dumps({'msg':rtxt}))
-    #  text.(data.msg)
-
-
-#ajax验证注册
-@csrf_exempt
-def ajax_register_username(req):
-    rtxt = ""
-    username = req.POST.get("username", None)
-    #if username:
-    #
-    #        if User.objects.filter(username=username):
-    #
-    #                 rtxt='<img src="../static/image/nook.gif">'
-    #        else:
-    #                 rtxt='<img src="../static/image/ok.gif">'
-    return HttpResponse(rtxt)
-
-
-@csrf_exempt
-def ajax_register_password(req):
-    rtxt = ""
-    password = req.POST.get("password", None)
-    #if password:
-    #                 rtxt='<img src="../static/image/ok.gif">'
-    #else:
-    #                 rtxt='<img src="../static/image/nook.gif">'
-    return HttpResponse(rtxt)
-
-
-@csrf_exempt
-def ajax_register_password2(req):
-    rtxt = ""
-    password = req.POST.get("password", None)
-    password2 = req.POST.get("password2", None)
-    #if int(password2) == int(password):
-    #                 rtxt='<img src="../static/image/ok.gif">'
-    #else:
-    #                 rtxt='<img src="../static/image/nook.gif">'
-    return HttpResponse(rtxt)
-
-
+#静态页面
 @csrf_exempt
 def jsimg(req):
     return render_to_response('js_img.html', RequestContext(req))
 
 
+#动态页面
 @csrf_exempt
 def ajax_jsimg(req):
     rtxt = '<img src="http://www.pyworm.com/static/image/jqxx.jpg">'
-
     return HttpResponse(rtxt)
 
 

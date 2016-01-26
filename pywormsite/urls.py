@@ -4,10 +4,6 @@ from django.contrib import admin
 
 
 urlpatterns = patterns('',
-                       # Examples:
-                       # url(r'^$', 'pylab4.views.home', name='home'),
-                       # url(r'^blog/', include('blog.urls')),
-
                        url(r'^staticfiles/(?P<path>.*)$', 'django.views.static.serve',
                            {'document_root': settings.STATICFILES_DIRS, 'show_indexes': True}),
                        url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
@@ -16,10 +12,6 @@ urlpatterns = patterns('',
                        (r'^$', 'purus.views.index'),
                        (r'^index/$', 'purus.views.index',),
                        (r'^logout/$', 'purus.views.logout'),
-                       (r'^ajax_login_username/$', 'purus.views.ajax_login_username'),
-                       (r'^ajax_register_username/$', 'purus.views.ajax_register_username'),
-                       (r'^ajax_register_password/$', 'purus.views.ajax_register_password'),
-                       (r'^ajax_register_password2/$', 'purus.views.ajax_register_password2'),
                        (r'^regist/$', 'purus.views.regist'),
                        (r'^ajax_regist/$', 'purus.views.ajax_regist'),
                        (r'^ajax_login/$', 'purus.views.ajax_login'),

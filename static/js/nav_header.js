@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
     $('.theme-regist').click(function(){
+        document.getElementById("regist_form").reset();
+        $("#regist_error").empty();
         $('.theme-popover-mask-regist').fadeIn(100);
         $('.theme-popover-regist').slideDown(200);
     });
@@ -11,6 +13,8 @@ jQuery(document).ready(function($) {
 
 jQuery(document).ready(function($) {
     $('.theme-login').click(function(){
+        document.getElementById("login_form").reset();
+        $("#login_error").empty();
         $('.theme-popover-mask-login').fadeIn(100);
         $('.theme-popover-login').slideDown(200);
     });

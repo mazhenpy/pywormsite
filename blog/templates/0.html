@@ -49,7 +49,7 @@
     <hr/>
     <div class="lately_access">
         <p>本文最近访客：</p>
-        {% for ip_attribution,ip_access_time in ips_info.items %}
+        {% for ip_attribution,ip_access_time in ips_info %}
             <div style="float:left;width:20%;padding-left:1em;">
                 <a>{{ ip_attribution }}</a><br/>
                 <small>--{{ ip_access_time }}</small>

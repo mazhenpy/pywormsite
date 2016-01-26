@@ -76,9 +76,11 @@
             <p>Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</p>
 
             <p>最近访客：</p>
-            {% for ip_attribution,ip_access_time in ips_info.items %}
-                <a style="display:block;float: left;width: 20%;">{{ ip_attribution }}</a><br/>
+            {% for ip_attribution,ip_access_time in ips_info %}
+                <div style="float:left;width:20%;padding-left:1em;">
+                <a style="color: #0F0;">{{ ip_attribution }}</a><br/>
                     <small>--{{ ip_access_time }}</small>
+                </div>
             {% endfor %}
         </div>
     </div>

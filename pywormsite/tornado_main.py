@@ -85,8 +85,9 @@ class Application(tornado.web.Application):
 
 if __name__ == '__main__':
     application = Application()
-    # show_logo()
-    # show_index(application.host, application.port)
+    show_logo()
+    show_index(application.host, application.port)
+    print("扩展微信")
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(application.port)
     Day_Ip_Task(application, 1000 * 60 * 60 * 24).start()

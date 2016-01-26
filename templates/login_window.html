@@ -3,7 +3,7 @@
         <a href="javascript:" title="关闭" class="close">×</a>
         <h3>注 册</h3>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="regist_form">
         {% csrf_token %}
       <div class="form-group">
 
@@ -26,6 +26,8 @@
         </div>
        </div>
 
+      <div id="regist_error" style="text-align: center;height: 1em"></div>
+
       <div class="form-group">
         <div class="button col-sm-12">
           <button type="button" class="btn btn-primary" id="put2">submit</button>
@@ -42,7 +44,7 @@
         <h3>登 录</h3>
     </div>
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="login_form">
         {% csrf_token %}
       <div class="form-group">
 
@@ -57,6 +59,8 @@
           <input type="password" class="form-control" id="id_passwd_login" placeholder="Password">
         </div>
       </div>
+
+      <div id="login_error" style="text-align: center;height: 1em"></div>
 
       <div class="form-group">
         <div class="button col-sm-12">

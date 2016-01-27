@@ -9,6 +9,7 @@ import tornado.web
 import tornado.wsgi
 import tornado.gen
 from tornado.web import url
+from handlers.weixin.weixininterface import WeixininterfaceHandler
 
 from pywormsite import config
 
@@ -62,6 +63,7 @@ class Application(tornado.web.Application):
             ('/chat', ChatHandler),
             ('/websocket', ChatSocketHandler),
             ('/search_blog', SearchHandler),  # 博客搜索
+            ('/wechat', WeixininterfaceHandler),  # 我的微信
 
             ('.*', tornado.web.FallbackHandler, dict(fallback=wsgi_app)),
             # url(r"/uploads/(.+)", tornado.web.StaticFileHandler, dict(path=settings['upload_path']), name='upload_path'),

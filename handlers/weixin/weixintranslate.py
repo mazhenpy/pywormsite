@@ -59,7 +59,7 @@ def to_sha1(part):
     return sha1.hexdigest()
 
 
-class WeixininterfaceHandler(tornado.web.RequestHandler):
+class WeixintranslateHandler(tornado.web.RequestHandler):
 
     #验证开发账号
     @tornado.gen.coroutine

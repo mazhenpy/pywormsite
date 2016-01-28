@@ -9,7 +9,7 @@ import tornado.web
 import tornado.wsgi
 import tornado.gen
 from tornado.web import url
-from handlers.weixin.weixininterface import WeixininterfaceHandler
+from handlers.weixin.weixintranslate import WeixintranslateHandler
 
 from pywormsite import config
 
@@ -63,7 +63,7 @@ class Application(tornado.web.Application):
             ('/chat', ChatHandler),
             ('/websocket', ChatSocketHandler),
             ('/search_blog', SearchHandler),  # 博客搜索
-            ('/wechat', WeixininterfaceHandler),  # 我的微信
+            ('/wechat', WeixintranslateHandler),  # 我的微信
 
             ('.*', tornado.web.FallbackHandler, dict(fallback=wsgi_app)),
             # url(r"/uploads/(.+)", tornado.web.StaticFileHandler, dict(path=settings['upload_path']), name='upload_path'),
@@ -89,7 +89,6 @@ if __name__ == '__main__':
     application = Application()
     show_logo()
     show_index(application.host, application.port)
-    print("扩展微信")
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(application.port)
     Day_Ip_Task(application, 1000 * 60 * 60 * 24).start()

@@ -4,7 +4,27 @@ from urllib.parse import urlencode
 from urllib.request import HTTPCookieProcessor
 import json
 import time
-from tornado.httpclient import HTTPClient, HTTPRequest, HTTPResponse
+import xml.etree.ElementTree as ET
+
+from tornado.httpclient import HTTPClient, HTTPRequest
+
+
+def get_weather():
+    url = "http://php.weather.sina.com.cn/xml.php?city=%C4%CF%BE%A9&password=DJOYnieT8234jlsK&day=1"
+    http_client = HTTPClient()
+    response = http_client.fetch(url, method="GET", request_timeout=120)
+    response_body = response.body.decode()
+    root = ET.fromstring(response_body)
+    city = root.find('Weather/city').text
+    status1 = root.find('Weather/status1').text
+    status2 = root.find('Weather/status2').text
+    temperature1 = root.find('Weather/temperature1').text
+    temperature2 = root.find('Weather/temperature2').text
+    savedate_weather = root.find('Weather/savedate_weather').text
+    weather = savedate_weather + ' ' + city + ' ' + status1 + ' ' + status2 + ' ' + temperature2 + '-' + temperature1 + '°'
+    print(weather)
+    http_client.close()
+    return weather
 
 
 cookie = CookieJar()
@@ -36,8 +56,7 @@ opener.addheaders = [
 
 url = "https://mp.weixin.qq.com/cgi-bin/login"
 
-request_data = urlencode(parse)
-request_data = request_data.encode('utf-8')
+request_data = urlencode(parse).encode('utf-8')
 
 response = opener.open(url, request_data)
 
@@ -91,7 +110,7 @@ body = {
     'ajax': '1',
     'random': '0.18187317857518792',
     'type': '1',
-    'content': 'hello',
+    'content': get_weather(),
     'tofakeid': 'o-r9yuIDvsCbLZ-dF-VpU3fVSxcs',
     'quickReplyId': str(int(time.time())),
     'imgcode': '',
@@ -103,6 +122,7 @@ request = HTTPRequest(url=url, method='POST', headers=headers, body=body)
 response = http_client.fetch(request)
 response_body = response.body.decode('utf8')
 print("RESP:", response_body)
+http_client.close()
 
 
 

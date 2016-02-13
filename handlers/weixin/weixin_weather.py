@@ -3,7 +3,6 @@ from urllib import request
 from urllib.parse import urlencode
 from urllib.request import HTTPCookieProcessor
 import json
-import time
 import xml.etree.ElementTree as ET
 
 from tornado.httpclient import HTTPClient, HTTPRequest
@@ -84,21 +83,22 @@ weixin_cookie = 'bizuin={bizuin};data_bizuin={data_bizuin};data_ticket={data_tic
     bizuin=cookie_dict["bizuin"], data_bizuin=cookie_dict["data_bizuin"], data_ticket=cookie_dict["data_ticket"],
     slave_sid=cookie_dict["slave_sid"], slave_user=cookie_dict["slave_user"], )
 
-url = "https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&f=json&token={token}&lang=zh_CN".format(token=token)
+
+# 保存消息
+url = "https://mp.weixin.qq.com/cgi-bin/operate_appmsg?t=ajax-response&sub=update&type=10&token=840848985&lang=zh_CN"
 
 headers = {
-    'Accept': 'application/json, text/javascript, */*; q=0.01',
+    'Accept': 'text/html, */*; q=0.01',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,zh;q=0.8',
-    'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
-    'Content-Length': '156',
+    'Content-Length': '1000',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     'Cookie': weixin_cookie or '',
     'Host': 'mp.weixin.qq.com',
     'Origin': 'https://mp.weixin.qq.com',
     'Pragma': 'no-cache',
-    'Referer': 'https://mp.weixin.qq.com/cgi-bin/singlesendpage?tofakeid=o-r9yuIDvsCbLZ-dF-VpU3fVSxcs&t=message/send&action=index&quickReplyId=402546325&token=1783210242&lang=zh_CN',
+    'Referer': 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&lang=zh_CN&token=840848985&type=10&appmsgid=402861880&isMul=1',
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.107 Safari/537.36',
     'X-Requested-With': 'XMLHttpRequest',
 }
@@ -108,12 +108,83 @@ body = {
     'lang': 'zh_CN',
     'f': 'json',
     'ajax': '1',
-    'random': '0.18187317857518792',
-    'type': '1',
-    'content': get_weather(),
-    'tofakeid': 'o-r9yuIDvsCbLZ-dF-VpU3fVSxcs',
-    'quickReplyId': str(int(time.time())),
+    'random': '0.8142554857768118',
+    'AppMsgId': '402861880',
+    'count': '1',
+    'title0': '南京天气',
+    'content0': '<p>' + get_weather() + '</p>',
+    'digest0': get_weather(),
+    'author0': '',
+    'fileid0': '402861876',
+    'music_id0': '',
+    'video_id0': '',
+    'show_cover_pic0': '0',
+    'shortvideofileid0': '',
+    'copyright_type0': '0',
+    'can_reward0': '0',
+    'reward_wording0': '',
+    'need_open_comment0': '0',
+    'sourceurl0': '',
+    'free_content0': '',
+    'fee0': '0',
+}
+
+body = urlencode(body)
+
+http_client = HTTPClient()
+request = HTTPRequest(url=url, method='POST', headers=headers, body=body)
+response = http_client.fetch(request)
+response_body = response.body.decode('utf8')
+print("RESP:", response_body)
+http_client.close()
+
+#发送消息
+url = "https://mp.weixin.qq.com/cgi-bin/operate_appmsg?sub=preview&t=ajax-appmsg-preview&type=10&token={token}&lang=zh_CN".format(
+    token=token)
+
+headers = {
+    'Accept': 'text/html, */*; q=0.01',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'zh-CN,zh;q=0.8',
+    'Connection': 'keep-alive',
+    'Content-Length': '3850',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Cookie': weixin_cookie or '',
+    'Host': 'mp.weixin.qq.com',
+    'Origin': 'https://mp.weixin.qq.com',
+    'Pragma': 'no-cache',
+    'Referer': 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&lang=zh_CN&token=840848985&type=10&appmsgid=402861880&isMul=1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.107 Safari/537.36',
+    'X-Requested-With': 'XMLHttpRequest',
+}
+
+body = {
+    'token': token,
+    'lang': 'zh_CN',
+    'f': 'json',
+    'ajax': '1',
+    'random': '0.8142554857768118',
+    'AppMsgId': '402861880',
+    'count': '1',
+    'title0': 'hello',
+    'content0': '<p>' + get_weather() + '</p>',
+    'digest0': get_weather(),
+    'author0': '',
+    'fileid0': '402861876',
+    'music_id0': '',
+    'video_id0': '',
+    'show_cover_pic0': '0',
+    'shortvideofileid0': '',
+    'copyright_type0': '0',
+    'can_reward0': '0',
+    'reward_wording0': '',
+    'need_open_comment0': '0',
+    'sourceurl0': '',
+    'free_content0': '',
+    'fee0': '0',
+    'preusername': 'ma373908',
     'imgcode': '',
+    'is_preview': '1',
 }
 body = urlencode(body)
 

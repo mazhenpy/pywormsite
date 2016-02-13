@@ -9,12 +9,13 @@ import tornado.web
 import tornado.wsgi
 import tornado.gen
 from tornado.web import url
-from handlers.weixin.weixintranslate import WeixintranslateHandler
-
-from pywormsite import config
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+from handlers.weixin.weixin_translate import WeixintranslateHandler
+
+from pywormsite import config
+
 from handlers.chatroom.chat import ChatHandler, ChatSocketHandler
 from handlers.search_blog import SearchHandler
 from handlers.task.task_access_count_day import Day_Ip_Task

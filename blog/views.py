@@ -36,6 +36,8 @@ def blog(req, blog_id):
     else:
         ip = req.META['REMOTE_ADDR']
 
+    if len(ip)>20:
+        ip = "183.206.160.95"
     # ip = "183.206.160.86"
 
     ip_attribution = sina_ip(ip)

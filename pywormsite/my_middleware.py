@@ -25,6 +25,8 @@ class IPMiddleware(object):
         else:
             ip = request.META['REMOTE_ADDR']
 
+        if len(ip)>20:
+            ip = "183.206.160.95"
         # ip = "183.206.160.95"
 
         #ip:给每个ip存储过期时间

@@ -68,7 +68,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         timestamp = self.get_argument("timestamp")
         nonce = self.get_argument("nonce")
         echostr = self.get_argument("echostr")
-        token = "pytrans"
+        token = "pyworm"
         list = [token, timestamp, nonce]
         list.sort()
         list = "".join(list)

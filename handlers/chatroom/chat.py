@@ -19,6 +19,8 @@ def sina_ip(ip):
     attribution = ""
     if ip == "127.0.0.1":
         ip = '183.208.22.171'
+    if len(ip)>20:
+        ip = '183.208.22.171'
     http_client = AsyncHTTPClient()
     response = None
     url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip={0}".format(ip)

@@ -5,7 +5,9 @@ var socket;
     // Javascript Websocket Client
     if (window.WebSocket) {
         var host = window.location.host;
-        socket = new WebSocket("ws://"+host+"/websocket");
+        alert(host);
+        //socket = new WebSocket("ws://"+host+"/websocket");
+        socket = new WebSocket("ws://139.196.43.6/websocket");
         socket.onmessage = function (event) {
             if(event.data){
                 var attr = $("#attr").html();

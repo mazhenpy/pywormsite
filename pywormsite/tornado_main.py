@@ -64,7 +64,7 @@ class Application(tornado.web.Application):
             ('/chat', ChatHandler),
             ('/websocket', ChatSocketHandler),
             ('/search_blog', SearchHandler),  # 博客搜索
-            ('/wechat', WeixintranslateHandler),  # 我的微信
+            ('/weixin', WeixintranslateHandler),  # 微信翻译
 
             ('.*', tornado.web.FallbackHandler, dict(fallback=wsgi_app)),
             # url(r"/uploads/(.+)", tornado.web.StaticFileHandler, dict(path=settings['upload_path']), name='upload_path'),

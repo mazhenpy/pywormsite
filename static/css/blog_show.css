@@ -1,10 +1,20 @@
+html, body{
+height:100%;
+}
+
+#full_screen {
+    min-height:100%; /*使内容高度和body一样*/
+    margin-bottom:-222px;/*向上缩减80像素，不至于footer超出屏幕可视范围*/
+}
+#article{
+    padding-bottom: 270px;
+}
+
 h2{
     text-align: center;
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
 }
-.con{
-    padding: 0 2.75%
-}
+
 .con a{
     font-family: "Microsoft Yahei",arial,sans-serif;
     cursor:pointer;
@@ -20,35 +30,44 @@ h2{
 }
 #comment{
     height:40px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 .replay{
-
     font-family: "Microsoft Yahei",arial,sans-serif;
 }
+.user_replay{
+    padding-left: 2.75%;
+    border-bottom: 1px solid #eee;
+}
+
+.lately_access{
+    height:75px;
+    padding: 0 2.75%;
+}
+
 .replay .replay_user span{
     margin-top: 0 !important;
     color: #337AB7;
 }
-hr{
-    margin-bottom: 0;
-    margin-top: 0;
-}
+
 blockquote{
     font-size: 14px;
 }
 
-.cut{
-    margin-top: 60px;
-}
+
 .main-footer {
-    padding: 20px 14px;
+    margin-top: 30px;
+    height:75px;
+    padding: 14px 14px;
     text-align: center;
     font-size: 17px;
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
+    background-color: #F4F4F4;
 }
-
+hr{
+    margin: 0;
+}
 
 .blog_replay{
     display:block;
@@ -58,12 +77,5 @@ blockquote{
     left:-50px;
 }
 
-.to_replay_user{
-    margin-left:50px;
-}
 
-.lately_access{
-    padding-top:10px;
-    height:100px;
-    padding: 0px 2.75%;
-}
+

@@ -23,11 +23,9 @@
     margin-bottom: 40px;
 }
 .post-content{
-    padding:10px 0 20px 0;
+    padding:10px 10px 0 10px;
 }
-.post-meta{
-    padding-left: 10px;
-}
+
 .post-title{
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
 }
@@ -58,4 +56,9 @@
 
     background-color: #286090;
     border-color: #286090;
+}
+
+.access-count{
+    float:right;
+    margin-right: 15px;
 }

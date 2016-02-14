@@ -526,9 +526,9 @@ class Api(object):
         bits = data['bits']
 
         (basename, filename) = os.path.split(name)
-        print(basename, filename)
+        #print(basename, filename)
         img_path = os.path.pardir + os.path.join('/static/image/blog', filename)
-        print("img_path:", img_path)
+        #print("img_path:", img_path)
 
         if not os.path.exists(os.path.pardir + '/static/image/blog'):
             os.makedirs(os.path.pardir + '/static/image/blog')

@@ -71,8 +71,10 @@ def about(req):
             ip_access_time = master_14.get(ip)
             ips_info[ip_attribution] = ip_access_time
 
-    ips_info = sorted(ips_info.items(),key=lambda d:d[1],reverse=True)
-
+    try:
+        ips_info = sorted(ips_info.items(),key=lambda d:d[1],reverse=True)
+    except Exception as e:
+        pass
     return render_to_response('about_new.html', {"ips_info": ips_info}, RequestContext(req))
 
 

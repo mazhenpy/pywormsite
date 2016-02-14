@@ -5,9 +5,7 @@ var socket;
     // Javascript Websocket Client
     if (window.WebSocket) {
         var host = window.location.host;
-        alert(host);
-        //socket = new WebSocket("ws://"+host+"/websocket");
-        socket = new WebSocket("ws://139.196.43.6/websocket");
+        socket = new WebSocket("ws://"+host+"/websocket");
         socket.onmessage = function (event) {
             if(event.data){
                 var attr = $("#attr").html();
@@ -20,8 +18,6 @@ var socket;
         socket.onopen = function (event) {
             var status = '<span>已与服务器建立连接</span>';
             $("#status").html(status);
-//            var ta = document.getElementById('status');
-//            ta.value = "已与服务器建立连接";
         };
         socket.onclose = function (event) {
             var status = '<span>已与服务器断开连接</span>';

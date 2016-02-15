@@ -14,7 +14,6 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
-import sys
 from tornado.httpclient import HTTPClient
 import yaml
 
@@ -262,7 +261,7 @@ def tornado(req):
     }, RequestContext(req))
 
 
-#Python编程
+# Python编程
 def python(req):
     blogs = None
     num = None
@@ -534,10 +533,14 @@ class Api(object):
         type = data['type']
         bits = data['bits']
 
-        sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
         (basename, filename) = os.path.split(name)
         #print(basename, filename)
-        img_path = os.path.pardir + os.path.join('/static/image/blog', filename)
+        config = yaml.load(
+            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+        
+        path = config["win_live_writer"]["path"]
+
+        img_path = path + os.path.join('/static/image/blog', filename)
         #print("img_path:", img_path)
 
         if not os.path.exists(os.path.pardir + '/static/image/blog'):

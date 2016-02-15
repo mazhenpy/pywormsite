@@ -15,6 +15,7 @@ class RedisDriver:
 
         self.config = config()
         self.host = self.config["pyworm_blog"]["host"]
+        self.password = self.config["redis"]["password"]
         self.port = 6379
 
         self._master_13 = None  #其他
@@ -24,19 +25,19 @@ class RedisDriver:
     @property
     def master_13(self):
         if self._master_13 is None:
-            self._master_13 = redis.StrictRedis(host=self.host, port=self.port, db=13, decode_responses=True)
+            self._master_13 = redis.StrictRedis(host=self.host, password=self.password, port=self.port, db=13, decode_responses=True)
         return self._master_13
 
     @property
     def master_14(self):
         if self._master_14 is None:
-            self._master_14 = redis.StrictRedis(host=self.host, port=self.port, db=14, decode_responses=True)
+            self._master_14 = redis.StrictRedis(host=self.host,password=self.password, port=self.port, db=14, decode_responses=True)
         return self._master_14
 
     @property
     def master_15(self):
         if self._master_15 is None:
-            self._master_15 = redis.StrictRedis(host=self.host, port=self.port, db=15, decode_responses=True)
+            self._master_15 = redis.StrictRedis(host=self.host,password=self.password, port=self.port, db=15, decode_responses=True)
         return self._master_15
 
 

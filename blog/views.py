@@ -356,7 +356,7 @@ def to_mysql(req):
 
 #生成静态页面
 def static(id, win_content, categorie, title):
-    print("博客id", id)
+    #print("博客id", id)
     try:
         context = {
             "win_content": win_content,
@@ -491,6 +491,7 @@ class Api(object):
         blog.title = title
         blog.content = content
         blog.categorie = categorie
+        blog.summary = get_summary(content, 150, u'...')
         blog.save()
         return True
 
@@ -574,7 +575,7 @@ class Api(object):
 #使用windows live writer发布博客
 @csrf_exempt
 def metaweblog(request):
-    request_log.info("目标请求:{0}".format(request.body))
+    #request_log.info("目标请求:{0}".format(request.body))
 
     dispatcher = SimpleXMLRPCDispatcher(allow_none=False, encoding="UTF-8")
     dispatcher.register_introspection_functions()
@@ -588,7 +589,7 @@ def metaweblog(request):
     dispatcher.register_function(Api().deletePost, 'metaWeblog.deletePost')
 
     response = dispatcher._marshaled_dispatch(request.body)
-    request_log.info("响应目标:{0}".format(response))
+    #request_log.info("响应目标:{0}".format(response))
     return HttpResponse(response)
 
     # def wlwmanifest(req):

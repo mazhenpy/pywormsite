@@ -1,4 +1,6 @@
 function b(id){
+
+        $("#id_content00"+id).val('');
         $('.theme-popover-mask-replay0'+id).fadeIn(100);
         $('.theme-popover-replay0'+id).slideDown(200);
     }

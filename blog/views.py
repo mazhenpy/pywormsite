@@ -543,9 +543,6 @@ class Api(object):
 
         path = config["win_live_writer"]["path"]
 
-        if not os.path.exists(path + '/static/image/blog'):
-            os.makedirs(path + '/static/image/blog')
-
         img_file_path = path + '/static/image/blog'
 
         if not os.path.exists(img_file_path):

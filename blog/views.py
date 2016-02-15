@@ -43,6 +43,7 @@ def blog(req, blog_id):
     for i in spider_list:
         if i in user_agent:
             spider = True
+            break
 
     ips_access = cache.get("ips_access_{0}".format(blog_id), [])
     ip_attribution = "匿名"

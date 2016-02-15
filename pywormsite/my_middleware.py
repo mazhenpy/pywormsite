@@ -33,6 +33,7 @@ class IPMiddleware(object):
         for i in spider_list:
             if i in user_agent:
                 spider = True
+                break
 
         if len(ip) < 20:
             if not spider:

@@ -535,24 +535,29 @@ class Api(object):
 
         (basename, filename) = os.path.split(name)
         #print(basename, filename)
+
+        img_path = os.path.join('/static/image/blog', filename)
+
         config = yaml.load(
             open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
-        
+
         path = config["win_live_writer"]["path"]
 
-        img_path = path + os.path.join('/static/image/blog', filename)
-        #print("img_path:", img_path)
+        if not os.path.exists(path + '/static/image/blog'):
+            os.makedirs(path + '/static/image/blog')
 
-        if not os.path.exists(os.path.pardir + '/static/image/blog'):
-            os.makedirs(os.path.pardir + '/static/image/blog')
+        img_file_path = path + '/static/image/blog'
 
-        if not os.path.isfile(img_path):
-            file_i = open(img_path, 'wb')
+        if not os.path.exists(img_file_path):
+            os.makedirs(img_file_path)
+
+        if not os.path.isfile(path+img_path):
+            file_i = open(path+img_path, 'wb')
             file_i.write(bits.data)
             file_i.close()
 
         struct = {}
-        struct['url'] = '/' + (img_path)
+        struct['url'] = '/' + ('..' +img_path)
         # print("struct_url:", struct['url'])
         return struct
 

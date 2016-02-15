@@ -36,19 +36,25 @@ def blog(req, blog_id):
     else:
         ip = req.META['REMOTE_ADDR']
 
-    if len(ip)>20:
-        ip = "183.206.160.95"
-    # ip = "183.206.160.86"
+    user_agent = req.META.get('HTTP_USER_AGENT', "")
 
-    ip_attribution = sina_ip(ip)
+    spider = False
+    spider_list = ["Spider", "spider", "Googlebot", "bingbot"]
+    for i in spider_list:
+        if i in user_agent:
+            spider = True
 
     ips_access = cache.get("ips_access_{0}".format(blog_id), [])
-    if ip not in ips_access:
-        ips_access.append(ip)
-        #print(len(ips_access))
-        if len(ips_access) > 5:
-            ips_access.pop(0)
-        cache.set("ips_access_{0}".format(blog_id), ips_access, 60 * 60 * 24 * 30)
+    ip_attribution = "匿名"
+    if len(ip) < 20:
+        if not spider:
+            ip_attribution = sina_ip(ip)
+            if ip not in ips_access:
+                ips_access.append(ip)
+                # print(len(ips_access))
+                if len(ips_access) > 5:
+                    ips_access.pop(0)
+                cache.set("ips_access_{0}".format(blog_id), ips_access, 60 * 60 * 24 * 30)
 
     ips_info = {}
     if ips_access:
@@ -65,7 +71,7 @@ def blog(req, blog_id):
     ip_num = 0
     if blog_obj:
         blog = Blog.objects.get(blog_id=blog_id)
-        if ip_obj:  #如果已存在此ip
+        if ip_obj:  # 如果已存在此ip
             ip = IP_access.objects.get(ip=ip)
             ip.blogs.add(blog)
             ip_num = blog.ip_access_set.all()
@@ -81,7 +87,7 @@ def blog(req, blog_id):
             blog.PV_num += 1
             blog.save()
 
-    #print(len(ip_num))
+    # print(len(ip_num))
 
     if req.method == "POST":
         content = req.POST.get('content', None)
@@ -200,7 +206,7 @@ def web(req):
     }, RequestContext(req))
 
 
-#网络爬虫
+# 网络爬虫
 def spider(req):
     blogs = None
     num = None

@@ -3,6 +3,7 @@ import logging
 import time
 
 from django.core.cache import cache
+
 from pywormsite import RedisDriver
 
 
@@ -25,37 +26,47 @@ class IPMiddleware(object):
         else:
             ip = request.META['REMOTE_ADDR']
 
-        if len(ip)>20:
-            ip = "183.206.160.95"
-        # ip = "183.206.160.95"
+        user_agent = request.META.get('HTTP_USER_AGENT', "")
 
-        #ip:给每个ip存储过期时间
-        #“online_ips_str”:当前在线人数
-        #“all_ips_set”:所有不重复IP集合
-        #“lately_ip_list” "lately_ip_set"
+        spider = False
+        spider_list = ["Spider", "spider", "Googlebot", "bingbot"]
+        for i in spider_list:
+            if i in user_agent:
+                spider = True
 
-        #更新ip访问时间
-        self.master_14.set(ip, time.strftime("%Y-%m-%d %H:%M", time.localtime()))
+        if len(ip) < 20:
+            if not spider:
 
-        # 统计在线人数
-        self.master_15.setex("online_ips_str:{0}".format(ip), 60 * 1, time.strftime("%Y-%m-%d %H:%M", time.localtime()))
-        online_ips = self.master_15.dbsize()
+                # ip = "183.206.160.95"
 
-        #存储所有IP
-        if not self.master_13.sismember("all_ips_set", ip):
-            self.master_13.sadd("all_ips_set", ip)
-            self.master_13.lpush("all_ips_list", ip)
+                # ip:给每个ip存储过期时间
+                #“online_ips_str”:当前在线人数
+                #“all_ips_set”:所有不重复IP集合
+                #“lately_ip_list” "lately_ip_set"
 
-        #最近访问
-        #ips_access[所有进来的ip列表,ip不重复且最大值为5]在cache中存储{"ips_access":["127.0.0.1","127.0.0.1"]} ips_access=["127.0.0.1","127.0.0.1"]
-        ips_access = cache.get("ips_access", [])
-        if ip not in ips_access:
-            ips_access.append(ip)
-            if len(ips_access) > 5:
-                ips_access.pop(0)
-            cache.set("ips_access", ips_access, 60 * 60 * 24 * 30)
+                #更新ip访问时间
+                self.master_14.set(ip, time.strftime("%Y-%m-%d %H:%M", time.localtime()))
 
-        self.clicks(ip)
+                # 统计在线人数
+                self.master_15.setex("online_ips_str:{0}".format(ip), 60 * 1,
+                                     time.strftime("%Y-%m-%d %H:%M", time.localtime()))
+                online_ips = self.master_15.dbsize()
+
+                #存储所有IP
+                if not self.master_13.sismember("all_ips_set", ip):
+                    self.master_13.sadd("all_ips_set", ip)
+                    self.master_13.lpush("all_ips_list", ip)
+
+                #最近访问
+                #ips_access[所有进来的ip列表,ip不重复且最大值为5]在cache中存储{"ips_access":["127.0.0.1","127.0.0.1"]} ips_access=["127.0.0.1","127.0.0.1"]
+                ips_access = cache.get("ips_access", [])
+                if ip not in ips_access:
+                    ips_access.append(ip)
+                    if len(ips_access) > 5:
+                        ips_access.pop(0)
+                    cache.set("ips_access", ips_access, 60 * 60 * 24 * 30)
+
+                self.clicks(ip)
 
 
     # 统计PV，IP访问量
@@ -69,10 +80,10 @@ class IPMiddleware(object):
         self.master_13.hincrby(d, 'PV')
         self.master_13.hincrby(m, 'PV')
 
-        self.master_13.sadd('all_mon_set:month', mon)  #一共统计了哪几个月
-        self.master_13.sadd('all_day_set:day', day)  #一共统计了哪几个日子
+        self.master_13.sadd('all_mon_set:month', mon)  # 一共统计了哪几个月
+        self.master_13.sadd('all_day_set:day', day)  # 一共统计了哪几个日子
 
-        #一个月的所有ip
+        # 一个月的所有ip
         if not self.master_13.sismember("mon_ip_set:{0}".format(mon), ip):
             self.master_13.sadd("mon_ip_set:{0}".format(mon), ip)
             self.master_13.hincrby(m, 'IP')

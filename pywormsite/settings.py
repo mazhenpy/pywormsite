@@ -1,15 +1,14 @@
 # coding:utf-8
 import os
 import os.path
-
-
+import yaml
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-#上级目录
+# 上级目录
 path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-#本地目录
+# 本地目录
 #path = os.path.dirname(__file__)
 
 
@@ -49,12 +48,21 @@ ROOT_URLCONF = 'pywormsite.urls'
 WSGI_APPLICATION = 'pywormsite.wsgi.application'
 
 
+def config():
+    return yaml.load(
+        open(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)) + '/config.yaml', 'r',
+             encoding='utf8'))
+
+
+config = config()
+password = config["mysql"]["password"]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pywormsite',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': password,
         'HOST': '',
         'PORT': '3306',
     }
@@ -91,8 +99,8 @@ ALLOWED_HOSTS = ['*']
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'django_cache', #python manage.py createcachetable django_cache
-        'TIMEOUT':600,
+        'LOCATION': 'django_cache',  #python manage.py createcachetable django_cache
+        'TIMEOUT': 600,
         'OPTIONS': {
             'MAX_ENTRIES': 1000  #最大条目数
         }

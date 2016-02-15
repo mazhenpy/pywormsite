@@ -186,7 +186,7 @@ def web(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='Web开发')
+        blogs = Blog.objects.filter(categorie='Web开发').order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -213,7 +213,7 @@ def spider(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='网络爬虫')
+        blogs = Blog.objects.filter(categorie='网络爬虫').order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -239,7 +239,7 @@ def tornado(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='Tornado')
+        blogs = Blog.objects.filter(categorie='Tornado').order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -267,7 +267,7 @@ def python(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='Python编程')
+        blogs = Blog.objects.filter(categorie='Python编程').order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -293,7 +293,7 @@ def notes(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='网络爬虫')  #Notes
+        blogs = Blog.objects.filter(categorie='Notes').order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -309,7 +309,7 @@ def notes(req):
         'blogs': blogs,
         'num': num,
         'page_num_list': page_num_list,
-        'categorie': '网络爬虫'
+        'categorie': 'Notes'
     }, RequestContext(req))
 
 

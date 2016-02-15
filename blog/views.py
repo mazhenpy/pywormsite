@@ -14,6 +14,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
+import sys
 from tornado.httpclient import HTTPClient
 import yaml
 
@@ -233,7 +234,7 @@ def spider(req):
     }, RequestContext(req))
 
 
-#Tornado
+# Tornado
 def tornado(req):
     blogs = None
     num = None
@@ -533,6 +534,7 @@ class Api(object):
         type = data['type']
         bits = data['bits']
 
+        sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
         (basename, filename) = os.path.split(name)
         #print(basename, filename)
         img_path = os.path.pardir + os.path.join('/static/image/blog', filename)

@@ -11,11 +11,12 @@ var socket;
                 var obj = JSON.parse(event.data);
                 attr = obj.attr;
                 msg = obj.msg;
-
-                var newmessage = "<div class=\"msg\">"+"<span>"+ attr + "：" + msg+"</span>"  + "</div>";
-                $(".form-control").append(newmessage);
-                var div = document.getElementById('responseText');
-                div.scrollTop = 9999;
+                if(msg){
+                    var newmessage = "<div class=\"msg\">"+"<span>"+ attr + "：" + msg+"</span>"  + "</div>";
+                    $(".form-control").append(newmessage);
+                    var div = document.getElementById('responseText');
+                    div.scrollTop = 9999;
+                    }
                 }
         };
         socket.onopen = function (event) {

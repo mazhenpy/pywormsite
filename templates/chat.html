@@ -13,24 +13,26 @@
 
 </head>
 <body>
-
-
 <div class="quanping">
-
     <div id='top'>
         <span>用户信息：<span id="attr">{{attribution}}</span>--{{client}}</span>
         <br/>
         <span>在线人数：{{online_ips}}</span>
         <br/>
         <span>连接状态：</span><span id="status"></span>
-
     </div>
+    <div class="content">
+        <form onsubmit="return false;" role="form">
+            {% raw xsrf_form_html() %}
+            <div class="form-control" id="responseText"></div>
+        </form>
+    </div>
+</div>
 
+<div class="footer">
     <form onsubmit="return false;" role="form">
-        {% raw xsrf_form_html() %}
-        <div class="form-control" id="responseText"></div>
-        <label for="msg">发送消息：</label>
-        <input type="text" class="form-control" name="message" id="msg">
+            <label for="msg">发送消息：</label>
+            <input type="text" class="form-control" name="message" id="msg">
     </form>
 </div>
 </body>

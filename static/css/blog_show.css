@@ -4,7 +4,7 @@ height:100%;
 
 #full_screen {
     min-height:100%; /*使内容高度和body一样*/
-    margin-bottom:-222px;/*向上缩减80像素，不至于footer超出屏幕可视范围*/
+    margin-bottom:-242px;/*向上缩减80像素，不至于footer超出屏幕可视范围*/
 }
 #article{
     padding-bottom: 270px;
@@ -56,7 +56,7 @@ blockquote{
 
 
 .main-footer {
-    margin-top: 30px;
+    margin-top: 50px;
     height:75px;
     padding: 14px 14px;
     text-align: center;

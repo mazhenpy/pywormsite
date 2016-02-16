@@ -1,4 +1,5 @@
 # coding:utf-8
+import json
 import logging
 
 import tornado
@@ -14,12 +15,13 @@ request_log = logging.getLogger('request')
 chat_log = logging.getLogger('chat')
 error_log = logging.getLogger('chat')
 
+
 @tornado.gen.coroutine
 def sina_ip(ip):
     attribution = ""
     if ip == "127.0.0.1":
         ip = '183.208.22.171'
-    if len(ip)>20:
+    if len(ip) > 20:
         ip = '183.208.22.171'
     http_client = AsyncHTTPClient()
     response = None
@@ -46,7 +48,6 @@ def sina_ip(ip):
     return ip_attribution
 
 
-
 class ChatHandler(tornado.web.RequestHandler):
     @tornado.gen.coroutine
     def get(self):
@@ -69,13 +70,12 @@ class ChatHandler(tornado.web.RequestHandler):
                     messages=ChatSocketHandler.cache)
 
 
-
-
 class ChatSocketHandler(tornado.websocket.WebSocketHandler):
     waiters = set()
     cache = []
     cache_size = 200
-    def __init__(self,application, request):
+
+    def __init__(self, application, request):
         super(ChatSocketHandler, self).__init__(application, request)
         self.ip = self.request.remote_ip
 
@@ -84,7 +84,7 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
         return True
 
     def open(self):
-        #print("new client opened")
+        # print("new client opened")
         ChatSocketHandler.waiters.add(self)
 
     def on_close(self):
@@ -98,7 +98,7 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
 
     @classmethod
     def send_updates(cls, chat):
-        #request_log.info("sending message to %d waiters", len(cls.waiters))
+        # request_log.info("sending message to %d waiters", len(cls.waiters))
         for waiter in cls.waiters:
             try:
                 waiter.write_message(chat)
@@ -108,8 +108,10 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
     @tornado.gen.coroutine
     def on_message(self, message):
         self.attribution = yield sina_ip(self.ip)
-        chat_log.info("{0}-Send-Message-{1}".format(self.attribution,message))
-        ChatSocketHandler.send_updates(message)
+        chat_log.info("{0}-Send-Message-{1}".format(self.attribution, message))
+        data = {"attr":self.attribution, "msg":message}
+        data = json.dumps(data)
+        ChatSocketHandler.send_updates(data)
 
 
 

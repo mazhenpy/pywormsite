@@ -8,8 +8,11 @@ var socket;
         socket = new WebSocket("ws://"+host+"/websocket");
         socket.onmessage = function (event) {
             if(event.data){
-                var attr = $("#attr").html();
-                var newmessage = "<div class=\"msg\">"+"<span>"+ attr + "：" + event.data+"</span>"  + "</div>";
+                var obj = JSON.parse(event.data);
+                attr = obj.attr;
+                msg = obj.msg;
+
+                var newmessage = "<div class=\"msg\">"+"<span>"+ attr + "：" + msg+"</span>"  + "</div>";
                 $(".form-control").append(newmessage);
                 var div = document.getElementById('responseText');
                 div.scrollTop = 9999;

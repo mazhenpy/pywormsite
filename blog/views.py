@@ -412,7 +412,7 @@ class Api(object):
         tmp.append(struct)
         return tmp
 
-    #返回基于字典的文章对应//最近发布
+    #已发布的博客
     def getPost(self, postid, username, password):
         self.__isUser(username, password)
         # print("客户端请求博客ID:", postid)
@@ -430,7 +430,7 @@ class Api(object):
         # print(struct)
         return struct
 
-    #返回最近基于字典的文章对应
+    #最近发布的博客
     def getRecentPosts(self, blogid, username, password, numberOfPosts=5):
         self.__isUser(username, password)
         blogs = Blog.objects.all()

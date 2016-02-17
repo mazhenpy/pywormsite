@@ -293,7 +293,7 @@ def notes(req):
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.filter(categorie='Notes').order_by("-post_time")
+        blogs = Blog.objects.filter(categorie='Notes').order_by("post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:

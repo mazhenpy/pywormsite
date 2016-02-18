@@ -20,6 +20,12 @@
         el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
     } );
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var host = window.location.host;
+            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+        });
+    </script>
 </head>
 <body>
 {% include 'nav_header.html' %}

@@ -13,7 +13,12 @@
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/blogs.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var host = window.location.host;
+            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+        });
+    </script>
 </head>
 <body>
 {% include 'nav_header.html' %}

@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="/static/css/nav_header.css" type="text/css"/>
     <link rel="stylesheet" href="/static/css/search.css" type="text/css"/>
     <title>博客搜索 | Pyworm的博客Pyworm</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var host = window.location.host;
+            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+        });
+    </script>
 
 </head>
 <body>
@@ -26,7 +32,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
-                    <li id="search_blog"><a href="http://127.0.0.1:8000/search_blog">博客搜索</a></li>
+                    <li id="search_blog"><a href="" id="blog_search">博客搜索</a></li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

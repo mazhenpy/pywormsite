@@ -33,6 +33,10 @@ jQuery(document).ready(function($) {
 });
 
 
+$(document).ready(function(){
+    var host = window.location.host;
+    document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+});
 
 //获取active状态
 //window.onload = function (){

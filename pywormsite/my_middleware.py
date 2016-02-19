@@ -27,7 +27,8 @@ class IPMiddleware(object):
             ip = request.META['REMOTE_ADDR']
 
         user_agent = request.META.get('HTTP_USER_AGENT', "")
-
+        self.master_13.set("user_agent_set", user_agent)
+        
         spider = False
         spider_list = ["Spider", "spider", "Googlebot", "bingbot"]
         for i in spider_list:

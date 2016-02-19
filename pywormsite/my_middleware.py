@@ -28,7 +28,7 @@ class IPMiddleware(object):
 
         user_agent = request.META.get('HTTP_USER_AGENT', "")
         day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        self.master_13.set("user_agent_set:{0}".format(day), user_agent)
+        self.master_13.sadd("user_agent_set:{0}".format(day), user_agent)
 
         spider = False
         spider_list = ["Spider", "spider", "Googlebot", "bingbot"]

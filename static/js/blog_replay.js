@@ -33,3 +33,7 @@ function a(id) {
     });
     }
 
+$(document).ready(function(){
+    var host = window.location.host;
+    document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+});

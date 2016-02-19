@@ -230,16 +230,14 @@ def online_ips(req):
     return HttpResponse(online_ips)
 
 
-#静态页面
+#动态页面
 @csrf_exempt
 def jsimg(req):
     return render_to_response('js_img.html', RequestContext(req))
 
-
-#动态页面
 @csrf_exempt
 def ajax_jsimg(req):
-    rtxt = '<img src="http://www.pyworm.com/static/image/jqxx.jpg">'
+    rtxt = '<img src="http://139.196.43.6/static/image/portfolio01.jpg">'
     return HttpResponse(rtxt)
 
 

@@ -52,7 +52,7 @@ def youdao(word):
     else:
         return u'对不起，您输入的单词%s无法翻译,请检查拼写' % word
 
-
+#sha1加密
 def to_sha1(part):
     sha1 = hashlib.sha1()
     sha1.update(part.encode())

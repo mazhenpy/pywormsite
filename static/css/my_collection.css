@@ -1,101 +1,57 @@
+.lr{
+    position:absolute;
+    top:40%;
+    display: block;
+    font-size: 80px !important;
+}
+
+.left{
+    float:left;
+    left:5%
+}
+.right{
+    float:right;
+    right:5%;
+}
+
+#myCarousel{
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.carousel-inner{
+    position:absolute;
+    top:38%;
+    color:#0f0;
+}
+
+.carousel-indicators li{
+    border: 1px solid #0f0 !important;
+}
+.carousel-indicators .active{
+    background-color: #0f0 !important;
+}
+
+h1{
+    text-align: center;;
+}
+
+a{
+    color:#0f0;
+}
+
+a:hover{
+    color: #0f0;
+    text-decoration:none;
+}
 a:focus{
-    outline:0;
+    color: #0f0;
+    text-decoration:none;
 }
 
-.container .content{
-    margin-top: 80px;
-    /*width:90%*/
+body{
+    background-color: black;
 }
 
-#grid_movie figure {
-	position: relative;
-	float: left;
-	overflow: hidden;
-	margin: 70px 1%;
-    margin-bottom: 80px;
-	min-width: 320px;
-	max-width: 648px;
-    box-shadow: 0 2px 10px black;
-	background: #3085a3;
-	text-align: center;
-	cursor: pointer;
-}
-
-#grid_novel figure {
-	position: relative;
-	float: right;
-	overflow: hidden;
-	margin: 10px 1%;
-    /*margin-left: 30px;*/
-	max-width: 380px;
-    box-shadow: 0 2px 10px black;
-	width: 48%;
-	background: #3085a3;
-	text-align: center;
-	cursor: pointer;
-}
-
-#grid_music figure {
-	position: relative;
-	float: left;
-	overflow: hidden;
-	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 704px;
-    box-shadow: 0 2px 10px black;
-	background: #3085a3;
-	text-align: center;
-	cursor: pointer;
-}
-
-#grid_notes figure {
-	position: relative;
-	float: right;
-	overflow: hidden;
-	margin: 57px 1%;
-	min-width: 320px;
-	max-width: 400px;
-    box-shadow: 0 2px 10px black;
-	background: #3085a3;
-	text-align: center;
-	cursor: pointer;
-}
-
-figure.effect-sadie h2 {
-    top: 97% !important;
-    right: 40% !important;
-}
-
-.grid figure p{
-    font-size: 100% !important;
-}
-
-
-.navbar {
-    border-radius: 0;
-    margin-bottom: 0;
-}
-
-.navbar-inverse {
-    /*background-color: #040404 !important;*/
-    border-color: #2f3238;
-    box-shadow: 0 2px 10px black;
-}
-
-.navbar-inverse .navbar-nav>li>a{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
-    color:white;
-    font-size:17px;
-}
-
-.navbar-inverse .navbar-brand{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
-    color:white;
-}
-
-.navbar-brand:hover{
-    background-color: #080808;
-}
-.navbar-inverse .navbar-nav>li>a:hover{
-    background-color: #2f3238;
-}
+a:focus {  outline:none;   -moz-outline:none;}

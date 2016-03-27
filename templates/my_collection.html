@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{#<!DOCTYPE html>#}
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
@@ -13,78 +13,63 @@
     <link rel="stylesheet" href="{{STATIC_URL}}interface/css/collection_set.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/my_collection.css" type="text/css"/>
     <script type="text/javascript">
-    // For Demo purposes only (show hover effect on mobile devices)
-    [].slice.call( document.querySelectorAll('a[href="#"') ).forEach( function(el) {
-        el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
-    } );
+        // For Demo purposes only (show hover effect on mobile devices)
+        [].slice.call( document.querySelectorAll('a[href="#"') ).forEach( function(el) {
+            el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
+        } );
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            var host = window.location.host;
-            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+            $('#mycarousel').carousel({
+                interval: false
+            });
+
+            $("#myCarousel").carousel('pause');
         });
     </script>
 </head>
 <body>
-{% include 'nav_header.html' %}
+<div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active">
+        <li data-target="#myCarousel" data-slide-to="1">
+        <li data-target="#myCarousel" data-slide-to="2">
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="grid" id="grid_novel">
+                <figure class="effect-oscar">
+                    <figcaption>
+                        <h2><span><a href="/music/">MUSIC</a></span></h2>
+                        <p><a href="/music/">音乐</a></p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
 
-
-<div class="container">
-	<div class="content">
-        <div class="grid" id="grid_music">
-			<figure class="effect-apollo">
-				<img src="/static/image/music.jpg" alt="img18"/>
-				<figcaption>
-					<h2><span>Music</span></h2>
-					<p>音乐</p>
-					<a href="/music/">View more</a>
-				</figcaption>
-			</figure>
-		</div>
-
-        <div class="grid" id="grid_novel">
-			<figure class="effect-oscar">
-				<img src="/static/image/novel2.jpg  " alt="img06"/>
-				<figcaption>
-					<h2><span>Novel</span></h2>
-					<p>魔兽简史</p>
-					<a href="#">View more</a>
-				</figcaption>
-			</figure>
-		</div>
-
-		<div class="grid" id="grid_movie">
-			<figure class="effect-sadie">
-				<img src="/static/image/movie2.jpg" alt="img12"/>
-				<figcaption>
-					<div>
-						<h2><span>Movie</span></h2>
-						<p>视频</p>
-					</div>
-					<a href="/warcraft/">View more</a>
-				</figcaption>
-			</figure>
-		</div>
-
-        <div class="grid" id="grid_notes">
-			<figure class="effect-sarah">
-				<img src="/static/image/notes.jpg" alt="img12"/>
-				<figcaption>
-					<div>
-						<h2><span>Notes</span></h2>
-						<p>尘封的笔记</p>
-					</div>
-					<a href="/notes/">View more</a>
-				</figcaption>
-			</figure>
-		</div>
-
-
-
-	</div>
+        <div class="item">
+            <div class="grid">
+                <figure class="effect-oscar">
+                    <figcaption>
+                        <h2><span><a href="/warcraft/">MOVIE</a></span></h2>
+                        <p><a href="/warcraft/">视频</a></p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="item">
+            <div class="grid">
+                <figure class="effect-oscar">
+                    <figcaption>
+                        <h2><span><a href="/notes/">NOTES</a></span></h2>
+                        <p><a href="/notes/">我的笔记</a></p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <a class="lr left" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="lr right" href="#myCarousel" data-slide="next">›</a>
 </div>
-<!--效果html结束-->
-
-
 </body>
 </html>

@@ -7,10 +7,13 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/msg_window.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/about.js"></script>
     <title>关于这里 | Pyworm的博客</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/about.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/msg_windows.css" type="text/css"/>
     <script type="text/javascript">
         $(document).ready(function(){
             var host = window.location.host;
@@ -76,6 +79,7 @@
     <div class="cut">
         <hr/>
         <div class="main-footer">
+            <button type="button" class="btn btn-primary btn-sm" id="div2" onclick="a()">与我留言</button>
             <span>联系邮箱:1053556056@qq.com</span>
 
             <p>Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</p>
@@ -91,6 +95,6 @@
     </div>
 
 </div>
-
+{% include 'msg_window.html' %}
 </body>
 </html>

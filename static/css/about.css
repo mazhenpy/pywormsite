@@ -100,6 +100,7 @@ h2{
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
     padding-left: 2em;
+    padding-right: 2em;
 }
 
 
@@ -136,20 +137,116 @@ body{
     border-color: #0F0;
     color:#0F0;
     background-color: #000000;
+    outline:none;
+}
+#div1{
     font-size: 25px;
     margin-top: 60px;
     margin-left:auto;
     margin-right:auto;
     padding: 15px 30px;
-    outline:none;
 }
-
+#div2{
+    font-size: 15px;
+    float: right;
+    padding: 2px 30px;
+}
 
 .btn:hover{
     background-color: #0F0;
     border-color:#0F0;
     color:#000000;
 }
+
+
+*:focus {outline: none;}
+.msg_body{
+    width:500px;
+    height: 600px;
+    overflow:auto;
+    background-color: black;
+    margin: 0 auto;
+    padding-top:10px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    font-family:"Microsoft Yahei",arial,sans-serif;
+    border: 1px solid #0f0;
+}
+
+.form-control{
+    border-radius: 0;
+    color: #0f0;
+    width: 100%;
+    resize: none;
+    background-color: black;
+    border-color: #0f0;
+    font-family:"Microsoft Yahei",arial,sans-serif;
+    padding: 5px;
+    font-size: 13px;
+    box-shadow:none !important;
+}
+
+.form-control:focus{
+    border-color: #0f0;
+}
+
+.clear{
+    clear: both;
+}
+.user_replay{
+    color:#0f0;
+    padding-left: 2.75%;
+    border-bottom: 1px solid #0f0;
+}
+
+input,button,select,textarea{outline:none}
+
+#msg_btn{
+    margin-top: 10px;
+    font-size: 13px;
+    padding:3px 25px;
+    float: right;
+    font-family: "Microsoft Yahei",arial,sans-serif;!important;
+}
+
+.btn:hover{
+    background-color: #0F0;
+    border-color:#0F0;
+    color:#000000;
+}
+.btn:active{
+    background-color: #0F0;
+    border-color:#0F0;
+    color:#000000;
+}
+
+.btn:focus{
+    background-color: #000000;
+    border-color:#0F0;
+    color:#0f0;
+    outline: none !important;
+}
+
+.btn-default:active:focus{
+    background-color: #000000;
+    border-color:#0F0;
+    color:#0f0;
+    outline: none !important;
+}
+
+.close{
+    color: #0f0;
+    position: relative;
+    top:-10px;
+    right:-11px;
+    opacity: 1;
+    text-shadow: None;
+}
+.close:hover{
+    color: #0f0;
+}
+
 
 
 .navbar-inverse .navbar-brand{

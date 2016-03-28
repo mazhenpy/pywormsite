@@ -1,4 +1,5 @@
 # coding:utf-8
+import json
 import logging
 import time
 import datetime
@@ -61,8 +62,32 @@ def index(req):
 # city = visitor['city']
 # 关于这里
 # @cache_page(60 * 15) #缓存页面15分钟
+@csrf_exempt
 def about(req):
     master_14 = RedisDriver().master_14
+    master_13 = RedisDriver().master_13
+    ip = ''
+    if 'HTTP_X_FORWARDED_FOR' in req.META:
+        ip = req.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = req.META['REMOTE_ADDR']
+
+    ip_attribution = sina_ip(ip)
+    if req.method == "POST":
+        content = req.POST.get('content', '')
+        if content != '':
+            key = ip_attribution + '：'+ content
+            value = time.strftime("%Y-%m-%d %H:%M", time.localtime())
+            t = master_13.get(ip_attribution)
+            if t is None:
+                master_13.hset('message', key, value)
+                master_13.setex(ip_attribution, 60, value)
+                return HttpResponse(json.dumps({'status': 'ok', 'key': key, 'value': value}))
+            else:
+                return HttpResponse(json.dumps({'status': 'fail'}))
+
+    messages = master_13.hgetall('message')
+
     ips_info = {}
     ips_access = cache.get("ips_access", [])
     if ips_access:
@@ -72,10 +97,11 @@ def about(req):
             ips_info[ip_attribution] = ip_access_time
 
     try:
-        ips_info = sorted(ips_info.items(),key=lambda d:d[1],reverse=True)
+        ips_info = sorted(ips_info.items(), key=lambda d: d[1], reverse=True)
+        messages = sorted(messages.items(), key=lambda d: d[1], reverse=True)
     except Exception as e:
         pass
-    return render_to_response('about_new.html', {"ips_info": ips_info}, RequestContext(req))
+    return render_to_response('about_new.html', {"ips_info": ips_info, "messages": messages}, RequestContext(req))
 
 
 # ajax验证账号密码
@@ -91,7 +117,7 @@ def ajax_login(request):
     return HttpResponse(errors, RequestContext(request))
 
 
-#检查账号信息
+# 检查账号信息
 @csrf_exempt
 def ajax_regist(request):
     errors = ""
@@ -234,6 +260,7 @@ def online_ips(req):
 @csrf_exempt
 def jsimg(req):
     return render_to_response('js_img.html', RequestContext(req))
+
 
 @csrf_exempt
 def ajax_jsimg(req):

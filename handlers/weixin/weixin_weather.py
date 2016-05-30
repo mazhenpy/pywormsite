@@ -83,7 +83,6 @@ weixin_cookie = 'bizuin={bizuin};data_bizuin={data_bizuin};data_ticket={data_tic
     bizuin=cookie_dict["bizuin"], data_bizuin=cookie_dict["data_bizuin"], data_ticket=cookie_dict["data_ticket"],
     slave_sid=cookie_dict["slave_sid"], slave_user=cookie_dict["slave_user"], )
 
-
 # 保存消息
 url = "https://mp.weixin.qq.com/cgi-bin/operate_appmsg?t=ajax-response&sub=update&type=10&token=840848985&lang=zh_CN"
 
@@ -138,7 +137,7 @@ response_body = response.body.decode('utf8')
 print("RESP:", response_body)
 http_client.close()
 
-#发送消息
+# 发送消息
 url = "https://mp.weixin.qq.com/cgi-bin/operate_appmsg?sub=preview&t=ajax-appmsg-preview&type=10&token={token}&lang=zh_CN".format(
     token=token)
 
@@ -194,9 +193,3 @@ response = http_client.fetch(request)
 response_body = response.body.decode('utf8')
 print("RESP:", response_body)
 http_client.close()
-
-
-
-
-
-

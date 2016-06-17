@@ -1,3 +1,17 @@
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'xingkai';
+    src: url('/static/css/typeface/STXINGKA.TTF');
+}
+
 .container{
     width: 80%;
     padding-top:50px;
@@ -29,7 +43,7 @@
     color: black;
     cursor: pointer;
     display: inline-block;
-    font-family: "华文行楷","Microsoft Yahei",arial,sans-serif;
+    font-family: "xingkai","Microsoft Yahei",arial,sans-serif;
     font-weight: 100;
     padding: 30px 0 20px;
 }
@@ -54,7 +68,7 @@
     padding-left: 10px;
 }
 .post-title{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
 }
 
 .pagination {

@@ -1,4 +1,11 @@
-﻿.cont-search{
+﻿@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
+.cont-search{
     max-width: 800px;
     margin:0 auto;
 }
@@ -13,7 +20,7 @@
 }
 .navbar-form .btn{
     height:45px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     width:140px;
 }
 .lab{
@@ -40,5 +47,5 @@
     margin-left: -15px;
 }
 .list-unstyled{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
 }

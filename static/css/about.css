@@ -1,3 +1,17 @@
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'xingkai';
+    src: url('/static/css/typeface/STXINGKA.TTF');
+}
+
 a{
     outline: none;
 }
@@ -51,7 +65,7 @@ h2{
 
 
 .site p{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-size: 20px;
 }
 
@@ -97,7 +111,7 @@ h2{
     /*padding: 20px 14px;*/
     /*text-align: center;*/
     font-size: 17px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
     padding-left: 2em;
     padding-right: 2em;
@@ -114,7 +128,7 @@ h2{
 
 h1 {
     margin-top: 60px;
-    font-family: "Monotype Corsiva","华文楷体","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "Monotype Corsiva","kaiti","Microsoft Yahei",arial,sans-serif !important;
     color: #0F0;
     text-align: center;
 }
@@ -133,7 +147,7 @@ body{
 
 .btn{
     display:block;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     border-color: #0F0;
     color:#0F0;
     background-color: #000000;
@@ -250,12 +264,12 @@ input,button,select,textarea{outline:none}
 
 
 .navbar-inverse .navbar-brand{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     color:#0F0;
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     color:#0F0;
     font-size:17px;
 }

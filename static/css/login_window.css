@@ -1,3 +1,10 @@
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
 .theme-popover-mask-login {
     z-index: 9998;
     position:fixed;
@@ -80,7 +87,7 @@
 }
 .button .btn {
     width:60%;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-size: 20px;
 }
 
@@ -118,7 +125,7 @@
     position: fixed;
     margin: -50px 0 0 0;
     top: 50%;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-size: 30px;
 }
 

@@ -2,13 +2,20 @@
     /*background-color: #2f3238;*/
     /*color:white;*/
 /*}*/
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
 
 a:focus{
     outline:0;
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     color:white;
     font-size:17px;
 }
@@ -17,7 +24,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     color:white;
 }
 
@@ -69,7 +76,7 @@ video{
     padding-right: 30px;
 }
 .media-body p{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-size:18px;
 }
 
@@ -79,7 +86,7 @@ video{
 .main-footer {
     text-align: center;
     font-size: 17px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
 }
 

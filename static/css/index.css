@@ -1,7 +1,7 @@
 ﻿@font-face {
     font-weight: normal;
     font-style: normal;
-    font-family: '华文行楷';
+    font-family: 'xingkai';
     src: url('/static/css/typeface/STXINGKA.TTF');
 }
 
@@ -25,7 +25,7 @@ a:focus{
     color: black;
     cursor: pointer;
     display: inline-block;
-    font-family: "华文行楷","Microsoft Yahei",arial,sans-serif;
+    font-family: "xingkai","Microsoft Yahei",arial,sans-serif;
     font-weight: 100;
     padding: 30px 0 20px;
 }

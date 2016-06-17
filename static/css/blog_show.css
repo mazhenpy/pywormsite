@@ -2,6 +2,13 @@ html, body{
 height:100%;
 }
 
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
 #full_screen {
     min-height:100%; /*使内容高度和body一样*/
     margin-bottom:-242px;/*向上缩减80像素，不至于footer超出屏幕可视范围*/
@@ -12,7 +19,7 @@ height:100%;
 
 h2{
     text-align: center;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
 }
 
 .con a{
@@ -61,7 +68,7 @@ blockquote{
     padding: 14px 14px;
     text-align: center;
     font-size: 17px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
     font-weight: 200;
     background-color: #F4F4F4;
 }

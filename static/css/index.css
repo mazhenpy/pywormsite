@@ -5,6 +5,13 @@
     src: url('/static/css/typeface/STXINGKA.TTF');
 }
 
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'kaiti';
+    src: url('/static/css/typeface/STKAITI.TTF');
+}
+
 a:focus{
     outline:0;
 }
@@ -121,7 +128,7 @@ body {
 }
 .thumbnail h3{
     font-weight: 700;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
 }
 .thumbnail .caption a{
     display:block ;
@@ -132,7 +139,7 @@ body {
     text-decoration: none;
     outline: medium none;
     font-weight: 700;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
 }
 .thumbnail p{
     color: #888;

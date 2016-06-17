@@ -1,4 +1,11 @@
-﻿a:focus{
+﻿@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: '华文行楷';
+    src: url('/static/css/typeface/STXINGKA.TTF');
+}
+
+a:focus{
     outline:0;
 }
 .container{

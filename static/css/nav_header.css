@@ -20,7 +20,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     color:white;
     font-size:17px;
 }
@@ -29,7 +29,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     color:white;
 }
 

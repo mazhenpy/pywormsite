@@ -65,7 +65,7 @@ h2{
 
 
 .site p{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     font-size: 20px;
 }
 
@@ -111,7 +111,7 @@ h2{
     /*padding: 20px 14px;*/
     /*text-align: center;*/
     font-size: 17px;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     font-weight: 200;
     padding-left: 2em;
     padding-right: 2em;
@@ -147,7 +147,7 @@ body{
 
 .btn{
     display:block;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     border-color: #0F0;
     color:#0F0;
     background-color: #000000;
@@ -264,12 +264,12 @@ input,button,select,textarea{outline:none}
 
 
 .navbar-inverse .navbar-brand{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     color:#0F0;
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     color:#0F0;
     font-size:17px;
 }

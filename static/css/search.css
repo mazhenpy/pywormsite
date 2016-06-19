@@ -20,7 +20,7 @@
 }
 .navbar-form .btn{
     height:45px;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     width:140px;
 }
 .lab{
@@ -47,5 +47,5 @@
     margin-left: -15px;
 }
 .list-unstyled{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
 }

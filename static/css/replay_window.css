@@ -53,7 +53,7 @@
 }
 .button .btn {
     width:60%;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     font-size: 20px;
 }
 .text_area{

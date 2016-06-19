@@ -19,7 +19,7 @@ height:100%;
 
 h2{
     text-align: center;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
 }
 
 .con a{
@@ -68,7 +68,7 @@ blockquote{
     padding: 14px 14px;
     text-align: center;
     font-size: 17px;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif;
+    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
     font-weight: 200;
     background-color: #F4F4F4;
 }

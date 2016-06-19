@@ -16,7 +16,7 @@
     color: black;
     cursor: pointer;
     display: inline-block;
-    font-family: "xingkai", "Microsoft Yahei", arial, sans-serif;
+    font-family: "xingkai", "Microsoft Yahei", arial, sans-serif !important;
     font-weight: 100;
     padding: 30px 0 20px;
 }
@@ -43,7 +43,7 @@
 }
 
 .post-title {
-    font-family: "kaiti", "Microsoft Yahei", arial, sans-serif;
+    font-family: "kaiti", "Microsoft Yahei", arial, sans-serif !important;
 }
 
 .pagination {

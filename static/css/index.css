@@ -132,6 +132,7 @@ body {
 .thumbnail h3{
     font-weight: 700;
     /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail .caption a{
     display:block ;
@@ -143,6 +144,7 @@ body {
     outline: medium none;
     font-weight: 700;
     /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail p{
     color: #888;
@@ -154,6 +156,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;*/
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif;
 }
 .main-footer {
     padding-bottom: 14px;

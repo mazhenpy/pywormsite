@@ -20,7 +20,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "ST华文楷体40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
     color:white;
     font-size:17px;
 }
@@ -29,7 +29,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "ST华文楷体40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
     color:white;
 }
 

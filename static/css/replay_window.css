@@ -1,9 +1,9 @@
-@font-face {
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'kaiti';
-    src: url('/static/css/typeface/STKAITI.TTF');
-}
+/*@font-face {*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*font-family: '华文楷体';*/
+    /*src: url('/static/css/typeface/ST华文楷体.TTF');*/
+/*}*/
 
 .theme-popover-mask-replay {
     z-index: 9998;
@@ -53,7 +53,7 @@
 }
 .button .btn {
     width:60%;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
     font-size: 20px;
 }
 .text_area{

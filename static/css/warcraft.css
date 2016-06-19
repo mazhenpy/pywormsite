@@ -2,12 +2,12 @@
     /*background-color: #2f3238;*/
     /*color:white;*/
 /*}*/
-@font-face {
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'kaiti';
-    src: url('/static/css/typeface/STKAITI.TTF');
-}
+/*@font-face {*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*font-family: '华文楷体';*/
+    /*src: url('/static/css/typeface/ST华文楷体.TTF');*/
+/*}*/
 
 
 a:focus{
@@ -15,7 +15,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
     color:white;
     font-size:17px;
 }
@@ -24,7 +24,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
     color:white;
 }
 
@@ -76,7 +76,7 @@ video{
     padding-right: 30px;
 }
 .media-body p{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
     font-size:18px;
 }
 
@@ -86,7 +86,7 @@ video{
 .main-footer {
     text-align: center;
     font-size: 17px;
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
     font-weight: 200;
 }
 

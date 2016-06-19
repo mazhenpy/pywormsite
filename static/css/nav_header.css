@@ -8,19 +8,19 @@ a:focus{
     margin-bottom: 0;
 }
 
-@font-face {
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'kaiti';
-    src: url('/static/css/typeface/STKAITI.TTF');
-}
+/*@font-face {*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*font-family: 'kaiti';*/
+    /*src: url('/static/css/typeface/STKAITI.TTF');*/
+/*}*/
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
     background-color: #204d74;
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
     color:white;
     font-size:17px;
 }
@@ -29,7 +29,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "kaiti","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
     color:white;
 }
 

@@ -5,12 +5,15 @@ import time
 import datetime
 import collections
 from django.core.cache import cache
+from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
 from django.shortcuts import render_to_response, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User  # ,Permission
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
+
+from blog.models import Blog
 from blog.views import sina_ip
 from purus.models import Access_amount_mon, Access_amount_day, Access_ip
 from pywormsite import RedisDriver
@@ -29,7 +32,7 @@ def index(req):
         username = req.POST.get("username", None)
         password = req.POST.get("password", None)
         if login_validate(req, username, password):
-            response = render_to_response('index.html', RequestContext(req))
+            response = render_to_response('index_new.html', RequestContext(req))
             response.set_cookie('username', username, 3600)
             return response
 
@@ -48,7 +51,26 @@ def index(req):
     access_yesterday_ip = master_13.hget(yesd, 'IP')
     access_yesterday_pv = master_13.hget(yesd, 'PV')
 
-    return render_to_response('index.html', {
+    blogs = None
+    num = None
+    page_num_list = []
+    try:
+        blogs = Blog.objects.all().order_by("-post_time")
+        num = len(blogs)
+        paginator = Paginator(blogs, 10)
+        try:
+            page = int(req.GET.get('page', 1))
+            blogs = paginator.page(page)
+            for i in range(blogs.paginator.num_pages):
+                page_num_list.append(i + 1)
+        except (EmptyPage, InvalidPage, PageNotAnInteger):
+            blogs = paginator.page(1)
+    except Exception as e:
+        error_log.error(e)
+
+    return render_to_response('index_new.html', {
+        'blogs': blogs,
+        'page_num_list': page_num_list,
         'online_ips': online_ips,
         'access_day_ip': access_day_ip,
         'access_day_pv': access_day_pv,

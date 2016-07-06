@@ -39,7 +39,9 @@
         <h3 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h3>
 
         <div class="post-content">
-            <p>{{ blog.summary }}</p>
+            {% autoescape off %}
+            {{ blog.summary }}
+            {% endautoescape %}
             <span class="post-meta"><time class="data">{{ blog.post_time|date:"Y-m-d" }}</time></span>
             <div class="access-count"><span>PV[{{ blog.PV_num }}] &nbsp; IP[{{ blog.IP_num }}]</span></div>
         </div>

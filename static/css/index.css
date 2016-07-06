@@ -211,3 +211,13 @@ body {
 .background_down .thumbnail{
     background-color: white;
 }
+
+.page {
+    width: 90% !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+}
+
+.pagination{
+    float: right !important;
+}

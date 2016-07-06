@@ -8,7 +8,7 @@ class Blog(models.Model):
     title = models.CharField(u'标题',max_length=100)
     categorie = models.CharField(u'分类',max_length=10)
     content = models.TextField(u'内容')
-    summary = models.CharField(u'摘要',max_length=200)
+    summary = models.CharField(u'摘要',max_length=500)
     PV_num = models.IntegerField(u'PV访问量', default=0)
     IP_num = models.IntegerField(u'IP访问量', default=0)
     post_time = models.DateTimeField(u'发表时间')

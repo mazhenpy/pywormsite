@@ -35,6 +35,7 @@ def show_index(ip, port):
 *网站主页：http://{ip}:{port}/
 *后台管理：http://{ip}:{port}/admin/
 *将博客转存数据库：http://{ip}:{port}/blog/to_mysql/
+*生成博客摘要：http://{ip}:{port}/blog/to_summary/
 *生成搜索目录： http://{ip}:{port}/catalog
 *网络聊天室： http://{ip}:{port}/chat
 *将IP归属地同步数据库：http://{ip}:{port}/access_ip/

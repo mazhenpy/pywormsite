@@ -20,7 +20,6 @@ import yaml
 from blog.models import Blog, Replay, IP_access
 from pywormsite import RedisDriver
 
-
 request_log = logging.getLogger('request')
 error_log = logging.getLogger('error')
 
@@ -287,7 +286,7 @@ def python(req):
     }, RequestContext(req))
 
 
-#Notes
+# Notes
 def notes(req):
     blogs = None
     num = None
@@ -323,14 +322,14 @@ def catalog(req):
     return render_to_response('catalog.html', {'blogs': blogs}, RequestContext(req))
 
 
-#更新数据库
+# 更新数据库
 def to_mysql(req):
     path = r'{0}/templates'.format(os.path.dirname(__file__))
     num = len(sum([i[2] for i in os.walk(path)], [])) - 1
     id = 1
     for i in range(num):
         url = "{0}/templates/{1}.html".format(os.path.dirname(__file__), id)
-        #url = "blog/templates/1.html"
+        # url = "blog/templates/1.html"
         try:
             soup = BeautifulSoup(open(url, encoding="UTF-8"))
             if len(soup):
@@ -351,12 +350,32 @@ def to_mysql(req):
             error_log.error(e)
         finally:
             id += 1
-    return HttpResponse("<div style='text-align:center;'>{0} - To-Mysql-Done</div>".format(id))
+    return HttpResponse("<div style='text-align:center;'>{0} - TO-MYSQL-DONE</div>".format(id))
 
 
-#生成静态页面
+# 生成摘要
+def to_summary(req):
+    blogs = Blog.objects.all()
+    id = 1
+
+    for blog in blogs:
+        try:
+            blog_id = blog.blog_id
+            content = blog.content
+            summary = get_summary(content, 200)
+            blog_obj = Blog.objects.get(blog_id=blog_id)
+            blog_obj.summary = summary
+            blog_obj.save()
+        except Exception as e:
+            error_log.error(e)
+        finally:
+            id += 1
+    return HttpResponse("<div style='text-align:center;'>{0} - TO-SUMMARY-DONE</div>".format(id))
+
+
+# 生成静态页面
 def static(id, win_content, categorie, title):
-    #print("博客id", id)
+    # print("博客id", id)
     try:
         context = {
             "win_content": win_content,
@@ -365,43 +384,49 @@ def static(id, win_content, categorie, title):
             "post_time": datetime.datetime.today()
         }
         static_html = '{0}/templates/{1}.html'.format(os.path.dirname(__file__), id)
-        #if not os.path.exists(static_html):
+        # if not os.path.exists(static_html):
         if True:
             base_path = '{0}/templates/0.html'.format(os.path.dirname(__file__))
             content = render_to_string(base_path, context)
 
             with open(static_html, 'w', encoding='UTF-8') as static_file:
                 static_file.write(content)
-                #print("静态文件已生成:", id)
+                # print("静态文件已生成:", id)
     except Exception as e:
         error_log.error(e)
 
 
-#测试配置文件
+# 测试配置文件
 def test(req):
     config = yaml.load(
-        open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+        open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
+             encoding='utf8'))
     id = config["win_live_writer"]["id"]
     return HttpResponse(id)
 
 
-#获取文章摘要
-def get_summary(text, count, suffix=u''):
-    summary = re.sub(r'<.*?>', u'', text)
-    summary = summary[0:count]
-    return u'{0}{1}'.format(summary, suffix)
+# 获取文章摘要
+def get_summary(text, count):
+    summary = re.sub(r'<[^/].*?>', u'<p>', text)
+    summary2 = re.sub(r'</.*?>', u'</p>', summary)
+    summary3 = summary2[0:count]
+    summary4 = summary3 + '<p>......</p>'
+
+    return summary4
 
 
-#MetaWeblog 接口API
+# MetaWeblog 接口API
 class Api(object):
-    #博客的信息
+    # 博客的信息
     def getUsersBlogs(self, appkey, username, password):
         self.__isUser(username, password)
 
         struct = {}
         try:
-            config = yaml.load(open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
-                                    encoding='utf8'))
+            config = yaml.load(
+                open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml',
+                     'r',
+                     encoding='utf8'))
             struct['blogid'] = config["win_live_writer"]["blogid"]
             struct['url'] = config["win_live_writer"]["url"]
             struct['blogName'] = config["win_live_writer"]["blogName"]
@@ -412,25 +437,26 @@ class Api(object):
         tmp.append(struct)
         return tmp
 
-    #已发布的博客
+    # 已发布的博客
     def getPost(self, postid, username, password):
         self.__isUser(username, password)
         # print("客户端请求博客ID:", postid)
         config = yaml.load(
-            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
+                 encoding='utf8'))
 
         blog = Blog.objects.get(blog_id=postid)
         struct = {}
         struct['postid'] = postid
         struct['title'] = blog.title
-        #struct['description'] = blog.content
-        struct['description'] = "XXXXXXXXXXXXXXXXXXXX"  #测试
+        # struct['description'] = blog.content
+        struct['description'] = "XXXXXXXXXXXXXXXXXXXX"  # 测试
         struct['link'] = config["win_live_writer"]["url"] + '/blog/' + postid
         # print(blog.content)
         # print(struct)
         return struct
 
-    #最近发布的博客
+    # 最近发布的博客
     def getRecentPosts(self, blogid, username, password, numberOfPosts=5):
         self.__isUser(username, password)
         blogs = Blog.objects.all()
@@ -443,7 +469,7 @@ class Api(object):
             tmp.append(struct)
         return tmp
 
-    #发布新的博客
+    # 发布新的博客
     def newPost(self, blogid, username, password, struct, publish):
         self.__isUser(username, password)
         # print(("blogid:", blogid))
@@ -453,7 +479,7 @@ class Api(object):
         content = struct['description']
         categorie = struct['categories'][0]
 
-        #生成静态HTML文件
+        # 生成静态HTML文件
         id = None
         try:
             path = r'{0}/templates'.format(os.path.dirname(__file__))
@@ -466,7 +492,7 @@ class Api(object):
             blog.title = title
             blog.categorie = categorie
             blog.content = content
-            blog.summary = get_summary(content, 150, u'...')
+            blog.summary = get_summary(content, 200)
             blog.post_time = datetime.datetime.today()
             blog.save()
 
@@ -475,7 +501,7 @@ class Api(object):
 
         return id
 
-    #编辑对应的博客
+    # 编辑对应的博客
     def editPost(self, postid, username, password, struct, publish):
         self.__isUser(username, password)
         # print("postid:", postid)
@@ -491,12 +517,11 @@ class Api(object):
         blog.title = title
         blog.content = content
         blog.categorie = categorie
-        blog.summary = get_summary(content, 150, u'...')
+        blog.summary = get_summary(content, 200)
         blog.save()
         return True
 
-
-    #获取分类目录
+    # 获取分类目录
     def getCategories(self, blogid, username, password):
         self.__isUser(username, password)
 
@@ -525,7 +550,7 @@ class Api(object):
         tmp.append(struct5)
         return tmp
 
-    #上传图片
+    # 上传图片
     def newMediaObject(self, blogid, username, password, data):
         self.__isUser(username, password)
 
@@ -534,12 +559,13 @@ class Api(object):
         bits = data['bits']
 
         (basename, filename) = os.path.split(name)
-        #print(basename, filename)
+        # print(basename, filename)
 
         img_path = os.path.join('/static/image/blog', filename)
 
         config = yaml.load(
-            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r', encoding='utf8'))
+            open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
+                 encoding='utf8'))
 
         path = config["win_live_writer"]["path"]
 
@@ -548,41 +574,43 @@ class Api(object):
         if not os.path.exists(img_file_path):
             os.makedirs(img_file_path)
 
-        if not os.path.isfile(path+img_path):
-            file_i = open(path+img_path, 'wb')
+        if not os.path.isfile(path + img_path):
+            file_i = open(path + img_path, 'wb')
             file_i.write(bits.data)
             file_i.close()
 
         struct = {}
-        struct['url'] = '/' + ('..' +img_path)
+        struct['url'] = '/' + ('..' + img_path)
         # print("struct_url:", struct['url'])
         return struct
 
-    #删除博客
+    # 删除博客
     def deletePost(self, appkey, postid, username, password, publish):
         self.__isUser(username, password)
         return True
 
-    #验证用户名密码
+    # 验证用户名密码
     def __isUser(self, username, password):
         username = None
         password = None
         try:
-            config = yaml.load(open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml', 'r',
-                                    encoding='utf8'))
+            config = yaml.load(
+                open(os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/config.yaml',
+                     'r',
+                     encoding='utf8'))
             username = config["win_live_writer"]["username"]
             password = config["win_live_writer"]["password"]
         except Exception as e:
             error_log.error(e)
         if not (username == username and password == password):
-            #raise xmlrpclib.Fault(401, '用户名或密码错误！')
+            # raise xmlrpclib.Fault(401, '用户名或密码错误！')
             return HttpResponse(401, '用户名或密码错误！')
 
 
-#使用windows live writer发布博客
+# 使用windows live writer发布博客
 @csrf_exempt
 def metaweblog(request):
-    #request_log.info("目标请求:{0}".format(request.body))
+    # request_log.info("目标请求:{0}".format(request.body))
 
     dispatcher = SimpleXMLRPCDispatcher(allow_none=False, encoding="UTF-8")
     dispatcher.register_introspection_functions()
@@ -596,7 +624,7 @@ def metaweblog(request):
     dispatcher.register_function(Api().deletePost, 'metaWeblog.deletePost')
 
     response = dispatcher._marshaled_dispatch(request.body)
-    #request_log.info("响应目标:{0}".format(response))
+    # request_log.info("响应目标:{0}".format(response))
     return HttpResponse(response)
 
     # def wlwmanifest(req):

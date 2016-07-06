@@ -31,42 +31,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="container">
 
-        <div class="navbar-header">
-            <a class="navbar-brand active" href="/index/">首页</a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
- <!--{#                <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}-->
-                <li  id="search_blog"><a href="" id="blog_search">博客搜索</a></li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的博客 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/web/">Web开发</a></li>
-                        <li><a href="/python/">Python</a></li>
-                        <li><a href="/tornado/">Tornado</a></li>
-                        <li><a href="/spider/">网络爬虫</a></li>
-                    </ul>
-                </li>
-                <li  id="chat"><a href="/chat" target="_blank">聊天室</a></li>
-                <li  id="collection"><a href="/collection/" style="font-family: '华文楷体'" target="_blank">影音</a></li>
-                <li id="about"><a href="/about/">关于这里</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="theme-regist" href="javascript:">注册</a></li>
-                <li><a class="theme-login" href="javascript:">登录</a></li>
-            </ul>
-
-        </div>
-    </div>
-    </div>
-</nav>
+{% include 'nav_header.html' %}
 
 <div class="page-header clearfix">
     <h1>

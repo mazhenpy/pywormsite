@@ -20,7 +20,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif;
     color:white;
     font-size:17px;
 }
@@ -41,3 +41,6 @@ a:focus{
     background-color: #204d74;
 }
 
+.form-control{
+    height: 34px !important;
+}

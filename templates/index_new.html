@@ -50,14 +50,14 @@
     <div class="container">
         {% for blog in blogs %}
             <section class="content-wrap">
-                <h3 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h3>
+                <h2 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h2>
 
                 <div class="post-content">
                     {% autoescape off %}
                     {{ blog.summary }}
                     {% endautoescape %}
-                    <span class="post-meta"><time class="data">{{ blog.post_time|date:"Y-m-d" }}</time></span>
-                    <div class="access-count"><span>PV[{{ blog.PV_num }}] &nbsp; IP[{{ blog.IP_num }}]</span></div>
+                    <span class="post-meta"><time class="data">发布于：{{ blog.post_time|date:"Y-m-d" }}</time></span>
+                    <div class="access-count"><span>阅读全文[{{ blog.PV_num }}] &nbsp; IP[{{ blog.IP_num }}]</span></div>
                 </div>
 
             </section>

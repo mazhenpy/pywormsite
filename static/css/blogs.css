@@ -32,14 +32,14 @@
 
 .content-wrap {
     width: 90%;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     border-bottom: 1px solid #eee;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .post-content {
-    padding: 10px 10px 0 10px;
+    padding: 20px 10px 5px 10px;
 }
 
 .post-title {
@@ -64,7 +64,13 @@
 
 .pagination > li > a {
     margin-left: 1px;
+    /*line-height: 32px;*/
+    /*border: 1px solid #dddddd*/
 }
+
+/*.pagination > li > a:hover{*/
+    /*background-color: #286090;*/
+/*}*/
 
 .navbar {
     background-color: #286090;

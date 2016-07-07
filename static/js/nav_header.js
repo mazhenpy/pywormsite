@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-    document.getElementById('post-contents').innerHTML = content;
     $('.theme-regist').click(function(){
         document.getElementById("regist_form").reset();
         $("#regist_error").empty();

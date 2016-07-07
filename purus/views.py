@@ -18,15 +18,16 @@ from blog.views import sina_ip
 from purus.models import Access_amount_mon, Access_amount_day, Access_ip
 from pywormsite import RedisDriver
 
-
 request_log = logging.getLogger('request')
 error_log = logging.getLogger('error')
 access_log = logging.getLogger('access')
+
 
 # 网站首页
 @csrf_exempt
 # @cache_page(60 * 15) #缓存页面15分钟
 def index(req):
+    blogs = []
     # 登录
     if req.is_ajax():
         username = req.POST.get("username", None)
@@ -35,7 +36,15 @@ def index(req):
             response = render_to_response('index_new.html', RequestContext(req))
             response.set_cookie('username', username, 3600)
             return response
+    elif req.method == 'POST':
+        content = req.POST.get("content", None)
+        if content:
+            _blogs = Blog.objects.all().order_by("-post_time")
+            for blog in _blogs:
+                if content.lower() in blog.title.lower():
+                    blogs.append(blog)
 
+    request_log.info('SEARCH - BLOG - {0}'.format(blogs))
     master_13 = RedisDriver().master_13
     master_15 = RedisDriver().master_15
     online_ips = master_15.dbsize()
@@ -51,11 +60,12 @@ def index(req):
     access_yesterday_ip = master_13.hget(yesd, 'IP')
     access_yesterday_pv = master_13.hget(yesd, 'PV')
 
-    blogs = None
+    if not blogs:
+        blogs = Blog.objects.all().order_by("-post_time")
+
     num = None
     page_num_list = []
     try:
-        blogs = Blog.objects.all().order_by("-post_time")
         num = len(blogs)
         paginator = Paginator(blogs, 10)
         try:
@@ -98,7 +108,7 @@ def about(req):
     if req.method == "POST":
         content = req.POST.get('content', '')
         if content != '':
-            key = ip_attribution + '：'+ content
+            key = ip_attribution + '：' + content
             value = time.strftime("%Y-%m-%d %H:%M", time.localtime())
             t = master_13.get(ip_attribution)
             if t is None:
@@ -123,7 +133,8 @@ def about(req):
         messages = sorted(messages.items(), key=lambda d: d[1], reverse=True)
     except Exception as e:
         pass
-    return render_to_response('about_new.html', {"ips_info": ips_info, "messages": messages}, RequestContext(req))
+    return render_to_response('about_new.html', {"ips_info": ips_info, "messages": messages},
+                              RequestContext(req))
 
 
 # ajax验证账号密码
@@ -159,7 +170,7 @@ def ajax_regist(request):
     return HttpResponse(errors, RequestContext(request))
 
 
-#注册账号
+# 注册账号
 @csrf_exempt
 def regist(request):
     if request.is_ajax():
@@ -171,7 +182,7 @@ def regist(request):
         return HttpResponse()
 
 
-#注销账号
+# 注销账号
 def logout(req):
     auth_logout(req)
     response = HttpResponseRedirect('/index/')
@@ -190,19 +201,19 @@ def collection(req):
     return render_to_response('my_collection.html', context_instance=RequestContext(req))
 
 
-#movie
+# movie
 # @cache_page(60 * 15)
 def warcraft(req):
     return render_to_response('warcraft.html', context_instance=RequestContext(req))
 
 
-#music
+# music
 # @cache_page(60 * 15)
 def music(req):
     return render_to_response('music_rain.html', context_instance=RequestContext(req))
 
 
-#判断用户名是否在数据库中
+# 判断用户名是否在数据库中
 def login_validate(request, username, password):
     req_value = False
     user = authenticate(username=username, password=password)
@@ -213,13 +224,13 @@ def login_validate(request, username, password):
     return req_value
 
 
-#将月访问量同步数据库
+# 将月访问量同步数据库
 def access_count_mon(req):
     master_13 = RedisDriver().master_13
     mon = time.strftime('%Y-%m', time.localtime(time.time()))
     yesterday = str(datetime.date.today() - datetime.timedelta(days=1))
     yestermon = yesterday[:7]
-    #同步上月
+    # 同步上月
     yesm = 'Month:{0}'.format(yestermon)
     access_ip = master_13.hget(yesm, 'IP')
     access_pv = master_13.hget(yesm, 'PV')
@@ -234,12 +245,12 @@ def access_count_mon(req):
     return HttpResponse("上月访问量-IP:{0}-PV:{1}".format(access_ip, access_pv))
 
 
-#将日访问量同步数据库
+# 将日访问量同步数据库
 def access_count_day(req):
     master_13 = RedisDriver().master_13
     day = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     yesterday = str(datetime.date.today() - datetime.timedelta(days=1))
-    #同步昨日的
+    # 同步昨日的
     yesd = 'Day:{0}'.format(yesterday)
     access_ip = master_13.hget(yesd, 'IP')
     access_pv = master_13.hget(yesd, 'PV')
@@ -254,7 +265,7 @@ def access_count_day(req):
     return HttpResponse("{0}访问量-IP:{1}-PV:{2}".format(yesterday, access_ip, access_pv))
 
 
-#将IP归属地同步数据库
+# 将IP归属地同步数据库
 def ips_to_sql(req):
     master_13 = RedisDriver().master_13
     num = master_13.llen("all_ips_list")
@@ -270,7 +281,7 @@ def ips_to_sql(req):
     return HttpResponse("{0}-IP-TO_MYSQL".format(num))
 
 
-#当前在线人数
+# 当前在线人数
 def online_ips(req):
     master_15 = RedisDriver().master_15
     online_ips = master_15.dbsize()
@@ -278,7 +289,7 @@ def online_ips(req):
     return HttpResponse(online_ips)
 
 
-#动态页面
+# 动态页面
 @csrf_exempt
 def jsimg(req):
     return render_to_response('js_img.html', RequestContext(req))
@@ -288,7 +299,3 @@ def jsimg(req):
 def ajax_jsimg(req):
     rtxt = '<img src="http://139.196.43.6/static/image/portfolio01.jpg">'
     return HttpResponse(rtxt)
-
-
-
-

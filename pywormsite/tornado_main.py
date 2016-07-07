@@ -64,7 +64,7 @@ class Application(tornado.web.Application):
         handlers = [
             ('/chat', ChatHandler),
             ('/websocket', ChatSocketHandler),
-            ('/search_blog', SearchHandler),  # 博客搜索
+            # ('/search_blog', SearchHandler),  # 博客搜索
             ('/weixin', WeixintranslateHandler),  # 微信翻译
 
             ('.*', tornado.web.FallbackHandler, dict(fallback=wsgi_app)),

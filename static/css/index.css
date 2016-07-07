@@ -1,7 +1,7 @@
 ﻿/*@font-face {*/
     /*font-weight: normal;*/
     /*font-style: normal;*/
-    /*font-family: '华文行楷';*/
+    /*font-family: 'xingkai';*/
     /*src: url('/static/css/typeface/STXINGKA.TTF');*/
 /*}*/
 
@@ -28,15 +28,15 @@ a:focus{
     margin-right: 0px;
     /*width:1250px;*/
 }
-.page-header h1{
-    color: black;
-    cursor: pointer;
-    display: inline-block;
-    /*font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;*/
-    font-family: "STXingkai40e75d13763a7","Microsoft Yahei",arial,sans-serif !important;
-    font-weight: 100;
-    padding: 30px 0 20px;
-}
+/*.page-header h1{*/
+    /*color: black;*/
+    /*cursor: pointer;*/
+    /*display: inline-block;*/
+    /*font-family: "xingkai";*/
+    /*!*font-family: "STXingkai40e75d13763a7", "xingkai", "华文行楷","Microsoft Yahei",arial,sans-serif !important;*!*/
+    /*font-weight: 100;*/
+    /*padding: 30px 0 20px;*/
+/*}*/
 
 .yusi-mono {
     font-size: 54px;
@@ -73,16 +73,16 @@ body {
     /*background-color:#E8E8E8;*/
 }
 
-.dropdown-menu li a{
-    /*font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;*/
-    font-family: "STXingkai40e75d13763a7","Microsoft Yahei",arial,sans-serif;
-    color:#080808;
-    font-weight: 500;
-    font-size:17px;
-}
+/*.dropdown-menu li a{*/
+    /*!*font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;*!*/
+    /*font-family: "STXingkai40e75d13763a7","Microsoft Yahei",arial,sans-serif;*/
+    /*color:#080808;*/
+    /*font-weight: 500;*/
+    /*font-size:17px;*/
+/*}*/
 .framework h2{
     /*font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;*/
-    font-family: "STXingkai40e75d13763a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STXingkai40e75d13763a7","xingkai", "华文行楷","Microsoft Yahei",arial,sans-serif !important;
     line-height:192px;
     font-weight: 100;
     font-size:100px;
@@ -132,7 +132,7 @@ body {
 .thumbnail h3{
     font-weight: 700;
     /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
-    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","华文楷体","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail .caption a{
     display:block ;
@@ -144,7 +144,7 @@ body {
     outline: medium none;
     font-weight: 700;
     /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
-    font-family: "STKaiti40e7b646563a7","Microsoft Yahei",arial,sans-serif !important;
+    font-family: "STKaiti40e7b646563a7","华文楷体","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail p{
     color: #888;
@@ -156,19 +156,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
 }
-.main-footer {
-    padding-bottom: 14px  !important;
-    /*padding: 20px 14px;*/
-    /*margin-top: 150px  !important;*/
-    /*height: 80px;*/
-    text-align: center  !important;
-    font-size: 14px  !important;
-    /*font-family: '华文楷体';*/
-    font-weight: 100  !important;
-    /*background: #1B1B1B none repeat scroll 0% 0%;*/
-    /*background-color: white;*/
-    background-color: #F4F4F4  !important;
-}
+
 .main-footer a{
     outline: medium none !important;
     color: #888 !important;
@@ -214,7 +202,7 @@ body {
 
 .page {
     width: 90% !important;
-    max-width: 900px !important;
+    max-width: 950px !important;
     margin: 0 auto !important;
 }
 

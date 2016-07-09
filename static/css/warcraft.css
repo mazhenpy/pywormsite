@@ -2,16 +2,9 @@
 /*background-color: #2f3238;*/
 /*color:white;*/
 /*}*/
-/*@font-face {*/
-/*font-weight: normal;*/
-/*font-style: normal;*/
-/*font-family: '华文楷体';*/
-/*src: url('/static/css/typeface/ST华文楷体.TTF');*/
-/*}*/
 
 body {
     background: url(../image/wow-bg2.jpg) no-repeat center top;
-
 }
 
 a:focus {

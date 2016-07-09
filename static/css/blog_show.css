@@ -2,13 +2,6 @@ html, body{
 height:100%;
 }
 
-/*@font-face {*/
-    /*font-weight: normal;*/
-    /*font-style: normal;*/
-    /*font-family: '华文楷体';*/
-    /*src: url('/static/css/typeface/ST华文楷体.TTF');*/
-/*}*/
-
 #full_screen {
     min-height:100%; /*使内容高度和body一样*/
     margin-bottom:-242px;/*向上缩减80像素，不至于footer超出屏幕可视范围*/

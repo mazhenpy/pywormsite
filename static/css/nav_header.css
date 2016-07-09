@@ -8,13 +8,6 @@ a:focus{
     margin-bottom: 0;
 }
 
-/*@font-face {*/
-    /*font-weight: normal;*/
-    /*font-style: normal;*/
-    /*font-family: '华文楷体';*/
-    /*src: url('/static/css/typeface/ST华文楷体.TTF');*/
-/*}*/
-
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
     background-color: #204d74;
 }

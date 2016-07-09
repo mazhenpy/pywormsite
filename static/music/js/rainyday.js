@@ -80,7 +80,7 @@ RainyDay.prototype.prepareGlass = function(opacity) {
 	this.glass.style.position = "absolute";
 	this.glass.style.top = this.canvas.offsetTop;
 	this.glass.style.left = this.canvas.offsetLeft;
-	this.glass.style.zIndex = this.canvas.style.zIndex + 1000;
+	this.glass.style.zIndex = this.canvas.style.zIndex + 2000;
 	this.canvas.parentNode.appendChild(this.glass);
 	this.context = this.glass.getContext('2d');
 	this.glass.style.opacity = opacity;

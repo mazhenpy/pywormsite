@@ -1,40 +1,36 @@
-{#<!DOCTYPE html>#}
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
-    <title>网站收藏 | Pyworm的博客</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}interface/css/collection_set.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}css/my_collection.css" type="text/css"/>
+    <title>影音 | Pyworm的博客</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}interface/css/collection_set.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/my_collection.css" type="text/css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+{#    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>#}
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        // For Demo purposes only (show hover effect on mobile devices)
-        [].slice.call( document.querySelectorAll('a[href="#"') ).forEach( function(el) {
-            el.addEventListener( 'click', function(ev) { ev.preventDefault(); } );
-        } );
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#mycarousel').carousel({
                 interval: false
             });
-
             $("#myCarousel").carousel('pause');
         });
     </script>
 </head>
 <body>
+
 <div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active">
-        <li data-target="#myCarousel" data-slide-to="1">
-        <li data-target="#myCarousel" data-slide-to="2">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
+    <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item active">
             <div class="grid" id="grid_novel">
@@ -46,7 +42,6 @@
                 </figure>
             </div>
         </div>
-
         <div class="item">
             <div class="grid">
                 <figure class="effect-oscar">
@@ -68,8 +63,16 @@
             </div>
         </div>
     </div>
-    <a class="lr left" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="lr right" href="#myCarousel" data-slide="next">›</a>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="carousel-control left" href="#myCarousel"
+       data-slide="prev">
+        <div class="lr">&lsaquo;</div>
+    </a>
+    <a class="carousel-control right" href="#myCarousel"
+       data-slide="next">
+        <div class="lr">&rsaquo;</div>
+    </a>
 </div>
+
 </body>
 </html>

@@ -1,48 +1,74 @@
-.lr{
-    position:absolute;
-    top:40%;
-    display: block;
-    font-size: 80px !important;
+body {
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-.left{
-    float:left;
-    left:5%
-}
-.right{
-    float:right;
-    right:5%;
+.carousel-indicators li {
+    /*margin-left: 5px;*/
+    border: 2px solid #0f0 !important;
+    height: 18px;
+    width: 18px;
 }
 
-#myCarousel{
+.carousel-indicators .active {
+    margin: 1px;
+    /*margin-left: 5px !important;*/
+    border: 2px solid #0f0 !important;
+    background-color: #0f0 !important;
+    height: 18px;
+    width: 18px;
+}
+
+#myCarousel {
     height: 100%;
     text-align: center;
     margin: 0 auto;
 }
 
-.carousel-inner{
-    position:absolute;
-    top:38%;
+.carousel-inner {
+    position: absolute;
+    height: 100%;
+}
+
+.carousel-control {
+    display: block;
+    text-align: center;
+    opacity: 1;
+}
+
+.lr {
+    height: 100px;
+    line-height: 100px;
+    font-size: 100px;
     color:#0f0;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.carousel-indicators li{
-    margin-left: 5px;
-    border: 2px solid #0f0 !important;
-    height:18px;
-    width: 18px;
+.item {
+    height: 100px;
+    margin: auto;
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
-.carousel-indicators .active{
-    margin: 1px;
-    margin-left: 5px !important;
-    border: 2px solid #0f0 !important;
-    background-color: #0f0 !important;
-    height:18px;
-    width: 18px;
+.grid{
+    height: 100px;
 }
 
-h1{
-    text-align: center;;
+figure{
+    height: 100px;
 }
 
 a{
@@ -56,10 +82,5 @@ a:hover{
 a:focus{
     color: #0f0;
     text-decoration:none;
+    outline:0;
 }
-
-body{
-    background-color: black;
-}
-
-a:focus {  outline:none;   -moz-outline:none;}

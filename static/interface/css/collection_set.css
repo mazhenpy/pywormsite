@@ -62,7 +62,7 @@ figure.effect-oscar h2 {
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 	-webkit-transform: translate3d(0,100%,0);
-	transform: translate3d(0,100%,0);
+	/*transform: translate3d(0,100%,0);*/
 }
 
 figure.effect-oscar figcaption::before,
@@ -86,9 +86,3 @@ figure.effect-oscar:hover p {
 	transform: scale(1);
 }
 
-.grid figure {
-	margin: 0 auto;
-	width: 200px;
-	height:auto;
-	cursor: pointer;
-}

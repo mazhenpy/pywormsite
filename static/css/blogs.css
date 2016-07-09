@@ -16,7 +16,7 @@
     color: black;
     cursor: pointer;
     display: inline-block;
-    font-family: "STXingkai40e75d13763a7", "华文行楷", "Microsoft Yahei", arial, sans-serif !important;
+    font-family: "华文行楷", "华文楷体", "Microsoft Yahei", arial, sans-serif !important;
     font-weight: 100;
     padding: 30px 0 20px;
 }
@@ -42,9 +42,9 @@
     padding: 20px 10px 5px 10px;
 }
 
-.post-title {
-    font-family: "华文楷体", "Microsoft Yahei", arial, sans-serif !important;
-}
+/*.post-title {*/
+    /*font-family: "华文楷体", "Microsoft Yahei", arial, sans-serif !important;*/
+/*}*/
 
 .pagination {
     display: inline-block;
@@ -97,4 +97,19 @@
     width: 90% !important;
     max-width: 950px !important;
     margin: 0 auto !important;
+}
+
+.main-footer a{
+    outline: medium none !important;
+    color: #888 !important;
+    text-decoration: none !important;
+    /*line-height: 80px;*/
+    margin:0 auto !important;
+}
+iframe{
+    display: none;
+}
+
+.dropdown-menu{
+    font-size: 16px !important;
 }

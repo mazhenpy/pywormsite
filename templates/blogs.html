@@ -7,36 +7,26 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/pagination.js"></script>
     <title>{{ categorie }} | Pyworm的博客</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/blogs.css" type="text/css"/>
     <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var host = window.location.host;
-            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
-        });
-    </script>
-    <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
-    <script type="text/javascript">
-        $youziku.load(".post-title", "5ee3da0f20ff4b47a93f8e31781c3f51", "ST华文楷体");
-        $youziku.load(".page-header h1", "ed0ce9921ad34b4091464de7355aabf3", "ST华文行楷");
-        $youziku.draw();
-    </script>
+
 </head>
 <body>
 {% include 'nav_header.html' %}
 
 <div class="container">
-    <div class="page-header">
+    <div class="page-header css40e75d13763a7">
         <h1>{{ categorie }}</h1>
     </div>
 
     {% for blog in blogs %}
     <section class="content-wrap">
-        <h2 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h2>
+        <h2 class="post-title"><a class="post-title-a" href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h2>
 
         <div class="post-content">
             {% autoescape off %}
@@ -54,9 +44,15 @@
 </div>
 
     <div class="main-footer">
-        <span>若非特别声明，文章均为本人的个人笔记，转载请注明出处。文章如有侵权内容，请联系我，我会及时删除。 </span><br/>
-        <span>Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</span>
+        <div class="container">
+            <a>若非特别声明，文章均为本人的个人笔记，转载请注明出处。文章如有侵权内容，请联系我，我会及时删除。<br/>
+            Copyright ©2015-2016 All rights reserved. Powered by Pyworm.</a>
+        </div>
     </div>
 
+<script type="text/javascript">
+    $youziku.load(".post-title-a", "4f7d3fba2aad4f929293144c7b6d1fcb", "STKaitiSc");
+    $youziku.draw();
+</script>
 </body>
 </html>

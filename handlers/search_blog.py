@@ -32,7 +32,8 @@ class SearchHandler(tornado.web.RequestHandler):
             url_list = data["url_list"]
             title_list = data["title_list"]
 
-        self.render('search.html', url_list=url_list, title_list=title_list)
+        # self.render('search.html', url_list=url_list, title_list=title_list)
+        self.render('youziku.html', url_list=url_list, title_list=title_list)
 
     @tornado.gen.coroutine
     def post(self):

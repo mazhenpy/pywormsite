@@ -1,6 +1,6 @@
 <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/146/5766bb87f629d80d7c685ff8.css' rel='stylesheet' type='text/css' />
 <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/422/5766bcf4f629d80d7c685ff9.css' rel='stylesheet' type='text/css' />
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse css40e7b646563a7">
     <div class="container-fluid">
         <div class="container">
 
@@ -23,14 +23,15 @@
                     </ul>
                 </li>
                 <li  id="chat"><a href="/chat" target="_blank">聊天室</a></li>
-                <li  id="collection"><a href="/collection/" style="font-family: '华文楷体'" target="_blank">影音</a></li>
-                <li id="about"><a href="/about/">关于这里</a></li>
+                <li  id="collection"><a href="/collection/" target="_blank">影音</a></li>
+                <li id="about"><a href="/about/" target="_blank">关于这里</a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search" method='post'>
-                <div class="form-group">
-                  <input type="text" class="form-control"  id="search_form" placeholder="Search" name="content">
-                </div>
-             </form>
+{#            <form class="navbar-form navbar-right" role="search" method='post'>#}
+{#                {% csrf_token %}#}
+{#                <div class="form-group">#}
+{#                  <input type="text" class="form-control"  id="search_form" placeholder="Search" name="content">#}
+{#                </div>#}
+{#             </form>#}
         </div>
     </div>
     </div>

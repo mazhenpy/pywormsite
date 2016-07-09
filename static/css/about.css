@@ -65,7 +65,7 @@ h2{
 
 
 .site p{
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
+    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;*/
     font-size: 20px;
 }
 
@@ -111,7 +111,7 @@ h2{
     /*padding: 20px 14px;*/
     /*text-align: center;*/
     font-size: 17px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
+    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif;*/
     font-weight: 200;
     padding-left: 2em;
     padding-right: 2em;
@@ -300,4 +300,8 @@ input,button,select,textarea{outline:none}
 .main-footer a:hover{
     text-decoration:none;
     color:#337ab7;
+}
+
+iframe{
+    display: none;
 }

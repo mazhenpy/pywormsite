@@ -27,10 +27,18 @@
 }
 
 .carousel-indicators li{
-    border: 1px solid #0f0 !important;
+    margin-left: 5px;
+    border: 2px solid #0f0 !important;
+    height:18px;
+    width: 18px;
 }
 .carousel-indicators .active{
+    margin: 1px;
+    margin-left: 5px !important;
+    border: 2px solid #0f0 !important;
     background-color: #0f0 !important;
+    height:18px;
+    width: 18px;
 }
 
 h1{

@@ -5,23 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/nav_header.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/tc_regist.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/tc_login.js"></script>
-    <script type="text/javascript" src="{{STATIC_URL}}js/pagination.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/nav_header.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tc_regist.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tc_login.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pagination.js"></script>
     <title>博客首页 | Pyworm的博客</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}css/index.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}css/blogs.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}css/login_window.css" type="text/css"/>
-    <link rel="stylesheet" href="{{STATIC_URL}}css/nav_header.css" type="text/css"/>
-    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/146/5766bb87f629d80d7c685ff8.css' rel='stylesheet' type='text/css' />
-    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/422/5766bcf4f629d80d7c685ff9.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blogs.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/login_window.css" type="text/css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/nav_header.css" type="text/css"/>
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/146/5766bb87f629d80d7c685ff8.css'
+          rel='stylesheet' type='text/css'/>
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/422/5766bcf4f629d80d7c685ff9.css'
+          rel='stylesheet' type='text/css'/>
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             var host = window.location.host;
             document.getElementById('chat_link').href = "http://" + host + "/chat";
             document.getElementById('link_chat').href = "http://" + host + "/chat";
@@ -33,15 +37,53 @@
 
 <body>
 
+<nav class="navbar navbar-inverse css40e7b646563a7">
+    <div class="container-fluid">
+        <div class="container">
 
-{% include 'nav_header.html' %}
+            <div class="navbar-header">
+                <a class="navbar-brand active" href="/index/">首页</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {#              <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}
+                    {#                <li  id="search_blog"><a href="" id="blog_search">博客搜索</a></li>#}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">我的博客 <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/web/">Web开发</a></li>
+                            <li><a href="/python/">Python</a></li>
+                            <li><a href="/tornado/">Tornado</a></li>
+                            <li><a href="/spider/">网络爬虫</a></li>
+                        </ul>
+                    </li>
+                    <li id="chat"><a href="/chat" target="_blank">聊天室</a></li>
+                    <li id="collection"><a href="/collection/" target="_blank">影音</a></li>
+                    <li id="about"><a href="/about/" target="_blank">关于这里</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search" method='post'>
+                    {% csrf_token %}
+                    <div class="form-group" style="font-family: 'Microsoft Yahei', arial, sans-serif">
+                        <input type="text" class="form-control" id="search_form"
+                               placeholder="Search" name="content">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
 
 <div class="page-header clearfix">
     <h1>
-        <span class="yusi-mono">Pyworm的博客</span>
-{#            <span class="yusi-bloger">#}
-{#                life is shot,i use python#}
-{#        </span>#}
+        <span class="yusi-mono css40e75d13763a7"><a href="/index/"
+                                                    style="color: black; text-decoration: none">Pyworm的博客</a></span>
+        {#            <span class="yusi-bloger">#}
+        {#                life is shot,i use python#}
+        {#        </span>#}
     </h1>
 </div>
 
@@ -50,14 +92,17 @@
     <div class="container">
         {% for blog in blogs %}
             <section class="content-wrap">
-                <h2 class="post-title"><a href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h2>
+                <h2 class="post-title"><a class="post-title-a"
+                                          href="/blog/{{ blog.blog_id }}/">{{ blog.title }}</a></h2>
 
                 <div class="post-content">
                     {% autoescape off %}
-                    {{ blog.summary }}
+                        {{ blog.summary }}
                     {% endautoescape %}
-                    <span class="post-meta"><time class="data">发布于：{{ blog.post_time|date:"Y-m-d" }}</time></span>
-                    <div class="access-count"><span>阅读全文[{{ blog.PV_num }}] &nbsp; IP[{{ blog.IP_num }}]</span></div>
+                    <span class="post-meta"><time
+                            class="data">发布于：{{ blog.post_time|date:"Y-m-d" }}</time></span>
+                    <div class="access-count">
+                        <span>阅读全文[{{ blog.PV_num }}] &nbsp; IP[{{ blog.IP_num }}]</span></div>
                 </div>
 
             </section>
@@ -68,18 +113,22 @@
 </div>
 
 
-
-
 <div class="clearfix"></div>
 <footer class="main-footer">
     <div class="container">
         <a>Pyworm 版权所有 | 基于Python开发 | Copyright © 2015-2016 | 托管于 阿里云主机&七牛云存储 | 苏ICP备16008519号
             <br>
-            网站统计 | 今日PV[{{ access_day_pv }}] | 今日IP[{{ access_day_ip }}] | 昨日PV[{{ access_yesterday_pv }}] | 昨日IP[{{ access_yesterday_ip }}] | 当前在线[{{ online_ips }}]</a>
+            网站统计 | 今日PV[{{ access_day_pv }}] | 今日IP[{{ access_day_ip }}] |
+            昨日PV[{{ access_yesterday_pv }}] | 昨日IP[{{ access_yesterday_ip }}] |
+            当前在线[{{ online_ips }}]</a>
     </div>
 </footer>
 
 {% include 'login_window.html' %}
+<script type="text/javascript">
+    $youziku.load(".post-title-a", "4f7d3fba2aad4f929293144c7b6d1fcb", "STKaitiSc");
+    $youziku.draw();
+</script>
 </body>
 </html>
 

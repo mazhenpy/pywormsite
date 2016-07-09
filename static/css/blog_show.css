@@ -84,5 +84,14 @@ hr{
     left:-50px;
 }
 
-
+.main-footer a{
+    outline: medium none !important;
+    color: #888 !important;
+    text-decoration: none !important;
+    /*line-height: 80px;*/
+    margin:0 auto !important;
+}
+iframe{
+    display: none;
+}
 

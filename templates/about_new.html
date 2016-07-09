@@ -7,6 +7,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/msg_window.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/about.js"></script>
     <title>关于这里 | Pyworm的博客</title>
@@ -22,36 +24,7 @@
     </script>
 </head>
 <body>
-{#<nav class="navbar navbar-inverse">#}
-{#    <div class="container-fluid">#}
-{#        <div class="container">#}
-{##}
-{#            <div class="navbar-header">#}
-{#                <a class="navbar-brand active" href="/index/">首页</a>#}
-{#            </div>#}
-{##}
-{#            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-{#                <ul class="nav navbar-nav">#}
-{#                    <!--{#                <li  id="index"><a href="/index/" target='_blank'>首页</a></li>#}-->#}
-{#                    <li id="search_blog"><a href="" id="blog_search">博客搜索</a></li>#}
-{##}
-{#                    <li class="dropdown">#}
-{#                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
-{#                           aria-expanded="false">我的博客 <span class="caret"></span></a>#}
-{#                        <ul class="dropdown-menu">#}
-{#                            <li><a href="/web/">Web开发</a></li>#}
-{#                            <li><a href="/python/">Python</a></li>#}
-{#                            <li><a href="/tornado/">Tornado</a></li>#}
-{#                            <li><a href="/spider/">网络爬虫</a></li>#}
-{#                        </ul>#}
-{#                    </li>#}
-{#                    <li id="about"><a href="/about/">关于这里</a></li>#}
-{#                </ul>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</nav>#}
+
 
 <div class="container">
     <h1>Welcome to my website</h1>
@@ -96,5 +69,10 @@
 
 </div>
 {% include 'msg_window.html' %}
+<script type="text/javascript">
+    $youziku.load(".site", "4f7d3fba2aad4f929293144c7b6d1fcb", "STKaitiSc");
+    $youziku.load(".main-footer", "4f7d3fba2aad4f929293144c7b6d1fcb", "STKaitiSc");
+    $youziku.draw();
+</script>
 </body>
 </html>

@@ -68,7 +68,6 @@ body {
     /*font-size:17px;*/
 /*}*/
 .framework h2{
-    /*font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;*/
     font-family: "华文行楷","Microsoft Yahei",arial,sans-serif !important;
     line-height:192px;
     font-weight: 100;
@@ -118,7 +117,6 @@ body {
 }
 .thumbnail h3{
     font-weight: 700;
-    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail .caption a{
@@ -130,7 +128,6 @@ body {
     text-decoration: none;
     outline: medium none;
     font-weight: 700;
-    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
     font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
 }
 .thumbnail p{

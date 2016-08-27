@@ -75,6 +75,9 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
     cache = []
     cache_size = 200
 
+    def check_origin(self, origin):
+        return True
+
     def __init__(self, application, request):
         super(ChatSocketHandler, self).__init__(application, request)
         self.ip = self.request.remote_ip
@@ -84,7 +87,6 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
         return True
 
     def open(self):
-        # print("new client opened")
         ChatSocketHandler.waiters.add(self)
 
     def on_close(self):

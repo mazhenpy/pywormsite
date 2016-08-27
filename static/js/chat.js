@@ -4,7 +4,8 @@ var socket;
     }
     // Javascript Websocket Client
     if (window.WebSocket) {
-        var host = window.location.host;
+        // var host = window.location.host;
+        var host = 'www.pyworm.com:10022';
         socket = new WebSocket("ws://"+host+"/websocket");
         socket.onmessage = function (event) {
             if(event.data){

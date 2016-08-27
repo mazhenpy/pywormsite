@@ -56,14 +56,15 @@ blockquote{
 
 
 .main-footer {
-    margin-top: 50px;
-    height:75px;
+    margin-top: 57px;
     padding: 14px 14px;
     text-align: center;
-    font-size: 17px;
-    font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;
-    font-weight: 200;
+    font-size: 14px;
+    /*font-family: "华文楷体","Microsoft Yahei",arial,sans-serif !important;*/
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 100;
     background-color: #F4F4F4;
+    color: #888 !important;
 }
 hr{
     margin: 0;

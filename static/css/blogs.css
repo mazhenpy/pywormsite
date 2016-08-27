@@ -29,9 +29,9 @@
     padding: 20px 10px 5px 10px;
 }
 
-/*.post-title {*/
-    /*font-family: "华文楷体", "Microsoft Yahei", arial, sans-serif !important;*/
-/*}*/
+.post-title {
+    font-family: "华文楷体", "Microsoft Yahei", arial, sans-serif !important;
+}
 
 .pagination {
     display: inline-block;

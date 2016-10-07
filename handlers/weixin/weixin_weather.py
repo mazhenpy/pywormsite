@@ -1,26 +1,30 @@
+import datetime
+import json
+import xml.etree.ElementTree as ET
 from http.cookiejar import CookieJar
 from urllib import request
 from urllib.parse import urlencode
 from urllib.request import HTTPCookieProcessor
-import json
-import xml.etree.ElementTree as ET
 
 from tornado.httpclient import HTTPClient, HTTPRequest
 
 
 def get_weather():
-    url = "http://php.weather.sina.com.cn/xml.php?city=%C4%CF%BE%A9&password=DJOYnieT8234jlsK&day=1"
+    url = "http://api.map.baidu.com/telematics/v3/weather?location=%E5%8D%97%E4%BA%AC&output=XML&ak=FK9mkfdQsloEngodbFl4FeY3"
     http_client = HTTPClient()
     response = http_client.fetch(url, method="GET", request_timeout=120)
     response_body = response.body.decode()
     root = ET.fromstring(response_body)
-    city = root.find('Weather/city').text
-    status1 = root.find('Weather/status1').text
-    status2 = root.find('Weather/status2').text
-    temperature1 = root.find('Weather/temperature1').text
-    temperature2 = root.find('Weather/temperature2').text
-    savedate_weather = root.find('Weather/savedate_weather').text
-    weather = savedate_weather + ' ' + city + ' ' + status1 + ' ' + status2 + ' ' + temperature2 + '-' + temperature1 + '°'
+    date = root.findall('results/weather_data/date')[1].text
+    weather = root.findall('results/weather_data/weather')[1].text
+    wind = root.findall('results/weather_data/wind')[1].text
+    temperature = root.findall('results/weather_data/temperature')[1].text
+    pm = root.find('results/pm25').text
+
+    today = datetime.date.today()
+    tomorrow = today + datetime.timedelta(days=1)
+    weather = str(
+        tomorrow) + ' ' + date + ' ' + '南京' + ' ' + temperature + ' ' + weather + ' ' + wind + ' ' + 'PM2.5:' + pm
     print(weather)
     http_client.close()
     return weather
@@ -80,7 +84,8 @@ for c in cookie:
         cookie_dict[c.name] = c.value
 
 weixin_cookie = 'bizuin={bizuin};data_bizuin={data_bizuin};data_ticket={data_ticket};slave_sid={slave_sid};slave_user={slave_user}'.format(
-    bizuin=cookie_dict["bizuin"], data_bizuin=cookie_dict["data_bizuin"], data_ticket=cookie_dict["data_ticket"],
+    bizuin=cookie_dict["bizuin"], data_bizuin=cookie_dict["data_bizuin"],
+    data_ticket=cookie_dict["data_ticket"],
     slave_sid=cookie_dict["slave_sid"], slave_user=cookie_dict["slave_user"], )
 
 # 保存消息

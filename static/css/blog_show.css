@@ -27,6 +27,7 @@ h2{
     font-family: "Microsoft Yahei",arial,sans-serif;
     font-size: 11px;
     margin-right: 2.75%;
+    display: none !important;
 }
 #comment{
     height:40px;

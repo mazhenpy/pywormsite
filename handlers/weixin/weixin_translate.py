@@ -4,12 +4,15 @@ import time
 import json
 import xml.etree.ElementTree as ET
 
+import requests
 import tornado.httpserver
 import tornado.options
 import tornado.web
 import tornado.gen
 import tornado.httpclient
 from tornado.httpclient import HTTPClient
+
+from pywormsite import config
 
 
 def youdao(word):
@@ -30,13 +33,17 @@ def youdao(word):
             if 'phonetic' in fanyi['basic']:
                 # trans = u'%s:\n%s\n%s\n网络释义：\n%s'%(fanyi['query'],''.join(fanyi['translation']),' '.join(fanyi['basic']['explains']),''.join(fanyi['web'][0]['value']))
                 trans = u'%s:\n%s\n%s\n%s\n%s\n%s%s\n%s' % (
-                    fanyi['query'], ''.join('-' * 3 + u'翻译' + '-' * 3), ''.join(fanyi['translation']),
-                    ''.join('-' * 3 + u'词典' + '-' * 3), ''.join(fanyi['basic']['phonetic']), ''.join(array1),
+                    fanyi['query'], ''.join('-' * 3 + u'翻译' + '-' * 3),
+                    ''.join(fanyi['translation']),
+                    ''.join('-' * 3 + u'词典' + '-' * 3), ''.join(fanyi['basic']['phonetic']),
+                    ''.join(array1),
                     ''.join('-' * 3 + u'网络释义' + '-' * 3), ''.join(array2))
             else:
                 trans = u'%s:\n%s\n%s\n%s\n%s%s\n%s' % (
-                    fanyi['query'], ''.join('-' * 3 + u'翻译' + '-' * 3), ''.join(fanyi['translation']),
-                    ''.join('-' * 3 + u'词典' + '-' * 3), ''.join(array1), ''.join('-' * 3 + u'网络释义' + '-' * 3),
+                    fanyi['query'], ''.join('-' * 3 + u'翻译' + '-' * 3),
+                    ''.join(fanyi['translation']),
+                    ''.join('-' * 3 + u'词典' + '-' * 3), ''.join(array1),
+                    ''.join('-' * 3 + u'网络释义' + '-' * 3),
                     ''.join(array2))
 
             return trans
@@ -52,7 +59,43 @@ def youdao(word):
     else:
         return u'对不起，您输入的单词%s无法翻译,请检查拼写' % word
 
-#sha1加密
+
+class Daiwan(object):
+    """docstring for Daiwan."""
+
+    BASE_URL = 'http://lolapi.games-cube.com'
+    USER_API_URL = '/UserArea'
+    USER_HOT_INFO_URL = '/UserHotInfo'
+    BATTLT_SUMMARY_INFO = '/BattleSummaryInfo'
+    CHAMPION = '/champion'
+
+    def __init__(self):
+        self.config = config()
+
+        self.token = self.config["LOL"]["token"]
+        self.headers = {'DAIWAN-API-TOKEN': self.token}
+
+    def get_user_info(self, username):
+        return requests.get(self.BASE_URL + self.USER_API_URL + '?keyword=' + username,
+                            headers=self.headers).json()
+
+    def get_user_hot_info(self, qquin, vaid):
+        return requests.get(
+            self.BASE_URL + self.USER_HOT_INFO_URL + '?qquin=' + qquin + '&vaid=' + vaid,
+            headers=self.headers).json()
+
+    def get_battle_summary_info(self, qquin, vaid):
+        return requests.get(
+            self.BASE_URL + self.BATTLT_SUMMARY_INFO + '?qquin=' + qquin + '&vaid=' + vaid,
+            headers=self.headers).json()
+
+    def get_champion(self):
+        return requests.get(
+            self.BASE_URL + self.CHAMPION,
+            headers=self.headers).json()
+
+
+# sha1加密
 def to_sha1(part):
     sha1 = hashlib.sha1()
     sha1.update(part.encode())
@@ -60,8 +103,7 @@ def to_sha1(part):
 
 
 class WeixintranslateHandler(tornado.web.RequestHandler):
-
-    #验证开发账号
+    # 验证开发账号
     @tornado.gen.coroutine
     def get(self):
         signature = self.get_argument("signature")
@@ -76,7 +118,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if hashcode == signature:
             self.finish(echostr)
 
-    #对外接口
+    # 对外接口
     @tornado.gen.coroutine
     def post(self):
         user = "o-r9yuIDvsCbLZ-dF-VpU3fVSxcs"
@@ -90,20 +132,52 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         CreateTime = int(time.time())
         if type(content).__name__ == "unicode":
             content = content.encode('UTF-8')
-        Content = youdao(content)
+        if content == '杀的你喊妈':
+            demo = Daiwan()
+            word = demo.get_user_info(content)
 
-        data = '''
-            <xml>
-                <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
-                <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
-                <CreateTime>{CreateTime}</CreateTime>
-                <MsgType><![CDATA[text]]></MsgType>
-                <Content><![CDATA[{Content}]]></Content>
-            </xml>
-        '''
+            from PIL import Image, ImageDraw, ImageFont
 
-        #FromUserName, ToUserName需要互换
-        resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName, CreateTime=CreateTime, Content=Content)
-        self.finish(resp)
+            font = ImageFont.truetype('simsun.ttc', 24)
+            # img = Image.new('RGB', (300, 200), (255, 255, 255))
+            img = Image.open('/root/mazhen/download/img/a.jpg')
+            draw = ImageDraw.Draw(img)
+            draw.text((0, 50), word, (0, 0, 0), font=font)
+            # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
+            img.save('/root/mazhen/download/img/' + str(time.time()) + '.jpg')
+            media_id = 'Aw33H0uKB2syVic6sCEQ82czeEU2vMddoQTjoqIrJjOXFIQyhFpKLdyE6QcthLVWhRahB1n3MN1WvYuedfG7wzA'
 
+            data = '''
+                <xml>
+                    <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
+                    <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
+                    <CreateTime>{CreateTime}</CreateTime>
+                    <MsgType><![CDATA[image]]></MsgType>
+                    <Image>
+                    <MediaId><![CDATA[{media_id}]]></MediaId>
+                    </Image>
+                </xml>
+            '''
+            resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName,
+                               CreateTime=CreateTime,
+                               media_id=media_id)
 
+            self.finish(resp)
+
+        else:
+            Content = youdao(content)
+
+            data = '''
+                <xml>
+                    <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
+                    <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
+                    <CreateTime>{CreateTime}</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content><![CDATA[{Content}]]></Content>
+                </xml>
+            '''
+
+            # FromUserName, ToUserName需要互换
+            resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName, CreateTime=CreateTime,
+                               Content=Content)
+            self.finish(resp)

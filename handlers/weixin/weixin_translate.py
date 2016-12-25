@@ -133,18 +133,18 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if type(content).__name__ == "unicode":
             content = content.encode('UTF-8')
         if content == '杀的你喊妈':
-            demo = Daiwan()
-            word = demo.get_user_info(content)
+            # demo = Daiwan()
+            # word = demo.get_user_info(content)
 
-            from PIL import Image, ImageDraw, ImageFont
-
-            font = ImageFont.truetype('simsun.ttc', 24)
-            # img = Image.new('RGB', (300, 200), (255, 255, 255))
-            img = Image.open('/root/mazhen/download/img/a.jpg')
-            draw = ImageDraw.Draw(img)
-            draw.text((0, 50), word, (0, 0, 0), font=font)
-            # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/download/img/' + str(time.time()) + '.jpg')
+            # from PIL import Image, ImageDraw, ImageFont
+            #
+            # font = ImageFont.truetype('simsun.ttc', 24)
+            # # img = Image.new('RGB', (300, 200), (255, 255, 255))
+            # img = Image.open('/root/mazhen/download/img/a.jpg')
+            # draw = ImageDraw.Draw(img)
+            # draw.text((0, 50), word, (0, 0, 0), font=font)
+            # # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
+            # img.save('/root/mazhen/download/img/' + str(time.time()) + '.jpg')
             media_id = 'Aw33H0uKB2syVic6sCEQ82czeEU2vMddoQTjoqIrJjOXFIQyhFpKLdyE6QcthLVWhRahB1n3MN1WvYuedfG7wzA'
 
             data = '''

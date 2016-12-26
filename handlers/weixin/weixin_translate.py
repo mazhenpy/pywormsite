@@ -144,7 +144,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             draw = ImageDraw.Draw(img)
             draw.text((0, 50), word, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol1.jpg')
+            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol1.png')
 
             picurl = 'http://139.196.43.6/static/lol/lol1.jpg'
 

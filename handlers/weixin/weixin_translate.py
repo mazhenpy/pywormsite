@@ -139,7 +139,8 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             word = demo.get_user_info(content)
             request_log.info(word)
             request_log.info(type(word))
-            word = json.loads(word)
+            word = json.dumps(word)
+            request_log.info(type(word))
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)

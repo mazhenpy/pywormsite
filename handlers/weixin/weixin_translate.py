@@ -157,8 +157,8 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
                  <ArticleCount>1</ArticleCount>
                  <Articles>
                  <item>
-                 <Title><![CDATA['111']]></Title>
-                 <Description><![CDATA['111']]></Description>
+                 <Title><![CDATA['LOL']]></Title>
+                 <Description><![CDATA['测试']]></Description>
                  <PicUrl><![CDATA[{picurl}]]></PicUrl>
                  <Url><![CDATA[url]]></Url>
                  </item>

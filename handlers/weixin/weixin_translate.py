@@ -144,11 +144,19 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             name = data['name']
             area_id = data['area_id']
             win_point = data['win_point']
+            icon_id = data['icon_id']
+            tier = data['tier']
+            qquin = data['qquin']
+            queue = data['queue']
 
             name = 'name：{0}'.format(name)
             level = 'level：{0}'.format(level)
             area_id = 'area_id：{0}'.format(area_id)
             win_point = 'win_point：{0}'.format(win_point)
+            icon_id = 'icon_id：{0}'.format(icon_id)
+            tier = 'tier：{0}'.format(tier)
+            qquin = 'win_point：{0}'.format(qquin)
+            queue = 'win_point：{0}'.format(queue)
 
             from PIL import Image, ImageDraw, ImageFont
 
@@ -160,10 +168,14 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             draw.text((90, 80), level, (0, 0, 0), font=font)
             draw.text((90, 110), area_id, (0, 0, 0), font=font)
             draw.text((90, 140), win_point, (0, 0, 0), font=font)
+            draw.text((90, 140), icon_id, (0, 0, 0), font=font)
+            draw.text((90, 140), tier, (0, 0, 0), font=font)
+            draw.text((90, 140), qquin, (0, 0, 0), font=font)
+            draw.text((90, 140), queue, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol7.png')
+            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol8.png')
 
-            picurl = 'http://139.196.43.6/static/lol/lol7.png'
+            picurl = 'http://139.196.43.6/static/lol/lol8.png'
 
             data = '''
                 <xml>

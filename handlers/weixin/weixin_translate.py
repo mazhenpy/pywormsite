@@ -135,11 +135,11 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if type(content).__name__ == "unicode":
             content = content.encode('UTF-8')
         if content == '杀的你喊妈彡':
-            # demo = Daiwan()
-            # word = demo.get_user_info(content)
-            # request_log.info(word)
-            # request_log.info(type(word))
-            word = '顶顶顶顶'
+            demo = Daiwan()
+            word = demo.get_user_info(content)
+            request_log.info(word)
+            request_log.info(type(word))
+            word = json.loads(word)
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)
@@ -148,9 +148,9 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             draw = ImageDraw.Draw(img)
             draw.text((0, 50), word, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol2.png')
+            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol3.png')
 
-            picurl = 'http://139.196.43.6/static/lol/lol2.png'
+            picurl = 'http://139.196.43.6/static/lol/lol3.png'
 
             data = '''
                 <xml>
@@ -164,14 +164,14 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
                  <Title><![CDATA['LOL']]></Title>
                  <Description><![CDATA['测试']]></Description>
                  <PicUrl><![CDATA[{picurl}]]></PicUrl>
-                 <Url><![CDATA[url]]></Url>
+                 <Url><![CDATA[{url}]]></Url>
                  </item>
                  </Articles>
                  </xml>
             '''
             resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName,
                                CreateTime=CreateTime,
-                               picurl=picurl)
+                               picurl=picurl, url=picurl)
 
             self.finish(resp)
 

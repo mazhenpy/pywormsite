@@ -134,10 +134,11 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         CreateTime = int(time.time())
         if type(content).__name__ == "unicode":
             content = content.encode('UTF-8')
-        if content == '杀的你喊妈':
-            demo = Daiwan()
-            word = demo.get_user_info(content)
-            request_log.info(word)
+        if content == '杀的你喊妈彡':
+            # demo = Daiwan()
+            # word = demo.get_user_info(content)
+            # request_log.info(word)
+            # request_log.info(type(word))
             word = '顶顶顶顶'
             from PIL import Image, ImageDraw, ImageFont
 

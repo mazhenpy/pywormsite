@@ -168,14 +168,14 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             draw.text((90, 80), level, (0, 0, 0), font=font)
             draw.text((90, 110), area_id, (0, 0, 0), font=font)
             draw.text((90, 140), win_point, (0, 0, 0), font=font)
-            draw.text((90, 140), icon_id, (0, 0, 0), font=font)
-            draw.text((90, 140), tier, (0, 0, 0), font=font)
-            draw.text((90, 140), qquin, (0, 0, 0), font=font)
-            draw.text((90, 140), queue, (0, 0, 0), font=font)
+            draw.text((90, 170), icon_id, (0, 0, 0), font=font)
+            draw.text((90, 200), tier, (0, 0, 0), font=font)
+            draw.text((90, 230), qquin, (0, 0, 0), font=font)
+            draw.text((90, 260), queue, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol8.png')
+            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol9.png')
 
-            picurl = 'http://139.196.43.6/static/lol/lol8.png'
+            picurl = 'http://139.196.43.6/static/lol/lol9.png'
 
             data = '''
                 <xml>

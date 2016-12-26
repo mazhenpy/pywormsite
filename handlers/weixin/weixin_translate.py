@@ -155,8 +155,8 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             win_point = 'win_point：{0}'.format(win_point)
             icon_id = 'icon_id：{0}'.format(icon_id)
             tier = 'tier：{0}'.format(tier)
-            qquin = 'win_point：{0}'.format(qquin)
-            queue = 'win_point：{0}'.format(queue)
+            qquin = 'qquin：{0}'.format(qquin)
+            queue = 'queue：{0}'.format(queue)
 
             from PIL import Image, ImageDraw, ImageFont
 

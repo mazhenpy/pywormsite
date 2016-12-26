@@ -133,9 +133,9 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if type(content).__name__ == "unicode":
             content = content.encode('UTF-8')
         if content == '杀的你喊妈':
-            demo = Daiwan()
-            word = demo.get_user_info(content)
-
+            # demo = Daiwan()
+            # word = demo.get_user_info(content)
+            word = 'hehe'
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)

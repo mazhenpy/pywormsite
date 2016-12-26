@@ -147,16 +147,24 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             # img.save('/root/mazhen/download/img/' + str(time.time()) + '.jpg')
             media_id = 'Aw33H0uKB2syVic6sCEQ82czeEU2vMddoQTjoqIrJjOXFIQyhFpKLdyE6QcthLVWhRahB1n3MN1WvYuedfG7wzA'
 
+            picurl = 'http://139.196.43.6/static/image/blog/blog18_2_4.jpg'
+
             data = '''
                 <xml>
-                    <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
-                    <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
-                    <CreateTime>{CreateTime}</CreateTime>
-                    <MsgType><![CDATA[image]]></MsgType>
-                    <Image>
-                    <MediaId><![CDATA[{media_id}]]></MediaId>
-                    </Image>
-                </xml>
+                 <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
+                 <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
+                 <CreateTime>{CreateTime}</CreateTime>
+                 <MsgType><![CDATA[news]]></MsgType>
+                 <ArticleCount>1</ArticleCount>
+                 <Articles>
+                 <item>
+                 <Title><![CDATA[title1]]></Title>
+                 <Description><![CDATA[description1]]></Description>
+                 <PicUrl><![CDATA[{picurl}]]></PicUrl>
+                 <Url><![CDATA[url]]></Url>
+                 </item>
+                 </Articles>
+                 </xml>
             '''
             resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName,
                                CreateTime=CreateTime,
@@ -178,6 +186,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             '''
 
             # FromUserName, ToUserName需要互换
-            resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName, CreateTime=CreateTime,
+            resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName,
+                               CreateTime=CreateTime,
                                Content=Content)
             self.finish(resp)

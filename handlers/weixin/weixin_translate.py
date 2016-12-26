@@ -138,20 +138,29 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             demo = Daiwan()
             word = demo.get_user_info(content)
             request_log.info(word)
-            request_log.info(type(word))
-            word = json.dumps(word)
-            request_log.info(type(word))
+
+            data = word['data'][0]
+            level = data['level']
+            name = data['name']
+            area_id = data['area_id']
+            win_point = data['win_point']
+
+            body = '昵称：{0}/n' \
+                   '等级：{1}/n' \
+                   '大区：{2}/n' \
+                   '胜场：{3}/n'.format(level, name, area_id, win_point)
+
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)
             # img = Image.new('RGB', (300, 200), (255, 255, 255))
             img = Image.open('/root/mazhen/pyworm-blog/pywormsite/static/lol/lol.png')
             draw = ImageDraw.Draw(img)
-            draw.text((0, 50), word, (0, 0, 0), font=font)
+            draw.text((0, 60), body, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)
-            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol3.png')
+            img.save('/root/mazhen/pyworm-blog/pywormsite/static/lol/' + 'lol4.png')
 
-            picurl = 'http://139.196.43.6/static/lol/lol3.png'
+            picurl = 'http://139.196.43.6/static/lol/lol4.png'
 
             data = '''
                 <xml>

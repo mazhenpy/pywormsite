@@ -158,8 +158,8 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
                  <ArticleCount>1</ArticleCount>
                  <Articles>
                  <item>
-                 <Title><![CDATA[title1]]></Title>
-                 <Description><![CDATA[description1]]></Description>
+                 <Title><![CDATA['111']]></Title>
+                 <Description><![CDATA['111']]></Description>
                  <PicUrl><![CDATA[{picurl}]]></PicUrl>
                  <Url><![CDATA[url]]></Url>
                  </item>
@@ -168,7 +168,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
             '''
             resp = data.format(ToUserName=FromUserName, FromUserName=ToUserName,
                                CreateTime=CreateTime,
-                               media_id=media_id)
+                               picurl=picurl)
 
             self.finish(resp)
 

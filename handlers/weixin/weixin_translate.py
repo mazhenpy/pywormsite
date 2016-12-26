@@ -135,7 +135,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if content == '杀的你喊妈':
             demo = Daiwan()
             word = demo.get_user_info(content)
-            word = json.loads(word)
+            word = '11'
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)

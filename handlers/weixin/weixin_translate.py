@@ -1,4 +1,5 @@
 import hashlib
+import logging
 from urllib.parse import quote
 import time
 import json
@@ -14,6 +15,7 @@ from tornado.httpclient import HTTPClient
 
 from pywormsite import config
 
+request_log = logging.getLogger('request')
 
 def youdao(word):
     qword = quote(word)
@@ -135,7 +137,8 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
         if content == '杀的你喊妈':
             demo = Daiwan()
             word = demo.get_user_info(content)
-            word = '11'
+            request_log.info(word)
+            word = '顶顶顶顶'
             from PIL import Image, ImageDraw, ImageFont
 
             font = ImageFont.truetype('simsun.ttc', 24)

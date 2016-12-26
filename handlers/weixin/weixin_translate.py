@@ -140,7 +140,7 @@ class WeixintranslateHandler(tornado.web.RequestHandler):
 
             font = ImageFont.truetype('simsun.ttc', 24)
             # img = Image.new('RGB', (300, 200), (255, 255, 255))
-            img = Image.open('/root/mazhen/pyworm-blog/pywormsite/static/lol/lol.jpg')
+            img = Image.open('/root/mazhen/pyworm-blog/pywormsite/static/lol/lol.png')
             draw = ImageDraw.Draw(img)
             draw.text((0, 50), word, (0, 0, 0), font=font)
             # draw.text((0, 60), unicode('你好', 'utf-8'), (0, 0, 0), font=font)

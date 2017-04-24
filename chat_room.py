@@ -50,6 +50,12 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
     cache = []
     cache_size = 200
 
+    @tornado.gen.coroutine
+    def get(self):
+        print ('handling...')
+        self.finish('hollo world')
+        return
+
     def check_origin(self, origin):
         return True
 

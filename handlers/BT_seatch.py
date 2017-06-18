@@ -41,7 +41,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 new_links.append(link)
 
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
-                        bt_keywords=bt_keywords)
+                        bt_keywords=bt_keywords,time=time)
         else:
             self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords,
                         time=time)

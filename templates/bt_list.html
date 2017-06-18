@@ -63,7 +63,7 @@
                                       href="/bt_detail_search?bt_id={{ link.get('_id', '') }}">{{ link.get('name', '') }}</a>
             </h2>
 
-            {% for file in link.files %}
+            {% for file in link.get('files', '') %}
                 <p style="padding-left: 5px;">{{ file.get('file_name', '') }}  &nbsp&nbsp&nbsp {{ file.get('file_size', '') }}</p>
 
             {% end %}

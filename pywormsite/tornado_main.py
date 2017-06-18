@@ -3,15 +3,11 @@ import os
 import sys
 
 import django.core.handlers.wsgi
+import tornado.gen
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 import tornado.wsgi
-import tornado.gen
-from tornado.web import url
-
-from handlers.BT_seatch import BtDetailSearchHandler
-from handlers.BT_seatch import BtSearchHandler
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from handlers.weixin.weixin_translate import WeixintranslateHandler
@@ -20,6 +16,8 @@ from pywormsite import config
 
 from handlers.chatroom.chat import ChatHandler, ChatSocketHandler
 from handlers.search_blog import SearchHandler
+from handlers.BT_seatch import BtDetailSearchHandler
+from handlers.BT_seatch import BtSearchHandler
 from handlers.task.task_access_count_day import Day_Ip_Task
 from handlers.task.task_access_count_mon import Mon_Ip_Task
 from handlers.task.task_access_ips import Total_Ip_Task

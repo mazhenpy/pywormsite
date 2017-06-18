@@ -36,7 +36,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
             new_links = []
             for link in links:
                 link_files = link.get('files')
-                _files = link_files[:20]
+                _files = link_files[:15]
                 link['files'] = _files
                 new_links.append(link)
 

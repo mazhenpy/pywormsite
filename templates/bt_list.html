@@ -79,20 +79,22 @@
 
             </section>
             {% end %}
-        {% end %}
 
 
-        {% if page_index %}
-            <ul class="pagination" style="float: right">
-                <li><a {% if page_index>1 %} href="javascript:c('{{ page_index-1 }}'+','+'{{ bt_keywords }}');" {% else %}
-                                             href="" {% end %}>&laquo;</a></li>
-                {% for p in range(page_num) %}
-                    <li id="{{ p+1 }}" {% if (p+1)==page_index %}class="active"{% end %}><a
-                            href="javascript:c('{{ p+1 }}'+','+ '{{ bt_keywords }}');">{{ p+1 }}</a></li>
-                {% end %}
-                <li><a {% if page_index<page_num %} href="javascript:c('{{ page_index+1 }}'+','+ '{{ bt_keywords }}');" {% else %}
-                                                    href="" {% end %}>&raquo;</a></li>
-            </ul>
+
+            {% if page_index %}
+                <ul class="pagination" style="float: right">
+                    <li><a {% if page_index>1 %} href="javascript:c('{{ page_index-1 }}'+','+'{{ bt_keywords }}');" {% else %}
+                                                 href="" {% end %}>&laquo;</a></li>
+                    {% for p in range(page_num) %}
+                        <li id="{{ p+1 }}" {% if (p+1)==page_index %}class="active"{% end %}><a
+                                href="javascript:c('{{ p+1 }}'+','+ '{{ bt_keywords }}');">{{ p+1 }}</a></li>
+                    {% end %}
+                    <li><a {% if page_index<page_num %} href="javascript:c('{{ page_index+1 }}'+','+ '{{ bt_keywords }}');" {% else %}
+                                                        href="" {% end %}>&raquo;</a></li>
+                </ul>
+            {% end %}
+
         {% end %}
     </div>
 

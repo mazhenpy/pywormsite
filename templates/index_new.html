@@ -7,8 +7,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-{#    <script type="text/javascript"#}
-{#            src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>#}
+    {#    <script type="text/javascript"#}
+    {#            src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>#}
     <script type="text/javascript" src="{{ STATIC_URL }}js/nav_header.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/tc_regist.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/tc_login.js"></script>
@@ -24,6 +24,8 @@
           rel='stylesheet' type='text/css'/>
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/422/5766bcf4f629d80d7c685ff9.css'
           rel='stylesheet' type='text/css'/>
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/25511/47382/594687e8f629d81a84e7e03a.css' rel='stylesheet'
+          type='text/css'/>
     <script type="text/javascript">
         $(document).ready(function () {
             var host = window.location.host;
@@ -31,21 +33,22 @@
             document.getElementById('link_chat').href = "http://" + host + "/chat";
             document.getElementById('blog_search').href = "http://" + host + "/search_blog";
         });
-        function check(){
+        function check() {
             var bt_content = document.getElementById("bt_content").value;
-            if(bt_content == ""){
+            if (bt_content == "") {
                 return false;
             }
         }
     </script>
     <style type="text/css">
-        .input2:focus{
+        .input2:focus {
             border-color: #ccc;
             outline: None;
             box-shadow: None !important;
 
         }
-        .input2{
+
+        .input2 {
             -webkit-box-shadow: None !important;
         }
     </style>
@@ -53,7 +56,7 @@
 
 <body>
 
-<nav class="navbar navbar-inverse css40e7b646563a7">
+<nav class="navbar navbar-inverse cssb60ac2df663a7">
     <div class="container-fluid">
         <div class="container">
 
@@ -94,26 +97,29 @@
 </nav>
 
 <div class="page-header clearfix">
-{#    <h1>#}
-{#        <span class="yusi-mono_* css40e75d13763a7"><a href="/index/"#}
-{#                                                    style="color: black; text-decoration: none">Pyworm的博客</a></span>#}
-        {#            <span class="yusi-bloger">#}
-        {#                life is shot,i use python#}
-        {#        </span>#}
-{#    </h1>#}
+    {#    <h1>#}
+    {#        <span class="yusi-mono_* css40e75d13763a7"><a href="/index/"#}
+    {#                                                    style="color: black; text-decoration: none">Pyworm的博客</a></span>#}
+    {#            <span class="yusi-bloger">#}
+    {#                life is shot,i use python#}
+    {#        </span>#}
+    {#    </h1>#}
     <form class="navbar-form" role="search" method='get' action="/bt_search" target="_blank" onsubmit="return check()">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="input-group col-sm-6" style="padding: 0;">
-              <input type="text" class="form-control input2" id="bt_content" autocomplete="off" name="bt_keywords" style="border-radius:0;height: 48px; font-size: 18px;">
+            <div class="col-lg-12">
+                <div class="input-group col-sm-6" style="padding: 0;">
+                    <input type="text" class="form-control input2" id="bt_content" autocomplete="off" name="bt_keywords"
+                           style="border-radius:0;height: 48px; font-size: 18px;">
 
-              <div class="input-group-btn" style="width: 82px !important; ">
-                <button class="btn btn-default" id="bt_btn" type="submit" style="border-radius:0;height: 48px; font-size: 18px;">磁力搜索</button>
-              </div>
+                    <div class="input-group-btn" style="width: 82px !important; ">
+                        <button class="btn btn-default" id="bt_btn" type="submit"
+                                style="border-radius:0;height: 48px; font-size: 18px;">磁力搜索
+                        </button>
+                    </div>
 
-            </div>
+                </div>
                 <p style="color: #ccc">声明：本搜索引擎基于DHT协议实现，只负责搜索，至于搜索出来的是什么东西，和本人没有任何关系。</p>
-          </div>
+            </div>
         </div>
     </form>
 

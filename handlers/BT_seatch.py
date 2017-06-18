@@ -34,10 +34,9 @@ class BtSearchHandler(tornado.web.RequestHandler):
             page_num = int(bt_count / 10) + 1  # 共有几页
 
             for link in links:
-                files = link.get('files', None)
-                if files:
-                    _files = files[:10]
-                    link['files'] = _files
+                link_files = link.get('files')
+                _files = link_files[:10]
+                link['files'] = _files
 
             self.render('bt_list.html', links=links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)

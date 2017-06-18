@@ -10,6 +10,8 @@ import tornado.wsgi
 import tornado.gen
 from tornado.web import url
 
+from handlers.BT_seatch import BtDetailSearchHandler
+from handlers.BT_seatch import BtSearchHandler
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from handlers.weixin.weixin_translate import WeixintranslateHandler

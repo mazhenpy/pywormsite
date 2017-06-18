@@ -64,7 +64,7 @@
             </h2>
 
             {% for file in link.get('files', '') %}
-                {% if link.get('files', None) and link.get('files', None).index(file) < 10 %}
+                {% if link.get('files').index(file) < 10 %}
                     <p style="padding-left: 5px;">{{ file.get('file_name', '') }}  &nbsp&nbsp&nbsp {{ file.get('file_size', '') }}</p>
                 {% end %}
             {% end %}

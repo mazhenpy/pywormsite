@@ -27,7 +27,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
             db = pymongo.MongoClient(mongo_url).bt
             links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords}},
                                              {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).sort(
-                'create_at', pymongo.ASCENDING).skip(10 * (page_index - 1)).limit(10)
+                'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
             bt_count = int(db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords}}, {
                 "files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).count())

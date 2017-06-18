@@ -68,7 +68,7 @@ class BtDetailSearchHandler(tornado.web.RequestHandler):
 
         bt_id = self.get_argument('bt_id')
 
-        link = db.bt_info.find({"_id": ObjectId(bt_id)})
+        link = db.bt_info.find_one({"_id": ObjectId(bt_id)})
 
         # link = {u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv',
         #                     u'file_size': u'3,165 MB'}],

@@ -32,9 +32,8 @@
             document.getElementById('blog_search').href = "http://" + host + "/search_blog";
         });
         function check(){
-            var bt_content = document.getElementById("bt_content");
+            var bt_content = document.getElementById("bt_content").value;
             if(bt_content == ""){
-                alert("姓名不能为空！");
                 return false;
             }
         }

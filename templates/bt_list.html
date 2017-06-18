@@ -74,7 +74,7 @@
                         <p style="padding-left: 5px;">{{ file.get('file_name', '') }}  &nbsp&nbsp&nbsp {{ file.get('file_size', '') }}</p>
                 {% end %}
                 <p style="padding-left: 5px;">...</p>
-                <p style="padding-left: 5px;">更新时间：time.strftime("%Y-%m-%d", time.localtime({{ link.get('create_at', '') }}))</p>
+                <p style="padding-left: 5px;">更新时间：{{ time.strftime("%Y-%m-%d", time.localtime(link.get('create_at', ''))) }}</p>
 
 
             </section>

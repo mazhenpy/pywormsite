@@ -4,7 +4,7 @@ import tornado
 import tornado.web
 import tornado.gen
 import logging
-
+import time
 from bson import ObjectId
 
 error_log = logging.getLogger('error')
@@ -43,7 +43,8 @@ class BtSearchHandler(tornado.web.RequestHandler):
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)
         else:
-            self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords)
+            self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords,
+                        time=time)
 
 
 # 精确搜索

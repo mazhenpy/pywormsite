@@ -33,30 +33,10 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 "files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).count())
             page_num = int(bt_count / 10) + 1  # 共有几页
 
-            # links = [{u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'file_size': u'3,165 MB'}],
-            #           u'name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'total_size': u'3,165 MB',
-            #           u'create_at': 1493875745, u'magnet': u'magnet:?xt=urn:btih:1609351afd64c373834a6bd92c84577e5b362223',
-            #           u'_id': ObjectId('590abc21f7f28234aa5b0c48')},
-            #          {u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv',u'file_size': u'3,165 MB'}],
-            #           u'name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'total_size': u'3,165 MB',
-            #           u'create_at': 1493875745, u'magnet': u'magnet:?xt=urn:btih:1609351afd64c373834a6bd92c84577e5b362223',
-            #           u'_id': ObjectId('590abc21f7f28234aa5b0c48')},
-            #          {u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv',
-            #                       u'file_size': u'3,165 MB'}],
-            #           u'name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'total_size': u'3,165 MB',
-            #           u'create_at': 1493875745, u'magnet': u'magnet:?xt=urn:btih:1609351afd64c373834a6bd92c84577e5b362223',
-            #           u'_id': ObjectId('590abc21f7f28234aa5b0c48')},
-            #          {u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv',
-            #                       u'file_size': u'3,165 MB'}],
-            #           u'name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'total_size': u'3,165 MB',
-            #           u'create_at': 1493875745, u'magnet': u'magnet:?xt=urn:btih:1609351afd64c373834a6bd92c84577e5b362223',
-            #           u'_id': ObjectId('590abc21f7f28234aa5b0c48')}
-            #          ]
-
             self.render('bt_list.html', links=links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)
         else:
-            self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords)
+            pass
 
 
 # 精确搜索
@@ -69,11 +49,5 @@ class BtDetailSearchHandler(tornado.web.RequestHandler):
         bt_id = self.get_argument('bt_id')
 
         link = db.bt_info.find_one({"_id": ObjectId(bt_id)})
-
-        # link = {u'files': [{u'file_name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv',
-        #                     u'file_size': u'3,165 MB'}],
-        #         u'name': u'\u901f\u5ea6\u4e0e\u6fc0\u60c57.\u4e2d\u82f1\u7279\u6548.mkv', u'total_size': u'3,165 MB',
-        #         u'create_at': 1493875745, u'magnet': u'magnet:?xt=urn:btih:1609351afd64c373834a6bd92c84577e5b362223',
-        #         u'_id': ObjectId('590abc21f7f28234aa5b0c48')}
 
         self.render('bt_detail.html', link=link)

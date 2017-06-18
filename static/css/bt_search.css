@@ -1,0 +1,27 @@
+.container{
+    width: 50%;
+    margin-bottom: 80px;
+}
+
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 0 !important;
+    padding: 40px 0 40px 0;
+    display: block;
+    background-color: #f8f8f8
+}
+
+.content-wrap {
+    width: 100%;
+}
+
+.bt_detail_p{
+    padding: 30px 10px !important;
+    background-color: #f5f5f5 !important;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    {#    <script type="text/javascript"#}
+    {#            src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>#}
+
+    <title>博客首页 | Pyworm的博客</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/blogs.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/bt_search.css" type="text/css"/>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var host = window.location.host;
+            document.getElementById('chat_link').href = "http://" + host + "/chat";
+            document.getElementById('link_chat').href = "http://" + host + "/chat";
+            document.getElementById('blog_search').href = "http://" + host + "/search_blog";
+        });
+
+        function c(parms) {
+            var words = parms.split(",");
+            var page_index = words[0];
+            var bt_keywords = words[1];
+            window.location.href = '/bt_search' + '?page_index=' + page_index + '&bt_keywords=' + bt_keywords
+        }
+    </script>
+
+</head>
+
+<body>
+
+<div class="page-header clearfix">
+    <form class="navbar-form" role="search" method='get' action="/bt_search">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="input-group col-sm-6" style="padding: 0;">
+              <input type="text" class="form-control input2" autocomplete="off" name="bt_keywords" style="border-radius:0;height: 48px; font-size: 18px;">
+
+              <div class="input-group-btn" style="width: 82px !important; ">
+                <button class="btn btn-default" id="bt_btn" type="submit" style="border-radius:0;height: 48px; font-size: 18px;">磁力搜索</button>
+              </div>
+
+            </div>
+{#                <p style="color: #ccc">声明：本搜索引擎基于DHT协议实现，只负责搜索，至于搜索出来的是什么东西，和本人没有任何关系。</p>#}
+          </div>
+        </div>
+    </form>
+</div>
+
+<div class='background_up'>
+
+    <div class="container">
+        {% for link in links %}
+        <section class="content-wrap">
+            <h2 class="post-title"><a class="post-title-a"
+                                      href="/bt_detail_search?bt_id={{ link._id }}">{{ link.name }}</a>
+            </h2>
+
+            {% for file in link.files %}
+                <p style="padding-left: 5px;">{{ file.file_name }}  &nbsp&nbsp&nbsp {{ file.file_size }}</p>
+
+            {% end %}
+            <p style="padding-left: 5px;">...</p>
+            <p style="padding-left: 5px;">更新时间：{{ link.create_at }}</p>
+
+
+        </section>
+        {% end %}
+
+
+        {% if page_index %}
+            <ul class="pagination" style="float: right">
+                <li><a {% if page_index>1 %} href="javascript:c('{{ page_index-1 }}'+','+'{{ bt_keywords }}');" {% else %}
+                                             href="" {% end %}>&laquo;</a></li>
+                {% for p in range(page_num) %}
+                    <li id="{{ p+1 }}" {% if (p+1)==page_index %}class="active"{% end %}><a
+                            href="javascript:c('{{ p+1 }}'+','+ '{{ bt_keywords }}');">{{ p+1 }}</a></li>
+                {% end %}
+                <li><a {% if page_index<page_num %} href="javascript:c('{{ page_index+1 }}'+','+ '{{ bt_keywords }}');" {% else %}
+                                                    href="" {% end %}>&raquo;</a></li>
+            </ul>
+        {% end %}
+    </div>
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -64,6 +64,8 @@ class Application(tornado.web.Application):
         handlers = [
             ('/chat', ChatHandler),
             ('/websocket', ChatSocketHandler),
+            ('/bt_search', BtSearchHandler),  # BT搜索
+            ('/bt_detail_search', BtDetailSearchHandler),  # BT搜索
             ('/search_blog', SearchHandler),  # 博客搜索
             ('/weixin', WeixintranslateHandler),  # 微信翻译
 

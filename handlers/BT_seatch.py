@@ -43,7 +43,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)
         else:
-            self.redirect('/index')
+            self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords)
 
 
 # 精确搜索

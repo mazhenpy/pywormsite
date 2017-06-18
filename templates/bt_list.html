@@ -64,9 +64,7 @@
             </h2>
 
             {% for file in link.get('files', '') %}
-                {% if link.get('files').index(file) < 10 %}
                     <p style="padding-left: 5px;">{{ file.get('file_name', '') }}  &nbsp&nbsp&nbsp {{ file.get('file_size', '') }}</p>
-                {% end %}
             {% end %}
             <p style="padding-left: 5px;">...</p>
             <p style="padding-left: 5px;">更新时间：{{ link.get('create_at', '') }}</p>

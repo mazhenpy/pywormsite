@@ -13,7 +13,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-nav>li>a{
-    font-family: "华文楷体", "Microsoft Yahei",arial,sans-serif;
+    /*font-family: "华文楷体", "Microsoft Yahei",arial,sans-serif;*/
     color:white;
     font-size:17px;
 }
@@ -22,7 +22,7 @@ a:focus{
 }
 
 .navbar-inverse .navbar-brand{
-    font-family: "华文楷体", "Microsoft Yahei",arial,sans-serif !important;
+    /*font-family: "华文楷体", "Microsoft Yahei",arial,sans-serif !important;*/
     color:white;
 }
 

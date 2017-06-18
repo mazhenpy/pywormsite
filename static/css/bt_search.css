@@ -35,3 +35,7 @@
 .input2{
     -webkit-box-shadow: None !important;
 }
+.post-title{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-size: 20px !important;
+}

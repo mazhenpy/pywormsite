@@ -38,6 +38,8 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 _files = link_files[:10]
                 link['files'] = _files
 
+            if links.count() == 0:
+                links = 11111
             self.render('bt_list.html', links=links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)
         else:

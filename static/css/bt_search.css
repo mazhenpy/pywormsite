@@ -25,3 +25,13 @@
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
 }
+
+.input2:focus{
+    border-color: #ccc;
+    outline: None;
+    box-shadow: None !important;
+
+}
+.input2{
+    -webkit-box-shadow: None !important;
+}

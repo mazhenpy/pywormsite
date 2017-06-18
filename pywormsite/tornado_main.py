@@ -83,7 +83,7 @@ class Application(tornado.web.Application):
                                         "uploads"),
             "cookie_secret": "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
             "xsrf_cookies": False,
-            "debug": False,
+            "debug": True,
         }
 
         tornado.web.Application.__init__(self, handlers, **settings)

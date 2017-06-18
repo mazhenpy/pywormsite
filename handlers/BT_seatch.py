@@ -33,13 +33,13 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 "files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).count())
             page_num = int(bt_count / 10) + 1  # 共有几页
 
-            for link in links:
-                link_files = link.get('files')
-                _files = link_files[:10]
-                link['files'] = _files
-
-            if links.count() == 0:
-                links = 11111
+            # for link in links:
+            #     link_files = link.get('files')
+            #     _files = link_files[:10]
+            #     link['files'] = _files
+            #
+            # if links.count() == 0:
+            #     links = 11111
             self.render('bt_list.html', links=links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords)
         else:

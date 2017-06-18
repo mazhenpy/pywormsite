@@ -25,7 +25,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
         if bt_keywords:
             mongo_url = 'mongodb://localhost:27017/'
             db = pymongo.MongoClient(mongo_url).bt
-            links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords}},
+            links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
                                              {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).sort(
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
@@ -36,7 +36,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
             new_links = []
             for link in links:
                 link_files = link.get('files')
-                _files = link_files[:10]
+                _files = link_files[:20]
                 link['files'] = _files
                 new_links.append(link)
 

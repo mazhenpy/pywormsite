@@ -57,9 +57,7 @@
 <div class='background_up'>
 
     <div class="container">
-        {{ links }}
         {% for link in links %}
-        {{ link }}
         <section class="content-wrap">
             <h2 class="post-title"><a class="post-title-a"
                                       href="/bt_detail_search?bt_id={{ link.get('_id', '') }}">{{ link.get('name', '') }}</a>

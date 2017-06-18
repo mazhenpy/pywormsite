@@ -59,11 +59,11 @@
     <div class="container">
         <section class="content-wrap">
             <h2 class="post-title"><a class="post-title-a"
-                                      href="/bt_detail_search?bt_id={{ link._id }}"></a> {{ link.name }}&nbsp&nbsp{{ link.total_size }}
+                                      href="/bt_detail_search?bt_id={{ link.get('_id', '') }}"></a> {{ link.get('name', '') }}&nbsp&nbsp{{ link.get('total_size', '') }}
             </h2>
 
             <p style="padding-left: 5px; margin-top: 40px;">磁力链接：</p>
-            <p class="bt_detail_p" style="padding-left: 5px; background-color: white; "><a href="{{ link.magnet }}">{{ link.magnet }}</a></p>
+            <p class="bt_detail_p" style="padding-left: 5px; background-color: white; "><a href="{{ link.get('magnet', '') }}">{{ link.get('magnet', '') }}</a></p>
 
 
         </section>

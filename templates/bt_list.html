@@ -60,15 +60,15 @@
         {% for link in links %}
         <section class="content-wrap">
             <h2 class="post-title"><a class="post-title-a"
-                                      href="/bt_detail_search?bt_id={{ link._id }}">{{ link.name }}</a>
+                                      href="/bt_detail_search?bt_id={{ link.get('_id', '') }}">{{ link.get('name', '') }}</a>
             </h2>
 
             {% for file in link.files %}
-                <p style="padding-left: 5px;">{{ file.file_name }}  &nbsp&nbsp&nbsp {{ file.file_size }}</p>
+                <p style="padding-left: 5px;">{{ file.get('file_name', '') }}  &nbsp&nbsp&nbsp {{ file.get('file_size', '') }}</p>
 
             {% end %}
             <p style="padding-left: 5px;">...</p>
-            <p style="padding-left: 5px;">更新时间：{{ link.create_at }}</p>
+            <p style="padding-left: 5px;">更新时间：{{ link.get('create_at', '') }}</p>
 
 
         </section>

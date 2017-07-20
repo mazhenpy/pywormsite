@@ -30,8 +30,9 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 if not ip:
                     ip = '111.111.111.111'
 
+                key = 'bt_search:{0}'.format(ip)
                 master_13 = RedisDriver().master_13
-                master_13.set(ip, bt_keywords)
+                master_13.lpush(key, bt_keywords)
             except:
                 pass
 

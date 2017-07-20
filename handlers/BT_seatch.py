@@ -23,6 +23,18 @@ class BtSearchHandler(tornado.web.RequestHandler):
             error_log.error(e)
 
         if bt_keywords:
+
+            try:
+                from pywormsite import RedisDriver
+                ip = self.request.remote_ip
+                if not ip:
+                    ip = '111.111.111.111'
+
+                master_13 = RedisDriver().master_13
+                master_13.set(ip, bt_keywords)
+            except:
+                pass
+
             mongo_url = 'mongodb://localhost:27017/'
             db = pymongo.MongoClient(mongo_url).bt
             links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
@@ -41,7 +53,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 new_links.append(link)
 
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
-                        bt_keywords=bt_keywords,time=time)
+                        bt_keywords=bt_keywords, time=time)
         else:
             self.render('bt_list.html', links=None, page_index=int(page_index), page_num=0, bt_keywords=bt_keywords,
                         time=time)

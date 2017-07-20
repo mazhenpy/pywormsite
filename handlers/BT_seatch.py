@@ -8,9 +8,9 @@ import logging
 import time
 from bson import ObjectId
 # reload(sys)
-import importlib
-importlib.reload(sys)
-sys.setdefaultencoding('utf-8')
+# import importlib
+# importlib.reload(sys)
+# sys.setdefaultencoding('utf-8')
 error_log = logging.getLogger('error')
 
 
@@ -36,7 +36,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
                 key = 'bt_search:{0}'.format(ip)
                 master_13 = RedisDriver().master_13
-                master_13.lpush(key, bt_keywords.decode())
+                master_13.lpush(key, bt_keywords)
             except:
                 pass
 

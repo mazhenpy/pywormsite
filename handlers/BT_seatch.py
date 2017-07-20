@@ -7,8 +7,8 @@ import tornado.gen
 import logging
 import time
 from bson import ObjectId
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 error_log = logging.getLogger('error')
 
 

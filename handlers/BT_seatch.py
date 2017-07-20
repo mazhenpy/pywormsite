@@ -1,12 +1,14 @@
 # coding:utf-8
 import pymongo
+import sys
 import tornado
 import tornado.web
 import tornado.gen
 import logging
 import time
 from bson import ObjectId
-
+reload(sys)
+sys.setdefaultencoding('utf-8')
 error_log = logging.getLogger('error')
 
 
@@ -32,7 +34,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
                 key = 'bt_search:{0}'.format(ip)
                 master_13 = RedisDriver().master_13
-                master_13.lpush(key, bt_keywords)
+                master_13.lpush(key, bt_keywords.decode())
             except:
                 pass
 

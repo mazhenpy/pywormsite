@@ -46,21 +46,12 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             mongo_find = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
                                                   {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]})
-            mongo_find_clone = mongo_find.clone()
 
+            # 获得一个游标后，对它取数据后，不能再次 skip和limit 调用cursor 对象的clone()方法，赋值给新的一个cursor 对象
+            mongo_find_clone = mongo_find.clone()
 
             # 如果相关数据超过100条，只按100条算
             max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
-            # # max_data = mongo_find.skip(10).limit(1)
-            #
-            # print(max_data.cursor_id)
-            # print(max_data.alive)
-            # try:
-            #     _doc = max_data.next()
-            # except StopIteration:
-            #     _doc = None
-            #
-            # print(_doc)
 
             try:
                 bt_data = max_data.next()
@@ -68,12 +59,9 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 bt_data = None
 
             if bt_data:
-                print(111111111111)
                 bt_count = 10 * (int(page_index) + 9) - 1
             else:
-                print(222222222222)
                 bt_count = int(mongo_find.count())
-                print(bt_count)
 
             links = mongo_find_clone.sort(
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)

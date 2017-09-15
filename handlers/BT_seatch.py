@@ -60,10 +60,10 @@ class BtSearchHandler(tornado.web.RequestHandler):
             #
             # print(_doc)
 
-            bt_data = False
-            for m in max_data:
-                if m:
-                    bt_data = True
+            try:
+                bt_data = max_data.next()
+            except StopIteration:
+                bt_data = None
 
             if bt_data:
                 print(111111111111)
@@ -71,6 +71,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
             else:
                 print(222222222222)
                 bt_count = int(mongo_find.count())
+                print(bt_count)
 
             links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
                                              {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).sort(

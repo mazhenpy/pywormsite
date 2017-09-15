@@ -48,7 +48,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                                                   {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]})
 
             # 如果相关数据超过100条，只按100条算
-            max_data = mongo_find.sort('create_at', pymongo.ASCENDING).skip(10 * (int(page_index) + 9)).limit(1)
+            max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
 
             print(page_index)
             print(max_data.count())

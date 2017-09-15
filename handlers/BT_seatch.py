@@ -66,17 +66,17 @@ class BtSearchHandler(tornado.web.RequestHandler):
             #     bt_data = max_data.next()
             # except StopIteration:
             #     bt_data = None
-
+            print(555555555555555555555555555555)
             if bt_data:
                 bt_count = 10 * (int(page_index) + 9) - 1
             else:
                 bt_count = int(mongo_find.count())
 
-            print(555555555555555555555555555555)
+            print(6666666666666666666666666666666)
             links = mongo_find_clone.sort(
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
-            print(6666666666666666666666666666666)
+            print(777777777777777777777777777777777)
             page_num = int(bt_count / 10) + 1  # 共有几页
 
             new_links = []
@@ -86,7 +86,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 link['files'] = _files
                 new_links.append(link)
 
-            print(777777777777777777777777777777777)
+            print(8888888888888888888888888888888888)
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords, time=time)
         else:

@@ -53,7 +53,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             for m in max_data:
                 print(m)
-            print(mongo_find.count())
+            print(len(max_data))
             print(10 * (int(page_index) + 9))
             print(max_data.count())
             if max_data.count():

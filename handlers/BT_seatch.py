@@ -56,10 +56,23 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             print(max_data.cursor_id)
             print(max_data.alive)
+            try:
+                _doc = max_data.next()
+            except StopIteration:
+                _doc = None
+
+            print(_doc)
 
             max_data = mongo_find.skip(10).limit(1)
             print(max_data.cursor_id)
             print(max_data.alive)
+
+            try:
+                _doc = max_data.next()
+            except StopIteration:
+                _doc = None
+
+            print(_doc)
 
             bt_data = False
             for m in max_data:

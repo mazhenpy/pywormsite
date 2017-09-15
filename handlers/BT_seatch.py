@@ -7,6 +7,7 @@ import tornado.gen
 import logging
 import time
 from bson import ObjectId
+
 # reload(sys)
 # import importlib
 # importlib.reload(sys)
@@ -42,12 +43,19 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             mongo_url = 'mongodb://localhost:27017/'
             db = pymongo.MongoClient(mongo_url).bt
-            links = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
-                                             {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).sort(
-                'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
-            bt_count = int(db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords}}, {
-                "files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]}).count())
+            mongo_find = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
+                                                  {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]})
+
+            max_data = mongo_find.sort('create_at', pymongo.ASCENDING).skip(100).limit(1)
+
+            if max_data:
+                bt_count = 100
+            else:
+                bt_count = int(mongo_find.count())
+
+            links = mongo_find.sort('create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
+
             page_num = int(bt_count / 10) + 1  # 共有几页
 
             new_links = []

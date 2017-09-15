@@ -51,6 +51,8 @@ class BtSearchHandler(tornado.web.RequestHandler):
             # max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
             max_data = mongo_find.skip(10).limit(1)
 
+            for m in max_data:
+                print(m)
             print(mongo_find.count())
             print(10 * (int(page_index) + 9))
             print(max_data.count())

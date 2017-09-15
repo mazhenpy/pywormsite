@@ -49,9 +49,9 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             # 如果相关数据超过100条，只按100条算
             max_data = mongo_find.sort('create_at', pymongo.ASCENDING).skip(10 * (int(page_index) + 9)).limit(1)
-            
-            print(dir(max_data))
-            if max_data:
+
+            print(max_data.count())
+            if max_data.count():
                 print(111111111111)
                 bt_count = 10 * (int(page_index) + 9) - 1
             else:

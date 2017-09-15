@@ -44,15 +44,18 @@ class BtSearchHandler(tornado.web.RequestHandler):
             mongo_url = 'mongodb://localhost:27017/'
             db = pymongo.MongoClient(mongo_url).bt
 
+            print(11111111111111111111)
             mongo_find = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
                                                   {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]})
 
+            print(2222222222222222222222)
             # 获得一个游标后，对它取数据后，不能再次 skip和limit 调用cursor 对象的clone()方法，赋值给新的一个cursor 对象
             mongo_find_clone = mongo_find.clone()
 
+            print(33333333333333333333333333)
             # 如果相关数据超过100条，只按100条算
             max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
-
+            print(4444444444444444444444444444)
             try:
                 bt_data = max_data.next()
             except StopIteration:
@@ -63,9 +66,11 @@ class BtSearchHandler(tornado.web.RequestHandler):
             else:
                 bt_count = int(mongo_find.count())
 
+            print(555555555555555555555555555555)
             links = mongo_find_clone.sort(
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
+            print(6666666666666666666666666666666)
             page_num = int(bt_count / 10) + 1  # 共有几页
 
             new_links = []
@@ -74,6 +79,8 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 _files = link_files[:15]
                 link['files'] = _files
                 new_links.append(link)
+
+            print(777777777777777777777777777777777)
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords, time=time)
         else:

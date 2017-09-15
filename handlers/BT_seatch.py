@@ -52,13 +52,13 @@ class BtSearchHandler(tornado.web.RequestHandler):
             # max_data = mongo_find.skip(10).limit(1)
 
             print(max_data.batch_size)
-            print(max_data.next)
-            bt_data = False
-            for m in max_data:
-                if m:
-                    bt_data = True
+            print(max_data.next())
+            # bt_data = False
+            # for m in max_data:
+            #     if m:
+            #         bt_data = True
 
-            if bt_data:
+            if max_data.next():
                 print(111111111111)
                 bt_count = 10 * (int(page_index) + 9) - 1
             else:

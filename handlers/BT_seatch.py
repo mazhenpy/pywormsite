@@ -46,16 +46,14 @@ class BtSearchHandler(tornado.web.RequestHandler):
 
             mongo_find = db.bt_info.find({'$or': [{'name': {'$regex': bt_keywords, '$options': 'i'}},
                                                   {"files": {"$elemMatch": {"file_name": {'$regex': bt_keywords}}}}]})
-            print(1111111111111111111111)
-            max_data = mongo_find.sort('create_at', pymongo.ASCENDING).skip(100).limit(1)
-            print(max_data)
+
+            # 如果相关数据超过100条，只按100条算
+            max_data = mongo_find.sort('create_at', pymongo.ASCENDING).skip(10 * (int(page_index) + 9)).limit(1)
             if max_data:
-                bt_count = 100
+                bt_count = 10 * (int(page_index) + 9)
             else:
                 bt_count = int(mongo_find.count())
-            print(22222222222222222222222222)
             links = mongo_find.sort('create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
-            print(33333333333333333333333333)
             page_num = int(bt_count / 10) + 1  # 共有几页
 
             new_links = []
@@ -64,7 +62,6 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 _files = link_files[:15]
                 link['files'] = _files
                 new_links.append(link)
-            print(4444444444444444444444444444)
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords, time=time)
         else:

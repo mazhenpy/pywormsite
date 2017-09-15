@@ -56,10 +56,16 @@ class BtSearchHandler(tornado.web.RequestHandler):
             # 如果相关数据超过100条，只按100条算
             max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
             print(4444444444444444444444444444)
-            try:
-                bt_data = max_data.next()
-            except StopIteration:
-                bt_data = None
+
+            bt_data = False
+            for m in max_data:
+                if m:
+                    bt_data = True
+
+            # try:
+            #     bt_data = max_data.next()
+            # except StopIteration:
+            #     bt_data = None
 
             if bt_data:
                 bt_count = 10 * (int(page_index) + 9) - 1

@@ -54,9 +54,9 @@ class BtSearchHandler(tornado.web.RequestHandler):
             print(max_data.batch_size)
             print(max_data.next)
             bt_data = False
-            # for m in max_data:
-            #     if m:
-            #         bt_data = True
+            for m in max_data:
+                if m:
+                    bt_data = True
 
             if bt_data:
                 print(111111111111)
@@ -65,7 +65,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 print(222222222222)
                 bt_count = int(mongo_find.count())
 
-            links = mongo_find.sort(
+            links = mongo_find.clone.sort(
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
             page_num = int(bt_count / 10) + 1  # 共有几页

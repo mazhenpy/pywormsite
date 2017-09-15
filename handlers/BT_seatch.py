@@ -64,7 +64,7 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 _files = link_files[:15]
                 link['files'] = _files
                 new_links.append(link)
-
+            print(4444444444444444444444444444)
             self.render('bt_list.html', links=new_links, page_index=int(page_index), page_num=int(page_num),
                         bt_keywords=bt_keywords, time=time)
         else:

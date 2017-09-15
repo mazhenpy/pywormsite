@@ -51,17 +51,17 @@ class BtSearchHandler(tornado.web.RequestHandler):
                 'create_at', pymongo.ASCENDING).skip(10 * (int(page_index) - 1)).limit(10)
 
             # 如果相关数据超过100条，只按100条算
-            max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
-            # max_data = mongo_find.skip(10).limit(1)
-
-            print(max_data.cursor_id)
-            print(max_data.alive)
-            try:
-                _doc = max_data.next()
-            except StopIteration:
-                _doc = None
-
-            print(_doc)
+            # max_data = mongo_find.skip(10 * (int(page_index) + 9)).limit(1)
+            # # max_data = mongo_find.skip(10).limit(1)
+            #
+            # print(max_data.cursor_id)
+            # print(max_data.alive)
+            # try:
+            #     _doc = max_data.next()
+            # except StopIteration:
+            #     _doc = None
+            #
+            # print(_doc)
 
             max_data = mongo_find.skip(10).limit(1)
             print(max_data.cursor_id)

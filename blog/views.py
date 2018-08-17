@@ -27,6 +27,7 @@ error_log = logging.getLogger('error')
 # 博客展示
 @csrf_exempt
 def blog(req, blog_id):
+    print('11111111111111111111')
     master_14 = RedisDriver().master_14
 
     ip = ''
@@ -61,8 +62,8 @@ def blog(req, blog_id):
         for ip in ips_access:
             ip_attribution = sina_ip(ip)
             ip_access_time = master_14.get(ip)
-            ips_info[ip_attribution] = ip_access_time
-
+            if ip_access_time:
+                ips_info[ip_attribution] = ip_access_time
     ips_info = sorted(ips_info.items(), key=lambda d: d[1], reverse=True)
 
     ip_obj = IP_access.objects.filter(ip=ip)

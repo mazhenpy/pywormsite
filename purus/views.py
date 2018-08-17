@@ -27,6 +27,7 @@ access_log = logging.getLogger('access')
 @csrf_exempt
 # @cache_page(60 * 15) #缓存页面15分钟
 def index(req):
+    print('in index')
     blogs = []
     # 登录
     if req.is_ajax():
